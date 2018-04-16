@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全选不选反选的练习</title>
+	<script>
+		oBox1.onclick =function(){
+			var aBtn =document.getElementsByTagName('input')
+			var aBox2 =document.getElementsByTagName('input')
+			var aBox3 =document.getElementsByTagName('input')
+			var aDiv  =document.getElementsByTagName('input')
+			for< (var i=0 ; i< aChk.length; i++){
+				   aChk(i).checked=turn;
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="全选" id="box1"> 
+	<input type="button" value="全不选" id="box2"> 
+	<input type="button" value="反选" id="box3">  
+	<div class="box">
+		<input type="checkbox"><br>
+		<input type="checkbox"><br>
+		<input type="checkbox"><br>
+		<input type="checkbox"><br>
+		<input type="checkbox"><br>
+		<input type="checkbox"><br>
+		<input type="checkbox"><br>
+		<input type="checkbox"><br>
+		<input type="checkbox"><br>
+		<input type="checkbox"><br>
+	</div>
+</body>
+</html>

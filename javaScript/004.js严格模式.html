@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js严格模式</title>
+	<script >
+        /* 'use strict' 严格模式下只有按规范来写才能读取：
+         上面的为规范可以显示内容，下面非规范不可显示；
+		function SayHi(){
+			         'use strict'
+			         var hi='Hi'
+			         alert(hi)
+		          }
+		SayHi();
+		 
+        function Sayhi(){
+        	'use strict'
+        	hi='hi'
+        	alert(hi)
+        }
+        Sayhi();
+         */
+         /*不在严格模式下都能显示*/
+         function SayHi(){
+			         var hi='Hi'
+			         alert(hi)
+		          }
+		SayHi();
+		 
+        function Vayhi(){
+        	hi='hiY'
+        	alert(hi)
+        }
+        Vayhi();
+	</script>
+</head>
+<body>
+	<div id="hi"></div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>循环应用按钮对应背景</title>
+	<style>
+		div{
+			height: 100px;
+			width: 100px;
+			border: 1px solid #369;
+			display: none;
+		}
+         .box1{
+         	background: red;
+         }
+	</style>
+	<script>
+		window.onload =function (){
+			var aBtn =document.getElementsByTagName('input');
+			var aDiv =document.getElementsByTagName('div');
+			for(var i = 0; i<aBtn.length; i++){
+				aBtn[i].index=i;
+				aBtn[i].onclick =function(){
+			     for (var j=0; j<aBtn.length; j++){
+				        aBtn[j].className ='';
+				        aDiv[j].style.display='none';
+				    }
+				    this.className ='active';
+				    aDiv[this.index].style.display='block';
+				    aDiv[this.index].style.background='red';
+				    aBtn[this.index].style.background='blue';
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="按钮1" class="box1">
+	<input type="button" value="按钮2">
+	<input type="button" value="按钮3">
+	<div style="display: block;">背景1</div>
+	<div>背景2</div>
+	<div>背景3</div>
+</body>
+</html>
