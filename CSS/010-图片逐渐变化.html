@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片逐渐变化</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			height: 500px;
+			width: 800px;
+			border: 1px solid #369;
+			margin: 20px auto;
+		}
+		ul li{
+			height: 100px;
+			width: 100px;
+			background: blue;
+			display: inline-block;
+			border: 1px solid #000;
+			list-style: none;
+			line-height: 50px;
+			text-align: center;
+			/*transition: height 2s linear 2s;
+			transition: width 2s linear 2s;*/
+			transition: all 2s linear 2s;
+		}
+		ul:hover li{
+			height: 500px;
+			width: 150px;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>012-图像的旋转与结束位置.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			height: 100px;
+			width: 100px;
+			background: red;
+			margin: 100px auto;
+			animation:lp 2s;
+			animation-fill-mode: forwards;
+		}
+		@keyframes lp{
+			0%{
+               transform: rotate(20deg);
+			}
+			30%{
+				transform: rotate(60deg);
+			}
+			70%{
+				transform: rotate(80deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+</body>
+</html>

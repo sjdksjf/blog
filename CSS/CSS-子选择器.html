@@ -2,27 +2,28 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>后代选择器</title>
+	<title>子选择器</title>
 	<style> 
-	     h2{
-	     	color: rgba(255,0,0,1);
+	     header>a{
+	     	color: rgb(255,0,0);
 	     }
-		 header a{
-		 	color: rgba(20,255,100,0.8);
-		 	font-size: 30px;
-		 }
-		 section a{
-		 	color: rgba(50,10,200,0.3);
-		 	font-size: 20px;
-		 	font-weight: bold;
-		 	font-style: italic;
-		 }
+	     header>h2{
+	     	color: rgb(0,255,0);
+	     }
+	     section>a{
+	     	color: rgb(80,100,50);
+	     }
+	     
 	</style> 
 </head>
 <body>
     <h2>我是标题</h2>
     <header>
-           <nav>
+    	   <img src="./2.jpg" alt="">
+    	   <a href="#">樱花1</a>
+    	   <a href="#">樱花2</a>
+           <h2>子非鱼</h2>
+           <nav class="class2">
            	    <a href="#">子午1</a>
            	    <a href="#">子午2</a>
            	    <a href="#">子午3</a>

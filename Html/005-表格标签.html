@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表格标签</title>
+</head>
+<body>
+	<!--
+        1.表格标签 table ，tr ，td 用表格的形式展现数据，是组合标签，要组合出现。
+         默认边框为0，可以用border属性来改变。
+        2.属性 宽度 width 高度height 设置对象 table td 
+        如果只设置一个，另一个等比例出现。
+        3.水平对齐 align 对象 table ，tr ，td  
+        属性值：top/center/bottom
+        4.外边距 cellspacing 对象table，默认2个像素  
+        5.内边距 cellpadding 对象table，默认一个像素
+        6.背景颜色bgcolor 对象table/tr/td 
+     做了解，样式CSS来控制。
+        7.完整的表格结构 :表头 caption 标题 thead tr td
+                          主体 tbody tr td 表尾tfoot tr td
+        8.单元格合并:  水平方向 colspan 合并几个删除几个
+                       垂直方向 rowspan 对象都是td
+                       单元格合并只能向后或者向下合并。  
+		!-->
+		<h2>细线表格制作</h2>
+		<table bgcolor="black" cellspacing="1px" width="200px" height="200">
+			<tr bgcolor="white" >
+				<td bgcolor="red">0.0</td>
+				<td>0.8</td>
+			</tr>
+			<tr bgcolor="white">
+				<td>1.2</td>
+				<td>1.8</td>
+			</tr>
+		</table>
+		   <caption>我是表头</caption>  <thead>我是标题 </thead>  <tfoot>我是表尾</tfoot>
+		<table bgcolor="black" cellspacing="1px" width="300px" height="300px">
+			  <tfoot>我是表尾</tfoot>
+			 <tr bgcolor="white">
+			 	<td colspan="3">细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 </tr>
+			 <tr bgcolor="white">
+			 	<td rowspan="2">细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 </tr>
+			 <tr bgcolor="white">
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	
+			 </tr>
+			 <tr bgcolor="white">
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 </tr>
+			 <tr bgcolor="white">
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 	<td>细线表格练习</td>
+			 </tr>
+		</table>
+	    <tfoot>我是表尾</tfoot>
+</body>
+</html>

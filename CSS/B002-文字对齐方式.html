@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文字对齐方式</title>
+	<style>
+	      *{
+	      	margin: 0;
+	      	padding: 0;
+	      }
+	      p{
+	      	border: 1px solid #000;
+	      	margin-bottom: 10px;
+	      	/*padding: 20px;*/
+	      }
+		.lo{		
+           background: black;
+           color: white;
+           line-height: 30px;
+           border: 1px solid 0f0;
+		}
+		.lp{
+			display: inline-block;
+			height:5px;
+			width: 5px;
+			background-color: red;
+		}
+		p:nth-child(2) .lp{
+			vertical-align: baseline;
+			margin-top: 10px;
+		}
+		p:nth-child(3) .lp{
+			vertical-align: top;
+			margin-top: 20px;
+		}
+		p:nth-child(4) .lp{
+			vertical-align: middle;
+		}
+		p:nth-child(5) .lp{
+			vertical-align: bottom;
+			margin-bottom: 10px; 
+		}
+		p:nth-child(6) .lp{
+			vertical-align: text-bottom;
+			margin-bottom: 8px;
+		}
+		
+	</style>
+</head>
+<body>
+	<p><span class="lo"><span class="lp"></span>我是文字 默认</span></p>
+	<p><span class="lo"><span class="lp"></span>我是文字 baseline</span></p>
+	<p><span class="lo"><span class="lp"></span>我是文字 top</span></p>
+	<p><span class="lo"><span class="lp"></span>我是文字 middle</span></p>
+	<p><span class="lo"><span class="lp"></span>我是文字 bottom</span></p>
+	<p><span class="lo"><span class="lp"></span>我是文字 text-bottom</span></p>
+</body>
+</html>

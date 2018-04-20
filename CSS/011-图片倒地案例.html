@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片倒地案例</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+          height: 240px;
+          width: 360px;
+          border: 1px solid #000;
+          margin: 50px auto;
+          perspective: 500px;
+		}
+		div img{
+			width: 360px;
+			height: 240px;
+		}
+		div img:hover{
+			transform: rotateX(80deg) translate(50%,240px);
+		}
+
+	</style>
+</head>
+<body>
+	 <div><img src="./3.jpg" alt=""></div>
+</body>
+</html>

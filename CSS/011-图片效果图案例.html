@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>011-图片效果图案例.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			height: 300px;
+			border: 3px solid #369;
+			margin-top: 50px;
+		}
+		ul li{
+			list-style: none;
+			height: 150px;
+			width: 100px;
+			border: 1px solid #000;
+            float: left;
+            margin-top: 75px;
+            margin-right: 10px;
+
+		}
+		ul li img{
+			height: 150px;
+			width: 100px;
+		}
+		ul li:nth-child(1){
+              transform: rotate(20deg);
+		}
+		ul li:nth-child(2){
+
+			transform: rotate(30deg);
+		}
+		ul li:nth-child(3){
+			transform: rotate(-20deg);
+		}
+		ul li:nth-child(4){
+			transform: rotate(50deg);
+		}
+		ul:hover{
+			opacity: 0.5;
+		}
+		ul .lgd:hover{
+			transform: rotate(0deg) scale(1.5,1.5);
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="lgd"><img src="./2.jpg" alt=""></li>
+		<li class="lgd"><img src="./2.jpg" alt=""></li>
+		<li class="lgd"><img src="./2.jpg" alt=""></li>
+		<li class="lgd"><img src="./2.jpg" alt=""></li>
+	</ul>
+</body>
+</html>

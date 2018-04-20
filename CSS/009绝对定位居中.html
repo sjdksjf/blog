@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绝对定位居中</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.father{
+			height: 300px;
+			width: 300px;
+			border: 1px solid #369;
+			margin: 100px auto;
+			position: relative;
+		}
+		.son{
+			height: 100px;
+			width: 100px;
+			background: green;
+			position: absolute;
+			left: 50%;
+			margin-left: -50px;
+		}
+		.box1{
+			height: 2000px;
+			width: 2000px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		 <div class="father">
+		    <div class="son"></div>
+	     </div>
+	</div>
+</body>
+</html>

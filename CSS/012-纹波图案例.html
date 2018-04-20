@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>012-纹波图案例.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			height: 300px;
+			width: 400px;
+			border: 1px solid #369;
+			margin: 100px auto;
+			overflow: hidden;
+		}
+		ul{
+			height: 300px;
+			width: 1600px;
+			list-style: none;
+		}
+		ul li{
+			height: 300px;
+			width: 400px;
+			float: right;
+			animation-name: lp 10s infinite alternate;
+		}
+		@keyframes lp{
+              from{
+                 margin-left: 0px;
+              }
+              to{
+                 margin-left: -1600px;
+              }
+		}
+		ul li:nth-child(1){
+			background: red;
+		}
+		ul li:nth-child(2){
+			background: green;
+		}
+		ul li:nth-child(3){
+			background: blue;
+		}
+		ul li:nth-child(4){
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	 <div>
+	 	<ul>
+	 		<li></li>
+	 		<li></li>
+	 		<li></li>
+	 		<li></li>
+	 	</ul>
+	 </div>
+</body>
+</html>

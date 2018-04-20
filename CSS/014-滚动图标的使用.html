@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>滚动图标</title>
+	<link rel="stylesheet" href="css/fontawesome-all.css">
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+       
+		.father input,.father a{			
+			position: fixed;
+			top: 0;
+			width: 20%;
+			height: 34px;
+			line-height: 34px;
+			/*background: yellow;
+            opacity: 0.5*/
+		}
+        .container a{
+        	background: red;
+        	opacity: 0.5;
+        
+        }
+
+		#sit1,#sit1+a{
+			left:0%;
+		}
+		#sit2,#sit2+a{
+			left:20%;
+		}
+		#sit3,#sit3+a{
+			left:40%;
+		}
+		#sit4,#sit4+a{
+			left:60%;
+		}
+		#sit5,#sit5+a{
+			left:80%;
+		}
+		.father input{
+			z-index: 999;
+			opacity: 0;
+			cursor: pointer;
+		}
+		.father a{
+			z-index: 10;
+			text-align: center;
+			text-decoration: none;
+			font-size: 18px;
+			border: 1px solid black;
+			color: red;
+			font-weight: bold;
+
+		}
+		.container input:checked + a{
+			background: yellow;
+		}
+		.container input:hover + a{
+			background: #ccc;
+		
+		}
+		.container input:checked:hover + a{
+			background: yellow;
+		}
+		.father .lpl1{
+			height: 100%;
+		}
+        .father .lpl1~.lpl2{
+             height: 100%;
+        }
+	</style>
+</head>
+<body>
+	<div class="father">
+		<input type="radio" name='radion-set' id="sit1" checked="checked">
+		<a href="#">mli1</a>
+		<input type="radio" name='radion-set' id="sit2">
+		<a href="#">mli2</a>
+		<input type="radio" name='radion-set' id="sit3">
+		<a href="#">mli3</a>
+		<input type="radio" name='radion-set' id="sit4">
+		<a href="#">mli4</a>
+		<input type="radio" name='radion-set' id="sit5">
+		<a href="#">mli5</a>
+		<div class="lpl1">
+			<div class="lpl2">tom</div>
+			<div class="lpl3">cit</div>
+			<div class="lpl4">siy</div>
+			<div class="lpl5">keg</div>
+			<div class="lpl6">tgk</div>
+		</div>
+	</div>
+</body>
+</html>

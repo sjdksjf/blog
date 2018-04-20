@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>浮动流平铺</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.father{
+			height: 600px;
+			width: 500px;
+			border: 1px solid #000;
+		}
+		.box1{
+			height: 200px;
+			width: 100px;
+			background: rgb(255,0,0);
+			float: left;
+		}
+		.box2{
+			height: 150px;
+			width: 150px;
+			background: rgb(0,255,0);
+			float: right;
+		}
+		.box3{
+			height: 200px;
+			width: 400px;
+			background: rgb(0,0,255);
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	 <div class="father">
+	 	 <div class="box1"></div>
+         <div class="box2"></div>
+         <div class="box3"></div> 
+	 </div>
+</body>
+</html>

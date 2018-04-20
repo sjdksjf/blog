@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>搜索元素</title>
+	<script>
+		window.onload=function(){
+			var oTxt=document.getElementById('txt');
+			var oBtn=document.getElementById('btn');
+			var oUl=document.getElementById('Ul');
+			oBtn.onclick=function(){
+				for (var i=0;i<oBtn.length;i++) {
+					if (aBtn.length == oUl) {
+						this.oUl.style.background('red');
+					}
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="text" id="txt">
+	<input type="button" id="btn" value="搜索">
+	<ul id="Ul">
+		<li>Tom</li>
+		<li>City</li>
+		<li>Hity</li>
+		<li>张三</li>
+		<li>李四</li>
+		<li>赵四</li>
+	</ul>
+</body>
+</html>

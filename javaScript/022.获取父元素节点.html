@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>.获取父元素节点</title>
+	<style>
+		#box1{
+			height: 500px;
+			width: 500px;
+			border: 1px solid #369;
+		}
+		#box2{
+			height: 100px;
+			width: 100px;
+			background: blue;
+		}
+	</style>
+	<script>
+		window.onload =function () {
+			var oBox2 =document.getElementById('box2');
+			//console.log(oBox2.parentNode);
+			//oBox2.offsetParent.style.background='red';
+			oBox2.parentNode.style.background='red';	
+		}
+	</script>
+</head>
+<body>
+	<div id="box1">
+		<div id="box2"></div>
+	</div>
+</body>
+</html>

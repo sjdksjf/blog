@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>016作用域</title>
+	<script>
+		// var a=1 写在最外面为全局变量; 写在字符里面为局部变量。
+		var a=1;
+		alert(a)
+		function Hck() {
+			var b=2;
+			alert(b);
+		} Hck();
+		alert(b);
+       // b 不会显示，因为 b 在局部域中。
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>浮动练习</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		 div{
+			width: 960px;
+			margin: 0 auto;
+		}
+		.box1{
+			height: 100px;
+			width: 960px;
+			margin-bottom: 10px;
+		}
+		.box1 .lol1{
+			height: 100px;
+			width: 100px;
+			float: left;
+			background: red;
+		}		
+		
+		 .cf1{
+		 	height: 50px;
+		 	width: 200px;
+		 	background: rgb(0,80,255);
+		 	float: right;
+		 }
+		 .cf2{
+		 	height: 50px;
+		 	width: 800px;
+		 	background: rgb(0,255,0);
+		 	float: right;
+		 }
+		 .box2{
+		 	height: 500px;
+		 }
+		 .lol3{
+		 	height: 500px;
+		 	width: 700px;
+		 	float: left;
+		 
+		 }
+		 .lol4{
+		 	height: 500px;
+		 	width: 200px;
+		 	background: rgb(0,80,100);
+		 	float: right;
+		 }
+
+		 .box3{
+		 	height: 50px;
+		 	width: 960px;
+		 	background: blue;
+		 	margin-top: 10px;
+		 }
+		 .box2 .cf4{
+		 	height: 470px;
+		 	width: 190px;
+		 	background: rgb(255,0,255);
+		 	float: right;
+		 }
+		 .box2 .cf5{
+		 	height: 230px;
+		 	width: 480px;
+		 	background: rgb(80,90,255);
+		 	margin-left: 0;
+		 }
+		 .box2 .cf6{
+		 	height: 230px;
+		 	width: 480px;
+		 	background: rgb(80,90,255);
+		 	margin-left: 0;
+		 	margin-top: 10px;
+		 }
+		 .box2 .cf7{
+		 	height: 20px;
+		 	width: 700px;
+		 	background: rgb(255,80,60);
+		 	margin-left: 0;
+		 	margin-top: 10px;
+		 }
+
+
+		 .clearfix:after{
+		 	content: "";
+		 	clear: both;
+		 	display: block;
+		 	height: 0;
+		 	visibility: hidden;
+		 }
+
+	</style>
+</head>
+<body>
+     <div class="clearfix">
+	      <div class="box1">
+		    <div class="lol1"></div>
+		    <div class="lol2">
+			   <div class="cf1"></div>
+			   <div class="cf2"></div>
+		   </div>
+	   </div>
+	   <div class="box2">
+		   <div class="lol3">
+			   <div class="cf4"></div>
+			   <div class="cf5"></div>
+			   <div class="cf6"></div>
+			   <div class="cf7"></div>
+		   </div>
+		   <div class="lol4">
+			
+		   </div>
+	   </div>
+	   <div class="box3"></div>
+	  </div> 
+	
+</body>
+</html>
