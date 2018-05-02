@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>032.变时器变样式案例</title>
+	<style>
+		div{
+			height: 200px;
+			width: 200px;
+			margin-top: 30px;
+			background: red;
+			opacity: 0.3;
+		}
+	</style>
+	<script>
+		window.onload =function(){
+			var oBox1=document.getElementById('box1');
+			var oBox2=document.getElementById('box2');
+			var oBox3=document.getElementById('box3');
+			var timer=null;
+			oBox1.onmouseout=function(){
+				clearTimeout(timer);
+				oBox1.style.width='200px';
+			}
+            oBox1.onmouseover=function(){
+				timer =setTimeout(function(){
+				oBox1.style.width='500px';	
+				},30)
+			}
+			oBox2.onmouseout=function(){
+				clearTimeout(timer);
+				oBox1.style.height='200px';
+			}
+            oBox2.onmouseover=function(){
+				timer =setTimeout(function(){
+				oBox1.style.height='500px';	
+				},30)
+			}
+			oBox3.onmouseout=function(){
+				clearTimeout(timer);
+				oBox1.style.height='300px';
+			}
+            oBox3.onmouseover=function(){
+				timer =setTimeout(function(){
+				oBox1.style.width='300px';	
+				},30)
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="box1"></div>
+	<div id="box2"></div>
+	<div id="box3"></div>
+</body>
+</html>

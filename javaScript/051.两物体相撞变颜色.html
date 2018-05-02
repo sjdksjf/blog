@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标移动物体案例</title>
+	<style>
+	     *{
+	     	margin: 0;
+	     	padding: 0;
+	     }
+		div{
+			height: 100px;
+			width: 100px;
+			background: red;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+		#box1{
+			height: 200px;
+			width: 200px;
+			background: blue;
+			position: absolute;
+			top: 300px;
+			left: 500px;
+		}
+	</style>
+     <script>
+     	window.onload=function(){
+     		var oBox =document.getElementById('box');
+     		var oBox1 =document.getElementById('box1');
+     		var oPx =0;
+     		var opy =0;
+     		oBox.onmousedown =function(ev){
+                 var oEvent =event || ev;
+                 oPx=oEvent.clientX-oBox.offsetLeft;
+                 oPy=oEvent.clientY-oBox.offsetTop;
+                document.onmousemove=function(ev){
+                 	var oEvent =event || ev;
+                 	var l= oBox.style.left=oEvent.clientX -oPx+'px';
+                 	var t= oBox.style.top=oEvent.clientY -oPy+'px';
+                 }
+                 if(oBox.offsetLeft+l>oBox1.offsetLeft)
+                document.onmouseup=function(ev){
+	     			var oEvent =event || ev;
+	     			document.onmousemove=null;
+	     			document.onmouseup=null;
+     		    }
+     		}
+     	}
+     </script>
+</head>
+<body>
+	<div id="box"></div>
+	<div id="box1"></div>
+</body>
+</html>

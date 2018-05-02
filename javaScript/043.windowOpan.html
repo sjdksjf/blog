@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>opan功能</title>
+    <style>
+       input{
+       	height: 80px;
+       	width: 80px;
+       }
+    </style>
+    <script>
+    	window.onload=function(){
+              var oTxt=document.getElementById('txt');
+              var oBtn=document.getElementById('btn');
+              oBtn.onclick=function(){
+              	window.open("about:blank");
+              }
+               oTxt.onclick=function(){
+              	window.close("about:blank");
+              }
+    	}
+    </script> 
+</head>
+<body>
+	<input type="button" value="关闭窗口" id="txt">
+	<input type="button" value="新建窗口" id="btn">
+</body>
+</html>

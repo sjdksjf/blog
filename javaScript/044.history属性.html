@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>history属性</title>
+	<script>
+		window.onload=function(){
+			var oBtn1=document.getElementById('btn1');
+			var oBtn2=document.getElementById('btn2');
+			var oBtn3=document.getElementById('btn3');
+			var oBtn4=document.getElementById('btn4');
+			oBtn3.onclick=function(){
+				window.open("about:https://www.baidu.com/")
+			}
+			oBtn4.onclick=function(){
+			    window.location='https://www.baidu.com/';
+			}
+			oBtn1.onclick=function(){
+				window.location='https://www.baidu.com/';
+				oBtn4.onclick=function(){
+			   window.history.go(-1);
+	            }
+			}
+	        	
+			oBtn2.onclick=function(){
+				window.history.go(1);
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="上一页" id="btn1">
+	<input type="button" value="下一页" id="btn2">
+	<input type="button" value="百度" id="btn3">
+	<input type="button" value="搜狐" id="btn4">
+</body>
+</html>

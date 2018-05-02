@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			height: 100px;
+			width: 100px;
+			background: blue;
+			margin-top: 100px;
+		}
+		.xian{
+			height: 500px;
+			width: 2px;
+			background: red;
+			position: absolute;
+			top: 0;
+			left: 300px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oBtn=document.getElementById('btn');
+			var oBox=document.getElementById('box');
+			var timer=null;
+			//clearIntervar(timer);
+			oBtn=setIntervar(function(){
+				oBox.style.left = '30px';
+			},30);
+
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="动起来" id="btn">
+	<div id="box"></div>
+	<div class="xian"></div>
+</body>
+</html>

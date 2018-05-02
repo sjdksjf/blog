@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>033.js固定图到中部</title>
+     <style>
+        body{
+        	height: 3000px;
+        }
+     	#box{
+     		height: 100px;
+     		width: 100px;
+     		background: red;
+     		position: absolute;
+     		right: 0;
+     	}
+     </style>
+     <script>
+     	    var iSpeed=0;
+		function animation(obj,attr,iTarget){
+			clearInterval(obj.timer);
+			obj.timer=setInterval(function(){
+				var curr=parseFloat(getComputedStyle(obj,false)[attr]);
+				if(attr=='opacity'){
+					curr=curr*100;
+				}
+				if(curr<iTarget){
+					iSpeed=50;
+				}else{
+					iSpeed=-50;
+				}
+				if(Math.abs(iTarget-curr)<=Math.abs(iSpeed)){
+					clearInterval(obj.timer);
+					if(attr=='opacity'){
+						obj.style[attr]=iTarget/100;
+					}else{
+						obj.style[attr]=iTarget+'px';
+					}
+						
+				}else{
+					if(attr=='opacity'){
+						obj.style[attr]= (curr+iSpeed)/100;
+					}else{
+						obj.style[attr]= curr+iSpeed+'px';
+					}		
+				}
+			},30)
+		}
+		window.onscroll=window.onresize=window.onload=function(){
+			var oBox=document.getElementById('box');
+			var iTop=document.body.scrollTop||document.documentElement.scrollTop;
+			var iHeight=window.innerHeight;
+			var iTarget=iTop+(iHeight-oBox.offsetHeight)/2;
+			animation(oBox,'top',iTarget);
+		}
+
+     </script> 
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

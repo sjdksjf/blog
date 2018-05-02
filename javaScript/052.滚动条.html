@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>滚动条</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+		#box{
+			height: 50px;
+			width: 500px;
+			background: #000;
+			position: relative;
+		}
+		#btn{
+			height: 50px;
+			width: 50px;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			background: red;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oBox=document.getElementById('box');
+			var oBtn=document.getElementById('btn');
+			var oPx=0;
+			var oPy=0;
+			oBtn.onmousedown=function(ev){
+				 var oEvent =event || ev;
+                 oPx=oEvent.clientX-oBox.offsetLeft;
+                 //oPy=oEvent.clientY-oBox.offsetTop;
+                document.onmousemove=function(ev){
+                 	var oEvent =event || ev;
+                 	if(oBtn.style.left<0){
+                 		oBtn.style.left=0+'px';
+                 	}else if(oBtn.style.left>=500){
+                 	  oBtn.style.left=500+'px';
+                 	} 
+                 	var l= oBtn.style.left=oEvent.clientX -oPx+'px';
+                 	//var t= oBtn.style.top=oEvent.clientY -oPy+'px';
+                    
+                }
+                document.onmouseup=function(ev){
+	     			var oEvent =event || ev;
+	     			document.onmousemove=null;
+	     			document.onmouseup=null;
+	     		}                   	
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div id="btn"></div>
+	</div>
+</body>
+</html>

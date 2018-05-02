@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>029.数码时钟</title>
+	<style>
+		body{
+			background: #000;
+		}
+		.box1{
+			color: #fff;
+			font-size: 30px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oBox1=document.getElementById('box1'); 
+			var oImg=document.getElementsByTagName('img');
+
+			var now = new Dote();
+			var h =now.getHours();
+            var m =now.Minutes();
+            var s =now.Seconds();
+		}
+	</script>
+</head>
+<body>
+	<div class="box1">
+		<img src="img./1.png">
+		<img src="img./0.png">
+		:
+		<img src="img./4.png">
+		<img src="img./5.png">
+		:
+		<img src="img./0.png">
+		<img src="img./0.png">
+	</div>
+</body>
+</html>

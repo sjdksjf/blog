@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>物体跟随鼠标移动</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    } 
+	    body{
+	    	height: 2000px;
+	    }
+		div{
+			height: 100px;
+			width: 100px;
+			background: blue;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+	</style>
+	<script>
+		function sky(ev){
+			var iTop =document.body.scrollTop || document.documentElement.scrollTop;
+			 //获取鼠标移动的Top距离
+			var iLeft =document.body.scrollLeft || document.documentElement.scrollLeft;
+			 //获取鼠标移动的Left距离
+			return {x:ev.clientX+iLeft,y:ev.clientY+iTop}
+			//获取鼠标的x，y坐标。
+		}
+		window.onload=function(){
+			var oBox1=document.getElementById('box1');
+			   document.onmousemove=function(ev){
+			   	 var oEvent = ev || event;
+			   	 //解决兼容性问题
+			   	 var ong    =sky(oEvent);
+			   	 oBox1.style.left=ong.x+'px';
+			   	 oBox1.style.top =ong.y+'px';
+			   }
+
+		}
+	</script>
+</head>
+<body>
+	<div id="box1"></div>
+</body>
+</html>

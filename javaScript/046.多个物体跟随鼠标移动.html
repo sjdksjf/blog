@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>物体跟随鼠标移动</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+	    .bg{
+	    	height: 500px;
+
+	    } 
+	    body{
+	    	height: 1000px;
+	    	background: no-repeat;
+	        background-image: url(img./bj2.jpg);
+	    }
+		div{
+			height: 200px;
+			width: 200px;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+		div img{
+            height: 100%;
+            width: 100%;  
+		}
+	</style>
+	<script>
+		function sky(ev){
+			var iTop =document.body.scrollTop || document.documentElement.scrollTop;
+			 //获取鼠标移动的Top距离
+			var iLeft =document.body.scrollLeft || document.documentElement.scrollLeft;
+			 //获取鼠标移动的Left距离
+			return {x:ev.clientX+iLeft,y:ev.clientY+iTop}
+			//获取鼠标的x，y坐标。
+		}
+		window.onload=function(){
+			var aDiv=document.getElementsByTagName('div');
+			   document.onmousemove=function(ev){
+			   	 var oEvent = ev || event;
+			   	 //解决兼容性问题
+			   	 var ong    =sky(oEvent);
+			   	 aDiv[0].style.left=ong.x+'px';
+			   	 aDiv[0].style.top =ong.y+'px';
+					   
+		            for(var i=aDiv.length -1;i>0;i--){
+		            	aDiv[i].style.left=aDiv[i-1].offsetLeft+80+'px';
+					   	aDiv[i].style.top =aDiv[i-1].offsetTop+30+'px';
+               }
+            }  
+		}
+	</script>
+</head>
+<body>
+	<img src="img./a2.png"  class="bg">
+	<img src="img./a1.png" class="bg">
+	<img src="img./bj2.jpg" class="bg">
+	<div><img src="img./b1.jpg" alt=""></div>
+	<div><img src="img./b2.jpg" alt=""></div>
+	<div><img src="img./b3.jpg" alt=""></div>
+	<div><img src="img./b4.jpg" alt=""></div>
+	<div><img src="img./b5.jpg" alt=""></div>
+	<div><img src="img./b6.jpg" alt=""></div>
+	<div><img src="img./b7.jpg" alt=""></div>
+	<div><img src="img./bj1.jpg" alt=""></div>
+</body>
+</html>

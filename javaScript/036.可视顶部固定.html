@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>033.js固定图到顶部</title>
+     <style>
+        *{
+        	margin: 0;
+        	padding: 0;
+        }
+        body{
+        	height: 3000px;
+        }
+        #box{
+        	height: 100px;
+     		width: 100%;
+     		background: blue;
+     		position: absolute;
+     		top: 0px;
+     		
+        }
+     	#box1{
+     		height: 0px;
+     		width: 100%;
+     		background: red;
+     		position: fixed;
+     		top: 100;	
+     	}
+     </style>
+     <script>
+     	var iSpeed=0;
+		function animation(obj,attr,iTarget){
+			clearInterval(obj.timer);
+			obj.timer=setInterval(function(){
+				var curr=parseFloat(getComputedStyle(obj,false)[attr]);
+				if(attr=='opacity'){
+					curr=curr*100;
+				}
+				if(curr<iTarget){
+					iSpeed=50;
+				}else{
+					iSpeed=-50;
+				}
+				if(Math.abs(iTarget-curr)<=Math.abs(iSpeed)){
+					clearInterval(obj.timer);
+					if(attr=='opacity'){
+						obj.style[attr]=iTarget/100;
+					}else{
+						obj.style[attr]=iTarget+'px';
+					}
+						
+				}else{
+					if(attr=='opacity'){
+						obj.style[attr]= (curr+iSpeed)/100;
+					}else{
+						obj.style[attr]= curr+iSpeed+'px';
+					}		
+				}
+			},30)
+		}
+		window.onscroll=window.onresize=window.onload=function(){
+			var oBox1=document.getElementById('box1');
+			var oBox=document.getElementById('box');
+			var iTop=document.body.scrollTop||document.documentElement.scrollTop;
+			var iHeight=window.innerHeight;
+			if (iTop<=100) {
+			    animation(oBox1,'height',0);
+			    console.log(iTop)
+			}else{
+				animation(oBox1,'height',100);
+			}
+			//var iTarget=iTop+oBox1.offsetHeight-100;
+			//animation(oBox1,'height',100);
+		}
+
+     </script> 
+</head>
+<body>
+	<div id="box"><div>
+	<div id="box1"></div>
+</body>
+</html>

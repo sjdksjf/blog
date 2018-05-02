@@ -12,10 +12,19 @@
 			background: blue;
 		}
 	</style>
+	<script>
+		window.onload=function(){
+			var oBox1=document.getElementById('box1');
+			oBox1.onmouseover=function(){
+				oBox1.style.height='200px';
+			}
+		}
+	</script>
 </head>
 <body>
-	<div id="box" type="checkbox" name="" onmouseover="document.getElementById('box').style.width='500px'"; onmouseover="document.getElementByTd('box').style.height='200px'";>
+	<div id="box" type="checkbox" name="" onmouseover="document.getElementById('box').style.width='500px'"; >
 		
 	</div>
+	<div id="box1"></div>
 </body>
 </html>

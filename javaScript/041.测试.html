@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			height: 100px;
+			width: 100px;
+			background-color: red;
+			margin-top: 50px;
+			position: absolute;
+		}
+	</style>
+	<script>
+		function animation(obj,opation,isLinear,fnEnd){
+			clearInterval(obj.timer);
+			obj.timer=setInterval(function(){
+				var isStopAll=true;
+				for(attr in opation){
+					var cuur=parseFloat(getComputedStyle(obj,false)[attr]);
+					var iSpeed=0;
+					var isStop=false;
+					if(attr=='opacity'){
+						cuur=Math.round(cuur*100);
+					}
+					if(isLinear){
+						if(opation[attr]<cuur){
+							iSpeed=-10;
+						}else{
+							iSpeed=10;
+						}
+						if(Math.abs(opation[attr]-cuur)<=Math.abs(iSpeed)){
+							isStop=true;
+						}else{
+							isStopAll=false;
+						}
+
+					}else{
+						iSpeed=(opation[attr]-cuur)/10;
+						iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+						if(!iSpeed){
+							isStop=true;
+						}else{
+							isStopAll=false;
+						}
+					}
+					if(isStop){
+						
+						if(isLinear){
+								if(attr=='opacity'){
+									obj.style[attr]=opation[attr]/100;
+								}else{
+									obj.style[attr]=opation[attr]+'px';
+								}	
+						}
+					}else{
+						if(attr=='opacity'){
+						obj.style[attr]=(cuur+iSpeed)/100;
+
+						}
+						else{
+							obj.style[attr]=cuur+iSpeed+'px';
+						}
+						
+					}
+				}
+				if(isStopAll){
+					clearInterval(obj.timer);
+					if(fnEnd){
+						fnEnd();
+					}
+				}
+
+			},30);
+		}
+		window.onload=function(){
+			var oBox1=document.getElementById('box1');
+			oBox1.onmouseover=function(){
+				animation(this,{'opacity':10,'width':500},true,function(){
+					animation(oBox1,{'left':100,'width':100},true)
+				});
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="box1"></div>
+</body>
+<ml>
