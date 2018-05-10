@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>059.改变this指向</title>
+	<script>
+		function show(n1,n2){
+			console.log(this)
+		}
+		//show()
+        //show.call()
+        //show.call({name:"Tom"});
+        show.apply({name:"Tom"})
+        show.bind()  
+	</script>	
+</head>
+<body>
+	
+</body>
+</html>

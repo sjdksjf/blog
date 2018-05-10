@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建对象</title>
+	<script>
+		var seo =function(name,age){
+			this.name=name;
+			this.age=age;
+			if(!this.showName){
+                seo.prototype.showName=function(){
+                console.log("I is"+this.name);
+                }
+			}
+			if(!this.showage){
+                seo.prototype.showage=function(){
+                console.log("I is age"+this.age)
+                }
+			}
+		}
+
+		var p1=new seo("Ton",18);
+		p1.showName()
+		p1.showage();
+		var p2=new seo("Tom",28);
+		p1.showName()
+		p2.showage();
+		console.log(p1 == p2);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

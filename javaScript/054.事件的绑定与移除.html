@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件的绑定与移除</title>
+    <style>
+        *{
+        	margin: 0;
+        	padding: 0;
+        }
+    	#box1{
+           height: 300px;
+           width: 300px;
+           border: 1px solid #f00; 
+    	}
+    </style>
+    <script>
+
+    	window.onload =function(){
+    	    function show(){
+    	    	alert(1);
+    	    }
+    		var oBox1=document.getElementById('box1');
+    		/*oBox1.onclick = function(){
+    			alert(1)
+    		}
+    		 oBox1.addEventListener('click',function(){
+    		 	alert(1)
+    		 }
+            ,false)
+            */
+            //事件绑定，俩事件都能显示
+            oBox1.addEventListener('click',show
+            ,false)
+            oBox1.addEventListener('click',function(){
+    		 	alert(2)
+    		 }
+            ,false)
+            
+            //事件移除,不能移除匿名函数
+             oBox1.removeEventListener('click',show
+            ,false) 
+
+    	}
+    </script>
+</head>
+<body>
+	<div id="box1"></div>
+</body>
+</html>

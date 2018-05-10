@@ -40,7 +40,9 @@
                  	var l= oBox.style.left=oEvent.clientX -oPx+'px';
                  	var t= oBox.style.top=oEvent.clientY -oPy+'px';
                  }
-                 if(oBox.offsetLeft+l>oBox1.offsetLeft)
+                /* if(oBox.offsetLeft+l> oBox1.offsetLeft){
+                 	oBox1.style.background='black';
+                 }*/
                 document.onmouseup=function(ev){
 	     			var oEvent =event || ev;
 	     			document.onmousemove=null;

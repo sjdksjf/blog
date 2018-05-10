@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Json与js</title>
+	<script>
+		var Json='{"name":"Tom","age":18}'
+		//console.log(Json.name)
+		console.log(typeof Json)
+	    //Json 转化成obj
+		var JsonObj=JSON.parse(Json)
+		console.log(JsonObj.name)
+		var obj ={
+			name:'Tom',
+			age: 18,
+		}
+		console.log(obj.name)
+		//obj转化成 json
+		var objJson=JSON.stringify(obj);
+		console.log(typeof objJson)
+		//区别 json不能直接访问
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

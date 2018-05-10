@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象的继承拖拽3.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+
+		}
+	</style>
+	<script>
+			window.onload =function(){
+				new person({height:200,width:200,background:"blue"});
+				new person({height:100,width:100,background:"red"});
+				new sty({height:300,width:300,background:"yellow"})
+			} 
+			 function person(proten){
+				this.oDiv = document.createElement('div');
+				this.disX = 0;
+				this.disY = 0;
+				this.oDiv.style.height=proten.height+'px';
+				this.oDiv.style.width=proten.width+'px';
+				this.oDiv.style.background=proten.background;
+				this.oDiv.style.position="absolute";
+				document.body.appendChild(this.oDiv);
+				this.oDiv.onmousedown = this.por.bind(this);
+			}
+			person.prototype.por=function(ev){
+				var oEvent = ev || event;
+				this.disX = oEvent.clientX - this.oDiv.offsetLeft;
+				this.disY = oEvent.clientY - this.oDiv.offsetTop;
+				document.onmousemove = this.fn.bind(this);
+				document.onmouseup = this.fm;
+			}
+	        person.prototype.fn= function(ev){
+					var oEvent = ev || event;
+					this.oDiv.style.left  = oEvent.clientX - this.disX + 'px';
+					this.oDiv.style.top = oEvent.clientY - this.disY + 'px';
+			}
+			person.prototype.fm=function(){
+					document.onmousemove = null;
+					document.onmouseup  = null;
+			}
+            function sty(proten){
+            	console.log(this)
+            	person.call(this.proten); //属性的继承
+            }
+            sty.prototype.constructor=sty;
+
+            var l =sty.
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

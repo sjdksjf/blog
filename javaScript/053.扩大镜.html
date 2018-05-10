@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>扩大镜</title>
+	<style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+		#box{
+			height: 200px;
+			width: 200px;
+			border: 1px solid #f00;
+			position: relative;
+			top: 0px;
+			left: 0px;
+		}
+		#box img{
+			height: 100%;
+			width: 100%;
+		}
+		#omg{
+			height: 120px;
+			width: 120px;
+			background: rgba(255,255,0,0.5);
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			display: none;
+		}
+		#box1{
+			height: 500px;
+			width: 500px;
+			border: 1px solid #f00;
+			position: absolute;
+			top: 0px;
+			left: 220px; 
+			display: none;
+		}
+		#box1 img{
+			height: 100%;
+			width: 100%;
+		}
+		#box2 li{
+		    list-style: none;
+			height: 50px;
+			width: 50px;
+            float: left;
+            border: 1px solid #ff0;
+            margin-top: 10px;
+            margin-left: 10px;
+		}
+		#box2 li img{
+			height: 100%;
+			width: 100%;
+			
+		}
+		#box2 .ko{
+			border: 1px solid #f00;
+		}
+	</style>
+	<script>
+		window.onload =function(){
+            var oBox =document.getElementById('box');
+            var oBox1 =document.getElementById('box1');
+            var oBox2 =document.getElementById('box2');
+            var oMg =document.getElementById('omg');
+            oBox.onmouseover=function(ev){
+            	var oEvent =event||ev ;
+            	oMg.style.display='block';
+            	oBox1.style.display='block';
+            	document.body.style.overhlow='hidden';
+            	oEvent.stopPropagation();
+            }
+            document.onmouseup=function(){
+            	oMg.style.display='none';
+            	oBox1.style.display='none';
+            	document.body.style.overhlow='auto';
+            }
+
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<img src="img./c3.jpg" alt="">
+		<div id="omg"></div>
+	</div>
+	<div id="box1"><img src="img./c5.jpg" alt=""></div>
+	<div id="box2">
+		<ul>
+		  <li class="ko"><img src="img./c3.jpg" alt=""></li>
+		  <li><img src="img./c2.jpg" alt=""></li>
+		  <li><img src="img./c1.jpg" alt=""></li>
+	    </ul>
+	</div>
+</body>
+</html>

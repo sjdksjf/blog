@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建空对象的两种方法</title>
+	<script>
+		var obj={name:"Tom"}
+		var obj1=Object.create(obj);
+		console.log(obj);
+		console.log(obj1);
+		//上面两种有__proto__属性，下面没有。来解决继承父类有两个__proto__的属性。
+		var obj2=Object.create(null);
+		console.log(obj2);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

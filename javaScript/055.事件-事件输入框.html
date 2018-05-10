@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>输入框</title>
+	<style>
+		p{
+
+		}
+	</style>
+
+	<script>
+		window.onload=function(){
+			var oBox=document.getElementById('box');
+			var oBox1=document.getElementById('box1');
+            var oBox2=document.getElementById('box2');
+			oBox.onclick=function(){
+				oBox1.style.color='blue';
+				oBox1.innerHTML='请输入3-6位文字或字母'
+			}
+			oInput.onblur=function(){
+				var l= oInput.value.length;
+				if(l<3 && l>6){
+				oBox.onclick=function(){
+					oBox1.style.color='red';
+					oBox1.innerHTML='输入有误，请重新输入'
+				}
+			}	
+			}
+		}
+	</script>
+</head>
+<body>
+	 <form https://www.kuazhu.com/>
+	 	<p><input type="text" id="box"><span id="box1"></span></p>
+	 	<p><input type="button" value="登陆" id="box2"></p>
+	 </form>
+</body>
+</html>

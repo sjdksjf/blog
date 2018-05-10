@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>064.对象-对象的继承选项卡</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+        .btn{   
+        	list-style: none;
+        	overflow: hidden;
+        }
+        .btn li{
+        	height: 30px;
+        	width: 60px;
+        	border: 1px solid #fff;
+        	line-height: 30px;
+        	font-size: 30px;
+        	background: rgba(255,0,255,0.5);
+        	margin-left: 10px;
+        	float: left;
+        	border-radius: 10px;
+        	cursor: pointer;
+        }
+       
+        .cit li{
+        	margin-top: 10px;
+        	height: 300px;
+        	width: 200px;
+        	border: 1px solid #000;
+            display: none;
+        }
+        #btn .active{
+        	background: blue;
+
+        }
+	</style>
+	<script>
+		 var aBtn=null;
+		 var aCit=null;
+		window.onload =function(){
+			 aBtn=document.getElementById("btn").children;
+			 aCit=document.getElementById("cit").children;
+             for (var i=0; i <aBtn.length; i++){
+             	console.log(aBtn)
+             	aBtn[i].index=i;
+             	aBtn[i].onclick =function(){
+             		aBtn[i].style.className="";
+             	  	aCit[i].style.display="none";
+             	}
+                  aBtn[i].index.style.className="active";
+             	  aCit[i].index.style.display="block";
+             }
+		}
+	</script>
+</head>
+<body>
+	<ul id="btn" class="btn">
+		<li class="active">btn1</li>
+		<li>btn2</li>
+		<li>btn3</li>
+		<li>btn4</li>
+	</ul>
+	<ul id="cit" class="cit">
+		<li style="display: block";>btn1</li>
+		<li>btn2</li>
+		<li>btn3</li>
+		<li>btn4</li>
+	</ul>
+</body>
+</html>
