@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>020-spt.html</title>
+</head>
+<body>
+	<input type="button" value="请求" id='btn'>
+	<ul id='ul1'>
+	</ul>
+</body>
+<script>
+	var oBtn = document.getElementById('btn');
+	var oUl = document.getElementById('ul1');
+         (function(w){
+           function cit(arr,htp,rjb){
+		//1.创建ajax对象
+		var oAjax = new XMLHttpRequest();//XHR
+		//2.和服务器建立连接
+		oAjax.open(arr,htp,true);
+		oAjax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		//3.发送请求
+		oAjax.send(rjb);
+		//4.监听方法获取数据
+		oAjax.onreadystatechange = function(){
+            if(oAjax.readyState == 4){//数据完全返回
+            	if(oAjax.status == 200){
+            		console.log('get data success::',oAjax.responseText);
+            		if(arr == "GET"){
+            			var arr = JSON.parse(oAjax.responseText);
+            			for(var i = 0;i<arr.length;i++){
+            			var oLi = document.createElement('li');
+            			oLi.innerHTML = "姓名:"+arr[i].name+" 年龄:"+arr[i].age;
+            			oUl.appendChild(oLi);
+            		}
+            		}
+            	}else{
+            		console.log('get data faild::',oAjax.status);
+            	}
+            	
+            }		
+		}
+	}
+        w.cit=cit
+         })(window) ;
+	oBtn.onclick = function(){
+		//cit('POST','http://127.0.0.1:3000/postReq',"name=Tom&age=18");
+		cit('GET','http://127.0.0.1:3000/017-date.txt',"")
+	}	
+/*
+	oBtn.onclick = function(){
+		// alert('aa');
+		//1.创建ajax对象
+		var oAjax = new XMLHttpRequest();//XHR
+		//2.和服务器建立连接
+		oAjax.open('GET','http://127.0.0.1:3000/026-arr.txt',true);
+		//3.发送请求
+		oAjax.send();
+		//4.监听方法获取数据
+		oAjax.onreadystatechange = function(){
+            if(oAjax.readyState == 4){//数据完全返回
+            	if(oAjax.status == 200){
+            		console.log('get data success::',oAjax.responseText);
+            		// console.log(oAjax.responseText[0]);
+            		var arr = JSON.parse(oAjax.responseText);
+            		for(var i = 0;i<arr.length;i++){
+            			var oLi = document.createElement('li');
+            			oLi.innerHTML = "姓名:"+arr[i].name+" 年龄:"+arr[i].age;
+            			oUl.appendChild(oLi);
+            		}
+            	}else{
+            		console.log('get data faild::',oAjax.status);
+            	}
+            	
+            }		
+		}
+	}
+	*/
+</script>
+</html>

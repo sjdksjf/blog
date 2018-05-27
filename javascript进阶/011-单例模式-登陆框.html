@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>010-单例模式-登陆框.html</title>
+     <style>
+     	/*div{
+     		height: 200px;
+     		width: 100px;
+     		background: #ccc;
+     		margin-left: 200px;
+     		margin-top: 100px;
+     		display: none;
+     	}
+     	*/
+     	.lk{
+     		height: 200px;
+     		width: 100px;
+     		background: #ccc;
+     		margin-left: 200px;
+     		margin-top: 100px;
+     		
+     	}
+     </style>    
+</head>
+<body>
+	<input type="button" value="登陆" id="btn">
+	<div id="lk"></div>
+</body>
+<script>
+	var oBtn=document.getElementById('btn');
+	var oLk=document.getElementById('lk');
+	oBtn.onclick=function(){
+		//oLk.style.display='block';
+	 (function(w){
+	       function city(){
+	       	var oLk=document.createElement('div');
+	       	document.body.appendChild(oLk);
+	       	oLk.className='lk';
+	       };
+	        city();
+	       console.log(city);
+           
+	       w.city=city;
+		  })(window);
+       }
+
+</script>
+</html>

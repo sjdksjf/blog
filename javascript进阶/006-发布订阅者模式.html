@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>006-发布订阅者模式.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	(function(w){
+      function Techger(name){
+        this.name=name;
+        this.students=[];
+      }
+      Techger.prototype= {
+        constructor: Techger,
+        __proto__:Object.prototype,
+        //接收学生
+        ter: function(student){
+      	  this.students.push(student);
+      },  
+      //给学生发布作业     
+	    brock: function(msg){
+	      for(var i=0;i<this.students.length;i++){
+	      	this.students[i].rlen(msg);
+	      	}
+      } 
+     
+      } 
+      w.Techger=Techger;    
+	})(window);
+	(function(w){
+		//调用老师的方法，创建空数组接收作业
+      function Student(name,msg){
+        this.name=name;
+        techger.ter(this);
+        this.msg='';
+      }，
+      //创建函数接收老师发布的作业赋值空数组里。
+      Student.prototype= {
+        constructor:  Student,
+        __proto__:Object.prototype,
+        rlen: function(msg){
+        	this.msg=msg
+        }
+      } 
+      w.Student= Student    
+	})(window);
+	//调用方法
+	var techger = new Techger('Sit');
+	var p1  = new Student('Tom',techger);
+	var p2  = new Student('Lie',techger);
+	var p3  = new Student('Rro',techger);
+	techger.brock('完成小米首页');
+      console.log(p1.msg);
+      console.log(p2.msg);
+      console.log(p3.msg);
+      //总结：命令记不清，大小写，符号容易写错。以后多注意。
+      //2018/5/22  12：04
+</script>
+</html>

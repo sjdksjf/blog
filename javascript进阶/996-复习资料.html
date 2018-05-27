@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>复习资料</title>
+	<script>
+		js最基础知识回顾4(Date对象,封闭空间,函数传参和封装,获取非行间样式,字符串操作)
+一、Date对象
+1. 获取
+oDate.getFullYear() 获取年份
+oDate.getMonth()+1  获取月份( 0-11)----->1-12
+oDate.getDate()  获取日 1－31
+oDate.getHours() 获取小时  
+oDate.getMinutes() 获取分    
+oDate.getSeconds() 获取秒
+oDate.getMilliseconds();   //毫秒
+oDate.getDay() 获取星期几 0－6     0：星期天
+例：数码时钟
+    (1)获取系统时间----Date 对象----getHours、getMinutes、getSeconds
+    (2)  显示系统时间----字符串连接、空位补零
+    (3) 字符串[下标]获取一个字符，不兼容IE6/7，所以，设置图片路径用charAt(i)方法----字符串.charAt(下标)兼容
+2. 时间戳
+oDate.getTime()----从1970年1月1日到现在的毫秒数
+3. 设置
+    （1）setFullYear(年，月，日 ) 年：必填   月日：可选-----获取完整的年份
+            setYear(); 获取年
+    （2）setMonth(月，日) 月：必填
+    （3）setDate(日)
+                oDate.setDate(31);  //如果本月只有30天，会直接到下月第一天
+                oDate.setDate(0);  上个月最后一天 
+                alert(oDate.getDate());
+本月最后一天星期几
+oDate.setMonth(oDate.getMonth()+1); //设置下个月1号
+// 因为本月是8月，getMonth()获取到的是7，所以要获取到8月才是下个月
+oDate.setDate(0);
+alert(oDate.getDay());
+    （4）setHours(小时，分，秒，毫秒) 后面三个可选
+例子：本月第一天是周几，本月共有多少天
+var oDate=new Date();
+oDate.setDate(1);
+var week=oDate.getDay();
+alert('本月第一天是周'+week);
+oDate.setMonth(oDate.getMonth()+1);
+oDate.setDate(0);
+var day=oDate.getDate();
+alert('本月的总天数是：'+day);
+ 
+例：倒计时
+window.onload=function(){
+    var oSpan=document.getElementsByTagName('span')[0];
+    var oDateTarget=new Date();
+    oDateTarget.setFullYear(2016,11,1);   //注意此处月份应设置比目标小1
+    oDateTarget.setHours(0,0,0,0);
+    tick(); //先执行一下，防止开始为空
+    setInterval(tick,1000);
+    function tick(){
+        var oDate=new Date();  
+　　 var time=oDateTarget.getTime()-oDate.getTime();
+        var s=parseInt(time/1000);
+        var D=parseInt(s/86400);
+        var H=parseInt(s%86400/3600);
+        var M=parseInt(s%86400%3600/60);
+　　 var S=parseInt(s%86400%3600%60);
+        oSpan.innerHTML="距离2016年12月1日"+D+"天"+H+"时"+M+"分"+S+"秒";
+    }
+}
+date对象的另外的用法-----设置时间可以进位、退位
+二、封闭空间
+1. 定时器中的括号问题：
+setInterval(show,1000);    //此处的show不能加括号，如果加则变成立刻执行，执行完之后，返回undefined
+function show(){
+    alert(1);
+}
+js中语法规范：大括号不能直接跟小括号，如下：
+function show(){
+    alert(1);
+}()
+但是，如果这样即可：
+(function (){
+    alert(1);
+})()    /相当于立刻执行这个函数。如果后面再加show(); 则会报错
+函数每调用一次，就复制一份，就执行一次
+2. 封闭空间：多人配合时，避免函数重名问题
+    (fn1)();  //立即执行的匿名函数
+例一：两个局部变量a在两个不同的作用域下互不影响:
+function fn1(){
+    var a=44;
+    alert(a);
+}
+function fn2(){
+    var a=55;
+    alert(a);
+}
+例二：
+(function(){
+    var a=55;
+    alert(a);
+})();   //立即执行的匿名函数   封闭空间    这个函数只能用一次
+利用封闭空间写选项卡
+var oBox=document.getElementById('box');
+var aBtn=oBox.getElementsByTagName('input');
+var aDiv=oBox.getElementsByTagName('div');
+for(var i=0;i<aBtn.length;i++){
+    (function(index){
+        aBtn[index].onclick=function() { 
+            for(var i=0;i<aDiv.length;i++) { 
+                 aBtn[i].className='';
+                 aDiv[i].className='';
+            };
+            this.className='active';
+            aDiv[index].className='active';
+       }; 
+    })(i);
+}
+//function fn(index){ };
+    fn(i);
+等同于(function(index){ })(i);
+求和函数：
+（1）参数数量不固定的时候可用
+（2）参数数组不是一个真正的数组，所以它不能用数组的方法
+window.onload=function(){
+    function fn(){
+        var num=0;
+        for(var i=0;i<arguments.length;i++){
+            num+=arguments[i];
+        }
+    }
+    fn(222,33,456);
+}
+三、函数传参和封装
+1.参数的基本知识：
+    (1)参数可以省 可以不传
+    (2)在调用函数的括号里传 在定义函数的括号里收
+    (3)参数名可以自定义 不用带引号
+    (4)可以传多个参数 中间用逗号分隔 
+    (5)可以传多类型
+2. 可变参（不定参）：arguments
+        参数的个数可变，参数数组。参数数组，  有下标，有length,但并不是真正的数组，所以它不能用数组的方法。
+3. 例1：求和-----求所有参数的和(用arguments)
+例子：
+　　 var result=0;
+        function sum(){
+                for(var i=0; i<arguments.length; i++){
+                    result+=arguments[i];
+                }
+                return result;
+        }
+        alert(sum(12,6,8));
+4. 例2：CSS函数
+         (1)判断arguments.length
+         (2)给参数取名，增强可读性
+ 四、获取非行间样式（不能用来设置）：
+    （1）obj.currentStyle[attr]-----IE浏览器支持
+     （2）getComputedStyle(obj,false)[attr]------Chrome、fire fox、IE9、IE10
+            ···false处，可以随便放任何值，如果不放则不兼容firefox低版本。如果不写第二个参数，不兼容firefox低版本；放false显得专业而已
+        只能取单一样式，不能取复合样式
+        获取样式：css(oDiv,'width')
+        设置样式：css(oDiv,'width','200px')
+例一：获取样式封装
+window.onload=function(){
+    var oBox=document.getElementById('box');
+    oBox.onclick=function(){
+        var w=parseInt(getStyle(this,'width'));
+        this.style.width=w+100+'px';
+        var oSpanH=getStyle(document.getElementById('s1'),'height');
+    }
+}
+function getStyle(obj,attr){
+    return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,false)[attr];   // return 必须写在行首
+}
+例二：函数封装和随机数配合使用
+window.onload=function(){
+    var oBox=document.getElementById('box');
+    oBox.onclick=function(){
+        var w=parseInt(getStyle(oBox,'width'));
+        var r=rnd(10,100);
+        w+=r;
+        oBox.style.width=w+'px';
+    }
+}
+function rnd(n,m){
+    return parseInt(Math.random()*(m-n)+n);
+}
+五、字符串操作
+1、截取字符串
+   (1) str.charAt(0)通过下标获取字符串第几位   兼容
+                str.substring(1)只传一个参数。从开始到最后
+   (2) str.substring(1,3)截取字符串
+                两参数：第一个是开始，第二个是结束位置  但不包括结束位置
+     str.substring(n);  截取字符串，从参数n开始到最后
+2.  indexOf();
+indexOf()   查找字符串，返回下标，无论是输入两个还是输入词组，都只找第一个字符的下标；如果没有，则返回-1；
+  应用：浏览器独有的信息
+window.navigator.userAgent; 
+判断浏览器信息：
+var win=window.navigator.userAgent.toLowerCase();
+if(win.indexOf('Chrome')!=-1){
+     alert('chrome');
+} else if(win.indexOf('Firefox')!=-1){ 
+     alert('f');
+} else if(win.indexOf('MSIE')){ 
+     alert('ie');
+} else{ 
+ alert('其它');
+}
+3. lastIndexOf();
+从后面开始找，但同样返回下标 。 跟indexOf相反，是从后面开始找的，找到了返回从左到右顺序的下标，找不到返回-1
+应用：找一个字符串的文件扩展名
+var string='a.b.cd.efg.c.d.fffd.png';
+alert(string.substring(str.lastIndexOf('.')+1));
+4. 字符串拆分成数组---split( )
+5. 把英文字母转成大写/小写---toUpperCase()/toLowerCase();
+alert(win.toUpperCase());
+alert(win.toLowerCase());
+var win=window.navigator.userAgent.toLowerCase();
+5. 字符串排序
+英文：按照字典序              alert('f'<'g'); ---->true
+字符串数字：按照字典序   alert('624'>'53')-->true   先比较左侧第一位
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

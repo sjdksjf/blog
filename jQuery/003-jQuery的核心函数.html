@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>003-jQuery$的用处.html</title>
+	<script src="js/jquery-1.12.4.js"></script>
+	<style>
+		div{
+			height: 100px;
+			width: 100px;
+			border: 1px solid #369;
+		}
+	</style>
+	<script>
+		$(function(){
+			/*console.log($(null));
+			console.log($(false));
+			console.log($(''));
+			console.log($(0));
+			console.log($());
+			console.log($('div'));*/
+			console.log($('.box1'));
+			console.log($('#box2'));
+			console.log($('<h1>我是标题</h1>'))
+		});
+	</script>
+</head>
+<body>
+	<div></div>
+	<div class="box1"></div>
+	<div id="box2"></div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>练习</title>
+</head>
+<body>
+	<!--<input type="button" id="btn1" onclick="test();">!-->
+	<input type="button" id="btn1">
+</body>
+</body>
+<script>
+	function test(){
+		console.log('aa');
+	}
+	//document.getElementById('btn1').onclick=test;
+	//onclick时，系统默认就调用了test();下面的onclick为错；
+	//document.getElementById('btn1').onclick=test();
+     document.getElementById('btn1').addEventListener('click',test,false);
+    //target.addEventListener(type, listener, useCapture);
+    //target 文档节点、document、window 或 XMLHttpRequest。
+    //type 字符串，事件名称，不含“on”，比如“click”、“mouseover”、“keydown”等。
+   //listener 实现了 EventListener 接口或者是 JavaScript 中的函数。
+   //useCapture 是否使用捕捉，看了后面的事件流一节后就明白了，一般用 false。
+ </script>
+</html>

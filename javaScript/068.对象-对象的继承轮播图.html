@@ -16,8 +16,15 @@
 </body>
 	<script>
 		function person(plo){
+			//罗列属性
+			//获取容器
            this.aBox=document.getElementById(plo.id);
-           
+           this.whith=person.whith;
+           this.height=person.height;
+           //初始化
+           this.init();
+           //绑定事件
+           this.bindEvent();
 		}
         new person({
         	id:'box',

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包的节流</title>
+</head>
+<body>	
+</body>
+<script>
+	//var timer=null;
+	/*window.onresize=function(){
+		clearTimeout(timer);
+		timer = setTimeout(function(){
+         console.log(window.innerWidth);
+		},400);
+		//console.log(window.innerWidth);
+	};*/
+	function sit(fn,time){
+		var timer=null;
+		return function(){
+			clearTimeout(timer);
+			timer = setTimeout(fn,time)
+		}
+	};
+	window.onresize=sit(function(){
+     console.log(window.innerWidth);
+	},300)
+</script>
+</html>

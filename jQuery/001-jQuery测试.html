@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试jQuery</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+			height: 50px;
+			width: 200px;
+			border: 1px solid #369;
+			margin-top: 20px;
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		window.onload=function(){
+			alert('aa');
+		};
+		window.onload=function(){
+			alert('bb');
+		};
+		//window.onload=A 与下面的区别：1.A后面把前面的覆盖，
+		$(function(){
+			var name=('Tom');
+			alert(name);
+		});
+		$(function(){
+			var name=('Cit');
+			alert(name);
+		});
+		/*
+        jQuery(document).ready(function(){
+			var name=('Tom');
+			alert(name);
+		});
+		jQuery(document).ready(function(){
+			var name=('Cit');
+			alert(name);
+		});
+        $(document).ready(function(){
+			var name=('Tom');
+			alert(name);
+		});
+		$(document).ready(function(){
+			var name=('Cit');
+			alert(name);
+		});*/
+
+	</script>
+</head>
+<body>
+	<ul>
+		<li id="li"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>073.字符串处理.html</title>
+	<script>
+		var str='a1b2c3d4e';
+		var spc=/\d/g;
+		var spr=/a1/g;
+		var result=spr.exec(str);
+		document.write("返回值："+result);
+		console.log(result);
+		//console.log(str.match(/a/));
+		//console.log(str.match(spc));
+		//console.log(str.replace(/a/g,'*'));
+		//把str里面的内容替换，还可以把里面的数字做相应的运算。
+		console.log(str.replace(/\d/g,function(match){
+			//return match+'1'; 
+            return match*1+1;
+		}));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

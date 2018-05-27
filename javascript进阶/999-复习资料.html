@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>复习资料</title>
+</head>
+<body>
+	理论知识总结
+1. 什么是js：就是修改样式
+2. 事件
+onclick鼠标点击事件  onload加载事件  onmouseover---onmouseout鼠标移入移出事件    onchange更改事件、改变事件   onmousedown---onmouseup鼠标按下抬起事件
+3. 获取元素的方式
+（1）getElementById(id); ---通过id获取一个元素
+（2）getElementsByTagName(标签名);---通过标签名获取一组元素
+（3）getElementsByClassName(类名)---通过class获取一组元素（不兼容，ie6-ie8）---getByClass
+4. 变量
+（1）别名，把很长的东西简写。
+（2）变量&&字符串：变量没有引号，字符串有引号
+5. 函数
+（1）为什么要写函数：方便重用，写一次，以后直接调用。代码写在行间太乱
+（2）函数名：随便取，只要不用保留关键字就行
+（3）两个概念：定义----只是告诉系统有这么个东西，不会真正执行里面的代码。调用----真正执行函数中的代码，调用几次就执行几次
+                           只定义不调用，函数不执行；只调用不定义，找不到函数，报错。
+                           在哪儿定义不重要，重要的是在哪儿调用，用的时候是多少，就是多少
+6. 判断
+if(条件1){  语句1;
+}else if(条件2){  语句2;
+}else{  语句n;
+}
+如果只执行一句话，if可以不写大括号
+7. a链接：<a href="javascript:;"></a>
+8. javascript的几种类型      字符串  数字   布尔   undefined   object   function
+9. 参数：[ ]可以代替点，只要是js中出现点的地方，都可以用[ ]代替。
+10. 数组
+（1）[1,2,3,4,5];     new Array(1,2,3,4,5);    没有任何区别，第一个性能略高
+（2）length：获取数组长度
+（3）下标：获取某一个元素。下标从0开始
+11. 循环
+（1）什么是循环：重复执行一段代码。初始化、条件、自增、语句
+（2）while(条件){执行的语句;}-----适合操作次数不固定的循环
+（3）for(初始化; 条件; 自增){执行的语句;}----适合操作次数固定的循环
+（4）for(var i in json){ //i---键    json[i]----值     适合用于json}
+12. 定时器
+（1）每隔一段时间执行一次：setInterval();----clearInterval();
+（2）只执行一次：setTimeout();----clearTimeout();
+13. Date对象
+get...  set...   new Date();   
+getTime();----获取的是格林威治时间--1970年1月1日0时0分0秒0毫秒开始到目前为止的毫秒数
+var time=19563096473;
+var s=parseInt(time/1000);
+var d=parseInt(s/86400);
+s%=86400;
+var h=parseInt(s/3600);
+s%=3600;
+var m=parseInt(s/60);
+s%=60;
+d  h  m  s
+14. 字符串常用方法
+indexOf----lastIndexOf从...往...查找字符          substring 截取字符串      split 切分字符串       toUpperCase---toLowerCase转换成大/小写 
+15. 数组的常用方法
+push--pop    最后一位添加/删除           splice 增删改            reverse 反转         concat 链接
+unshift---shift   第一位添加/删除          join 转字符串           sort 排序（sort(function(a,b){return a-b;})）
+16. json   json和数组的区别：json没有length
+17.Math
+abs绝对值   sqrt开平方   pow--n次方    max/min--最大/小值    round--四舍五入   floor--向下取整    ceil--向上取整     random--随机数
+18.浏览器判断： window.navigator.userAgent.indexOf('MSIE 6.0')!=-1;
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>003.闭包i改变颜色.html</title>
+    <style>
+    	*{
+    		margin: 0;
+    		padding: 0;
+    	}
+    	li{
+    		height: 50px;
+    		width: 300px;
+    		border: 1px solid #369;
+    	}
+    	.active{
+    		background: red;
+    	}
+    </style> 
+</head>
+<body>
+	<ul>
+		<li class="active";></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+<script>
+	var aLi=document.getElementsByTagName('li');
+	var Sein=0;
+	   for(var i=0;i<aLi.length;i++){
+	     (function(index){
+	     	console.log(index);
+	     	//事件没触发，看看是不是命令是不是写错了。
+            aLi[index].onmouseover=function(){
+                aLi[Sein].className = '';
+				this.className = 'active';
+				Sein = index 
+            	// console.log(aLi[index]);
+            }
+	     })(i);
+	   }
+	
+</script>
+</html>

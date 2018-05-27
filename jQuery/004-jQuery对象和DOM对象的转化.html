@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>003-jQuery对象和DOM对象的转化.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		　/*实际开发中，jq用的很多，jq对象不能调用原生js操作方法，DOM对象当然也不能调用jq的方法，有时候我们可以用到jq对象和jsDOM对象的相互转换。
+
+　　在jq中，只需要调用[index]和get(index)方法即可将jq对象转换为DOM对象。DOM对象只需调用jq的$()方法即可包装为jq对象：
+
+　　jq对象转换为dom对象
+
+ 
+
+1 var domObj = $("#div")[0];
+2 domObj.innerHTML = "将jq对象转化为dom对象并调用相关方法"
+ 
+
+　　dom对象转换为jq对象
+
+1 var domObj = document.getElementById("div");
+2 var $obj = $(domObj);
+3 $obj.html("dom对象转换为jq对象后调用jq方法")*/
+		$(function(){        
+			 var domObj = $(".div")[0];
+             domObj.innerHTML = "1.将jq对象转化为dom对象并调用相关方法";
+             domObj.style.color='red';
+             var domObj = document.getElementById("div");
+			 var $obj = $(domObj);
+			 $obj.html("2.dom对象转换为jq对象后调用jq方法");
+            
+		})
+	</script>
+</head>
+<body>
+	<div class="div"></div>
+	<div id="div"></div>
+</body>
+</html>

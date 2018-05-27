@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包原型链</title>
+</head>
+<body>
+	
+</body>
+<script>
+	(function(w){
+		function Person(name,age){
+			this.name=name;
+			this.age=age;
+			//console.log(Person)
+		}
+		Person.prototype.showName = function() {
+			console.log("1::"+"I am"+this.name)
+		};
+		Person.prototype.showAge = function() {
+			console.log("I am"+this.age+"year")
+		};
+		w.Person=Person
+	})(window);
+	var p1=new Person('tom',18);
+	p1.showName();
+	p1.showAge()
+</script>
+</html>

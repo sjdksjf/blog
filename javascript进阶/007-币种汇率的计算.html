@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>007-币种汇率的计算.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	(function(w){
+		//程序的执行顺序，从上往下行间。this.oInput=null;需放在
+		//this.wmbins=[];上面。先清空再赋值。注意顺序。
+       function Rmbin(name){
+       	 this.oInput=null;
+         this.init(name);
+         this.wmbins=[];
+       }
+       Rmbin.prototype= {
+        constructor: Rmbin,
+        init:function(name){
+		       var oP= document.createElement('p');
+		       this.oInput= document.createElement('input');
+		               oP.innerHTML=name; 
+		               document.body.appendChild(oP);
+		               oP.appendChild(this.oInput);
+		},
+        seg: function(wmbin){
+          this.wmbins.push(wmbin);
+        },
+        kit: function(){
+          this.oInput.oninput =function(){
+          for(var i=0;i<this.wmbins.length;i++){
+         	this.wmbins[i].sit(this.oInput.value);
+         }
+         }.bind(this);
+        } 
+      }  
+       w.Rmbin=Rmbin;
+	})(window);
+	(function(w){
+      function Wmbin(name,rate,rmbin){
+         this.rate=rate;
+         this.oInput=null;
+         rmbin.seg(this);
+         this.init(name);
+      }
+       Wmbin.prototype= {
+        constructor: Wmbin,
+        init:function(name){
+		       var oP= document.createElement('p');
+		       this.oInput= document.createElement('input');
+		           oP.innerHTML=name; 
+		               document.body.appendChild(oP);
+		               oP.appendChild(this.oInput);
+		},
+        sit: function(val){
+          this.oInput.value= val / this.rate; 
+        }
+    },
+      w.Wmbin=Wmbin;
+	})(window);
+	console.log(Wmbin);
+	var cny= new Rmbin('人民币: ');
+	var P1 = new Wmbin('&nbsp &nbsp美元: ',6,cny);
+	var P2 = new Wmbin('&nbsp &nbsp美元: ',6,cny);
+	var P3 = new Wmbin('&nbsp &nbsp美元: ',6,cny);
+	//方法的调用，写的什么方法调用什么方法。
+	cny.kit();
+
+</script>
+</html>

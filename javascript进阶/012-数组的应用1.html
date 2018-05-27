@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组的应用</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var arr=[66,33,45,65,78,65,98];
+	 arr.forEach(function(value,index){
+	 	console.log("value "+value+":"+index);
+	 });
+	var arr1=arr.map(function(value,index){
+        return value+10;
+	 });
+	console.log(arr1);
+	var arr2=arr.sort(function(value,index){
+		return value ;
+	});
+	console.log(arr2);
+</script>
+</html>

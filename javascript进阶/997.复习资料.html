@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>资料</title>
+	<script>
+		返回主页 河南小样
+博客园首页新随笔联系订阅管理
+随笔 - 73  文章 - 0  评论 - 0
+js最基础知识回顾2（函数传参，操作属性的第二种方式，提取行间事件，操作一组元素，this，焦点问题和鼠标按下抬起，选项卡）
+一、函数传参
+
+    1、函数传参：参数就是占位符----函数里定不下来的东西
+a. var a1=function(){
+      alert(123);
+     };
+    function a(f){
+                       // 相当于 f=a1
+        f();
+    };
+    a(a1);
+ 
+b.  function skip(skipPath){  //换肤
+       var oLink1 = document.getElementById('link1');
+       oLink1.href=skipPath;
+      }
+ 
+ c.   function setStyle(name,value){  //设置行间样式
+         var oDiv1 = document.getElementById('div1');
+         oDiv1.style[name]=value;
+　　}
+二、操作属性的第二种方式                          
+1、两种设置属性的方法
+         obj.value="abcd" ---------   obj['value']="abcd"
+        [ ]可以代替所有的.    oDiv.style.background 和 oDiv[style]['background']一样 
+        .后面只能带原本就有的属性，不能带字符串。即使a是个参数，它也以为是个属性a。
+        [ ]具体属性名可随意改变，可存变量、参数、字符串。
+        属性可以变时用[ ]；
+        function fn(a,b){
+            var oBox=document.getElementById('box');
+            oBox.style.a=b;   //这样不行
+            oBox.style[a]=b;  //正确写法
+        }
+2、什么时候用：要改的属性不固定
+         字符串和变量——区别和联系
+3、样式优先级
+        行内>class>标签>*
+        元素.style.属性=……是修改行间样式，之后再修改className不会有效果，className与style不要混用，出问题不报错，难找
+三、提取行间事件
+    1、提取事件的几种方法
+          （1）function 名字(){     }
+                  oBtn.onclick=名字
+          （2）oBtn.onclick=function(){     }
+例一：
+    <input id="btn" type="button" onclick="fn()" />
+    var oBtn=document.getElementById('btn');
+    oBtn.value=4444;
+    function fn(){
+        alert(1);
+    }
+    oBtn.onclick=fn;     // 只需要放函数名， 不加括号，否则就是立即执行
+例二：
+    var oBtn=document.getElementById('btn'); //读到此行时，input还没加载，所以找不到元素
+    var oBox=document.getElementById('box');
+    oBtn.value=444;  //报错
+    oBtn.onclick=function(){
+        oBox.style.background='blue';
+    }
+    <input type="button" id="btn" />
+    <div id="box"></div>
+    2、window.onload=function(){  }在页面加载后才开始执行
+四、操作一组元素
+1. document.getElementsByTagName可从document获取，也可从某个元素下获取，缩小选择范围；且不限层级。即使只有一个div，获取出来也是一组。
+    数组：用来存放一组东西，但是不能直接操作数组，下标从0开始
+2. document.getElementById只能从document下获取。
+3. children 子级，只是一级、一组下标，不管是什么标签只要是子级都获取。
+4、不能直接给一组元素改变样式：
+         aDiv.style.background='blue';  //不能这样写，不能直接给一组元素改变样式。应该用循环while遍历
+改进：aDiv[0].style.background='blue';
+四、循环——反复去做一件事
+    1、什么时候用循环：一组元素干同样的事情。
+    2、一个循环的四个部分
+        （1）初始化、条件、语句、自增
+    3、while(条件){语句}
+        [1]下标，代表第几个，从零开始，0代表第一个，最后一个永远比length少一个。
+                i=i+1;即 i++，i+=1;        i=i--;即i--; i-=1;
+                i=i+2;即i+=2;        i*=2;即i=i*2;        i/=2即i=i/2;
+        例子：var i=0;    
+         while(i<5){
+              alert(i);
+              i++;
+        }
+        alert('条件已经走完');
+    4、for循环----- for（初始值;条件；自增）{}
+        (1) for(var i=0;i<aLi.length;i++){}
+        (2)  循环里的事件里面不能用i，因为循环结束之后才触发了事件。变量不进行人为更改，就永远都不会改。
+        (3)for循环适合做次数固定（能获取固定的length）的循环。
+五、this
+    1. this---->当前用事件函数的对象，触发事件的元素本身
+    2. 如果不是事件函数----->window
+for(var i=0;i<aLi.length;i++) { 
+    aLi[i].onmouseover=function() { 
+　　　alert(this);   //鼠标移入的那个li
+         function fn1() { 
+             alert(this);
+            //window 只会去找包着this的第一层函数
+        };
+       fn1();
+    };
+ };
+顶部菜单：
+    window.onload=function(){
+        aLi=document.getElementsByTagName('li');
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].onmouseover=function(){
+                var oDiv=this.children[0];
+                if(oDiv){     //判断oDiv是否存在，存在则执行下面
+                    oDiv.style.display='block';
+                    var oA=oDiv.children[0];
+                        if(oA){
+                             oA.onclick=function(){
+                                  oDiv.style.display='none';
+                             }
+                        }
+                  }
+              }
+              aLi[i].onmouseout=function(){
+                   var oDiv=this.children[0];
+                       if(oDiv){
+                           oDiv.style.display='none';
+                       }
+              }
+         }
+    } 
+七、焦点问题和鼠标按下抬起
+自动聚焦：<input type="text" autofocus />
+1. onfocus 获得焦点
+var aInput=document.getElementByTagName('input');
+    for(var i=0;i<aInput.length;i++){
+        aInput[i].onfocus=function(){
+            alert(this.value);
+        }
+}
+2. onblur 失去焦点
+例一：搜索框
+ var oSpan=document.getElementById('span1');
+ var oTex=document.getElementById('text1');
+ var oUl=document.getElementById('ul1');
+ var aLi=oUl.children;       //oUl的直接子集
+ oTex.onfocus=function(){
+  oSpan.style.display='none';
+  oUl.style.display='block';
+ };
+ oTex.onblur=function(){
+  if(this.value!=''){   //输入框的值不为空，让oSpan,oUl都隐藏
+   oSpan.style.display='none';
+   oUl.style.display='none';
+  }; 
+ };
+ for(var i=0;i<aLi.length;i++){
+  aLi[i].onmousedown=function(){
+   　　　　oTex.value=this.children[0].innerHTML;
+  };
+ };
+<div>
+    <span id="span1">请输入文本</span>
+    <input type="text" id="text1" />
+    <ul id="ul1">
+        <li><a href="javascript:;">菜单1</a></li>
+        <li><a href="javascript:;">菜单2</a></li>
+        <li><a href="javascript:;">菜单3</a></li>
+    </ul>
+</div>
+3. onmousedown  鼠标按下的时候
+    onmouseup 鼠标抬起
+    oTxt.onmousedown=function(){
+        alert(111);
+    }
+4. innerHTML----获取或修改html内容（该元素必须是双标签的）如果内容有标签，则连标签一起返回
+window.onload=function(){
+    var oBox=document.getElementById('box');
+    oBox.onclick=function(){
+        this.innerHTML=333333; //会覆盖原来的内容
+        this.innerHTML='';   //清空
+        this.innerHTML='<h1>标题</h1>';  //创建标签
+    }
+}
+
+八、全选反选不选
+window.onload=function(){
+ var oBtn1=document.getElementById('btn1');
+ var oBtn2=document.getElementById('btn2');
+ var oBtn3=document.getElementById('btn3');
+ var aInput=document.getElementById('box').getElementsByTagName('input');
+ oBtn1.onclick=function(){
+  for(var i=0;i<aInput.length;i++){
+   aInput[i].checked=this.checked;
+  };
+  oBtn2.checked=false;
+  oBtn3.checked=false;
+  if(!this.checked){    //如果全选按钮checked为false，则反选按钮选中
+   oBtn2.checked=true; 
+  };
+ };
+ for(var i=0;i<aInput.length;i++){
+  aInput[i].onclick=function(){
+   var count=0;
+   for(var j=0;j<aInput.length;j++){
+    if(aInput[j].checked){
+     count++;
+    }
+   }
+   if(count==aInput.length){
+    oBtn1.checked=true;
+   }else{
+    oBtn1.checked=false;
+   }
+  }
+ }
+ oBtn2.onclick=function(){
+  for(var i=0;i<aInput.length;i++){
+   aInput[i].checked=false;
+  };
+  oBtn1.checked=false;
+  oBtn3.checked=false;
+ };
+ oBtn3.onclick=function(){
+  for(var i=0;i<aInput.length;i++){
+   /*if(aInput[i].checked){
+    aInput[i].checked=false;
+   }else{
+    aInput[i].checked=true;
+   };*/
+   aInput[i].checked=!aInput[i].checked;
+  };
+  oBtn1.checked=false;
+  oBtn2.checked=false;
+         };
+};
+九、选项卡
+    在循环的事件里，不要用i，改用this,index
+1. <input a="0"> 在标题里直接写自定义属性，只有IE8及以下才能直接获取xxx.a
+2. HTML加载顺序：
+        加载HTML——>高级浏览器过滤掉自定义属性——>JS
+        解决：自定义属性在第三步走js的时候再加上
+多个选项卡 
+window.onloadd=function(){
+    f('box','div','onclick');
+    f('box2','p','onmouseover');
+    f('box3','div','onclick');
+    //每调用一次函数，都是一个新的函数，相当于复制函数。
+    function f(id,tagname,mouse){
+         var oBox=document.getElementById(id);
+         var aBtn=oBox.getElementsByTagName('input');
+         var aDiv=oBox.getElementsByTagName(tagname); 
+         for(var i=0;i<aBtn.length;i++){
+            aBtn[i].index=i;
+            aBtn[i][mouse]=function(){
+                for(var i=0;i<aDiv.length;i++){
+                    aBtn[i].className='';
+                    aDiv.className='';
+                }
+                this.className='active';
+                aDiv[this.index].className='show';
+            }
+        }
+    }
+}
+十. 焦点图
+window.onload=function(){
+    var oBox=document.getElementById('box');
+    var oPic=oBox.children[0];
+    var oNum=oBox.children[1];
+    var aLi1=oPic.children;
+    var aLi2=oNum.children;
+    for(var i=0;i<aLi2.length;i++){
+        aLi2[i].index=i;
+        aLi2[i].onmouseover=function(){
+             for(var i=0;i<aLi2.length;i++){ 
+                  aLi2[i].className=''; 
+         aLi1[i].className='';
+   }
+             this.className='active';
+             aLi1[this.index].className='active';
+        }
+    }
+};
+人生如戏，或实力或演技
+好文要顶 关注我 收藏该文    
+河南小样
+关注 - 2
+粉丝 - 3
++加关注
+0 0
+« 上一篇：js最基础知识回顾1（参数，函数，网页换肤）
+» 下一篇：js最基础知识回顾3（字符串拼接,数据类型,变量类型,变量作用域和闭包,运算符,流程控制,）
+posted @ 2016-07-24 09:26 河南小样 阅读(104) 评论(0) 编辑 收藏
+刷新评论刷新页面返回顶部
+注册用户登录后才能发表评论，请 登录 或 注册，访问网站首页。
+【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！
+【活动】2050 大会 - 年青人因科技而团聚（5.26-5.27 杭州·云栖小镇）
+【推荐】华为云7大明星产品0元免费使用
+【活动】腾讯云云服务器新购特惠，5折上云
+【大赛】2018首届“顶天立地”AI开发者大赛
+腾讯云0509
+最新IT新闻:
+· 经纬十年 张颖给自己打了69分
+· 陆奇“卸任”为何引发中国互联网人集体感伤？
+· 陆奇为什么必须死：一场四万人的失恋
+· 郭台铭：我的孩子若想钱多事少离家近 隔天就打断他腿
+· 陪着平台抢风口、烧钱、玩补贴，羊毛党如何“薅”死创业项目？
+» 更多新闻...
+
+最新知识库文章:
+· 你可以把编程当做一项托付终身的职业
+· 评审的艺术——谈谈现实中的代码评审
+· 如何高效学习
+· 如何成为优秀的程序员？
+· 菜鸟工程师的超神之路 -- 从校园到职场
+» 更多知识库文章...
+公告
+昵称：河南小样
+园龄：1年9个月
+粉丝：3
+关注：2
++加关注
+<	2018年5月	>
+日	一	二	三	四	五	六
+29	30	1	2	3	4	5
+6	7	8	9	10	11	12
+13	14	15	16	17	18	19
+20	21	22	23	24	25	26
+27	28	29	30	31	1	2
+3	4	5	6	7	8	9
+搜索
+
+ 
+
+ 
+常用链接
+我的随笔
+我的评论
+我的参与
+最新评论
+我的标签
+随笔分类
+css
+JavaScript(12)
+jquery(8)
+seajs(2)
+随笔档案
+2016年8月 (1)
+2016年7月 (72)
+阅读排行榜
+1. return,break与continue的区别(160)
+2. 进度条、输入框文字提示、图片延迟加载、吸顶条(137)
+3. 兄弟节点(131)
+4. js最基础知识回顾2（函数传参，操作属性的第二种方式，提取行间事件，操作一组元素，this，焦点问题和鼠标按下抬起，选项卡）(104)
+5. 双色球随机一注(94)
+Copyright ©2018 河南小样
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

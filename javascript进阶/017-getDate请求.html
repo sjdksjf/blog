@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>017-getDate请求.html</title>
+</head>
+<body>
+	<input type="button" value="获取数据" id="btn">
+</body>
+<script>
+	var oBtn=document.getElementById('btn');
+	oBtn.onclick=function(){
+		//1.创建ajax对象
+		var oAjax =new XMLHttpRequest();
+		console.log("a::",oAjax.readyState);
+		//2.和服务器建立连接
+		oAjax.opan('GET',"http://127.0.0.1:3000/017-getDate请求.html",true);
+		console.log("b::",oAjax.readyState);
+		//3.发送请求
+		oAjax.send();
+		console.log("c::",oAjax.readyState);
+		//4.监听方法获取数据
+	    oAjax.onreadystatechange =function(){
+            console.log("d::",oAjax.readyState);
+
+	    	if(oAjax.readyState == 4){
+
+	    		if(oAjax.status == 200 ){
+	    		console.log('get date::',oAjax.responseText);
+	    		var arr =JSON.parse(oAjax.responseText);
+	    		for(var i=0;i<arr.lendth;i++){
+	    			var oLi = document.createElement('li');
+	    			oLi.innerHTML ="名字"+arr[i].name+"年龄"+arr[i].age.
+	    		}
+	    	}else{
+	    		console.log('get top::',oAjax.responseText);
+	    	}
+	    	}
+	    }
+	}
+</script>
+</html>

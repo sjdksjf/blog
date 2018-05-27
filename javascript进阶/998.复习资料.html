@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>资料</title>
+	<script>
+		一、html/css
+1. 什么是盒子模型？
+    padding+border+width/height
+2. float 浮动
+（1）浮动的特性
+        半脱离文档流
+        行内变成块  共处一行  
+        能设置宽高
+        同级元素有浮动，必须全部都浮动
+        父级宽度不够，子集掉下来
+        文本环绕  顶对齐
+（2）清除浮动?
+          clear:both;
+clearfix:
+　　clear:after{display:block; content:''; clear:both;}
+　　clear{zoom:1;}
+overflow:hidden;
+3. position 定位
+（1）相对定位——relative
+不脱离文档流、相对自身定位、行内不变块
+（2）绝对定位——absolute
+行内可以变成块、脱离文档流、相对于有定位的父级，如果没有找定位父级就根据body定位、宽度默认变窄，窄到内容的宽度
+（3）固定定位——fixed      
+            脱离文档流、相对于可视区定位、不兼容ie6、行内元素变块、宽度默认变窄,窄到内容的宽度
+二、基础知识
+1. JS是做什么的?  ------写效果 做交互 操作样式
+2. alert(456) 带确定按钮的弹出框 -------主要用于调试程序
+3. 遇到程序不对，第一件事---->F12 ---- chromeF12->右下角,如果有红点:有错
+4. 引号：
+    (1) 数字 0-9 不用加引号
+    (2) 字母+中文 字符串 需要加引号 (变量除外)
+    (3) 对于JS来说:单引或双引都可以
+            外面用双引,里面用单引
+            外面用单引,里面用双引
+5. JS所有普通事件都是小写
+    onclick/onmouseover/onmouseout
+6. 等号
+   = 赋值         == 等于
+   a=4; 是将4这个值赋值给a
+7. 所有标签都可以给事件 ，都可以加ID，都可以被操作 
+    所有样式都可以操作
+8. 遇到复合样式，将横杠去掉,后面首字母大写
+    font-size -> fontSize               padding-right ->paddingRight
+9. 函数：可重复调用的代码块
+    无论在什么情况什么地方 函数名() 就是调用函数
+10. 在JS里.长得像的都可以合并
+11. 变量——存储数据的容器
+    (1)一定要 var开头，第二次不用加var，可以直接用，如果第二次赋值，会将上一个值覆盖
+    (2)对大小写敏感 a A 不是一个变量
+    (3)以字母和下划线开头
+    (4)变量（不固定值）不需要加引号，字符串 字面量 需要带引号
+var 变量名=变量值;
+var 变量名='abc';
+var 变量名=12;
+var 变量名=document.getElementById('');
+var a=b=c=4; 只有a有var
+var a=4，b=5; 都有var 
+    (5)局部变量只能在定义它的函数里使用
+    (6)全局变量： JS自动放到前面 不知道具体是什么值，先给一个undefined
+定义函数可以放到调用函数后面，JS会自动将所有的函数放到最前面定义 -->全局函数
+    (7)变量没有预解析.
+12. class 易于维护，用style或class都可以 ------原则：不能混用
+13. xxx.style.xx 赋值在行间 读的时候也读的行间，行间层级最高
+三、事件：用户操作
+***兼容性：document.getElementById(' ') ---低版本火狐不兼容
+***元素属性操作：obj.style(……)
+四、编写js的流程
+ 1.布局：HTML+CSS
+ 2.属性：确定要修改哪些属性
+ 3.事件：确定用户用哪些操作
+ 4.js编写：在实践中，用js来修改页面元素的样式
+五、参数
+（1）参数：声明时，在括号里多了一点东西。参数名是自定义的，相当于建了一个局部变量 var n=……
+（2）function 函数名（参数）{语句}
+          函数名（参数值）
+（3）调用的时候给的参数值
+（4）当值可以变动的时候
+（5）参数可以有多个值。
+function 函数名（参数1，参数2，…）{语句}
+函数名（参数1，参数2，…）；
+六、函数
+ 1.函数定义：function 函数名(){ 代码; }
+ 2.函数调用：函数名();
+只声明，啥都不做；只调用，会报错。函数在哪儿定义不重要，重要的是在哪儿调用。
+ 
+    例一：
+    var a=15;--------------------15
+    function show(){-------------不执行
+        alert(a);
+    }
+    var a=5;---------------------5
+    show();----------------------调用，此时a=5
+ 
+例二：    
+    var n=4;
+    var n2=55;
+    var a1=function(){   //定义函数
+    //alert(abc);   //没有提过一个变量叫abc，所以报错 
+    }    
+    function a(b1,b2,b3){
+        alert(b3);    //传几个都可以，可以不用   
+    } 
+    a(n,5,'abc');
+例三：
+    var a1=function(){
+        alert(123);
+    }
+    alert(a1);//function(){alert(123);}
+    function a(f){  //相当于 f=a1    把a1传进去，用f接收，相当于给a1又取了一个名字叫f          
+        f();
+    }
+    a(a1);//123
+4. 传参变颜色
+    function setColor(c){
+        var oBox=document.getElementById('box');
+        oBox.style.background=c;
+    }
+    <input type="button" value="变红"   onclick="setColor('red')">
+5. 恢复样式
+    function fn(a,b){
+        var oBox=document.getElementById('box');
+        if(a=='tt'){
+            oBox.style.width='400px';
+            oBox.style.height='400px';
+            oBox.style.background='red';
+            oBox.style.display='block';
+        }else{
+            oBox.style[a]=b;
+        }
+    }
+    <input type="button" value="变宽" onclick="fn('width','600px')" />
+    <input type="button" value="恢复" onclick="fn('tt')" />
+七、网页换肤
+ 1.任何标签都可以加ID，包括link、html
+ 2.任何标签的任何属性都可以修改
+ 3.html里怎么写，js里就怎么写(className和复合样式例外)
+八、if判断
+ 1.例子：
+#box{display:none;}
+if(oBox.style.display=='none'){  
+    oBox.style.display='block';   //读取行间样式，第一次点的时候没有行间样式所以为空，第一次判断不成立，所以要点击两次。所以应该把第一次要做得事情放在else里。
+}else{
+    oBox.style.display='none';
+}
+2. else部分可以省略
+九、扩展
+ 1.为a链接加js
+        <a href="javascript:;"></a>
+ 2.className问题
+      原本自带的属性可以直接操作 。只有一个例外class，是Js的关键字（保留字），所以在js中要写成className
+十、浏览器执行顺序
+加载----->  解析 -----> 执行
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
