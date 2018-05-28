@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>004-jQuery的静态方法.html</title>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$.holdReady(false);
+		$(function(){
+			var p1='  --abs--  ';
+			var p2=[11,22,33];
+			var p3=function(){
+				alert('aa');
+			};
+			/*$.trim(str) 去除字符串两边的空格并返回
+			$.isWindow(arg) 判断参数对象是不是window对象
+			$.isArray(arg) 判断参数对象是不是真数组
+			$.isFunction(arg) 判断参数对象是不是函数
+			$.holdReady(布尔值) 参考为true时暂停jQuery入口函数的执行,参数为false时恢复jQuery入口函数的执行*/
+			/*console.log(p1);
+			console.log($.trim(p1));
+			console.log($.isWindow(window));
+			console.log($.isArray(p2));
+			console.log($.isFunction(p3));*/
+			p3();
+			
+		})
+	</script>
+</head>
+<body>
+	<ui>
+		<li>li1</li>
+		<li>li2</li>
+		<li>li3</li>
+		<li>li4</li>
+		<li>li5</li>
+	</ui>
+</body>
+</html>

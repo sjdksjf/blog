@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>004-jQuery的静态方法.html</title>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			var oLi=document.getElementsByTagName('li');
+			var sor=[11,22,33,55,44,66];
+			var sit={0:'aaa',1:'bbb',2:'ccc',length:3} 
+			//console.log(sit);
+			function person(){
+				person.prototype.fn=function(){
+					console.log(oLi);
+				};
+		    };
+		    var p1=new person;
+				p1.fn();
+				$.each(sor,function(index,value){
+					console.log(index+"::"+value);
+				})
+			var res=sor.map(function(value,index){
+				console.log(value);
+			})	
+		})
+	</script>
+</head>
+<body>
+	<ui>
+		<li>li1</li>
+		<li>li2</li>
+		<li>li3</li>
+		<li>li4</li>
+		<li>li5</li>
+	</ui>
+</body>
+</html>
