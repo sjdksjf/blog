@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>013-jQuery事件的自动触发.html</title>
+	<style>
+	   .box1{ 
+	   	    height: 300px;
+			width: 500px;
+			background: rgb(255, 0, 0);
+		  }
+	   .box2{ 
+	   	    height: 200px;
+			width: 200px;
+			background: rgb(0,255, 0);
+			margin: 0 auto;
+		  }
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$('.box1').click(function(){
+				alert('aa');
+			});
+			$('.box2').click(function(){
+				alert('bb');
+			});
+			/*事件的自动触发triggerHandler阻止事件冒泡，trigger可冒泡。
+			/*$('.box2').trigger('click');*/
+			$('.box2').triggerHandler('click');
+
+		})
+	</script>
+</head>
+<body>
+	<div class="box1">
+		<div class="box2"></div>
+	</div>
+</body>
+</html>

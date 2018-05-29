@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>009-jQuery改变class属性.html</title>
+	<style>
+		.box1{
+			height: 100px;
+			width: 100px;
+			border: 1px solid #369;
+		}
+		.box2{
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<button>点我</button>
+	<div class="box1"></div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		var oBtn=document.getElementsByTagName('button');
+		//console.log(oBtn);
+		console.log($('div'));
+        oBtn.onclick=function(){
+        	$('div').addClass(box2);
+        	console.log($('div'));
+        }
+	})
+</script>
+</html>

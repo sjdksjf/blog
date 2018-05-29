@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>012-jQuery绑定移除事件.html</title>
+	<style>	
+		.box1{
+			height: 500px;
+			width: 500px;
+			background: rgb(255, 0, 0);
+			margin: 50px auto;
+		}
+		.box2{
+			height: 300px;
+			width: 300px;
+			background: rgb(0,255, 0);
+			margin: 50px auto;
+		}
+		.box3{
+			height: 100px;
+			width: 100px;
+			background: rgb(0, 0,255);
+			margin: 30px auto;
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+            
+          /*$('.box1').click(function(){
+	           	alert('aa');
+           });
+           $('.box1').mouseover(function(){
+	           	alert('mouseover');
+           });
+           $('.box2').click(function(){
+	           	alert('bb');
+           });
+           $('.box2').mouseover(function(){
+	           	alert('mouseover');
+           });
+           $('div').off('mouseover'); 
+           $('div').off('click');
+            */
+           //事件的冒泡
+           $('.box3').click(function(ev){
+			alert('aa');
+			ev.stopPropagation();
+			return false;
+		   });
+		    $('.box3').click(function(){
+			alert('bb');
+		   });
+		     $('.box3').click(function(){
+			alert('cc');
+		   });
+           
+		})
+	</script>
+</head>
+<body>
+	<div class="box1">
+		<div class="box2">
+			<div class="box3"></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取属性</title>
+	<style>
+		.box1{
+			height: 100px;
+			width: 100px;
+			background: red;
+		}
+		.box2{
+			height: 200px;
+			width: 200px;
+			background: rgb(255,255,0);
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			console.log($('input'));
+            console.log($('input').val()); 
+            $('input').val('值得记住的夏天');
+            //只能获取第一个元素的属性，可以改变所有元素的属性。
+			//console.log($('div').css('width'));
+			//$('div').css('width','330px').css('height','220px');
+			$('div').css({
+              width: 330,
+              height: 220
+			})
+		})
+	</script>
+</head>
+<body>
+	<input type="text" value="又一个夏天">
+	<input type="text" value="战歌夏天">
+	<div class="box1"></div>
+	<div class="box2"></div>
+</body>
+</html>
