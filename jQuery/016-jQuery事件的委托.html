@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>016-jQuery事件的委托</title>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+		//$('父元素').delegate('子元素','事件名',函数)	
+		   $('ul').delegate('li','click',function(){
+		   	alert($(this).html());
+		   })
+
+		})
+   </script>
+</head>
+<body>
+	<button>创建</button>
+	<ul>
+		<li>我是li1</li>
+		<li>我是li2</li>
+		<li>我是li3</li>
+		<li>我是li4</li>
+	</ul>
+</body>
+</html>

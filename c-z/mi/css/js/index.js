@@ -31,15 +31,51 @@ function flt(){
 	var oHd=document.getElementById('heide');
 	var oBsd=document.getElementById('baise');
 	var oHsd=document.getElementById('heise');
-       console.log(oBs[0]);
+	var oBj1=document.getElementById('bj1');
+	var oBj2=document.getElementById('bj2');
+	var oUl=oBj1.getElementsByTagName('ul');
+	var oLi=document.getElementsByTagName('a');
     var oHs1= oHs[0];    
     var oBs1= oBs[0];
     var oHs2= oHs[1];    
-    var oBs2= oBs[1];  
+    var oBs2= oBs[1];
+     console.log(oBj1);
+    oLi[3].style.color='rgba(255,255,255,0.9)';
+    oLi[17].style.color='rgba(255,255,255,0.9)';
+    oBj1.style.background='#1a1a1a';
        oBs1.onclick=function(){
        	oBd.style.display='block';
        	oHd.style.display='none';
+       	oBj1.style.background='white';
+       	for(var i=0;i<oLi.length;i++){
+       		oLi[3].style.color='rgba(0,0,0,0.9)';
+       		oLi[17].style.color='rgba(0,0,0,0.9)';
+       		if(i<25){
+       			oLi[i].style.color='rgba(0,0,0,0.6)';
+       		}
+       	}
        };
+       oHs1.onclick=function(){
+       	oBd.style.display='none';
+       	oHd.style.display='block';
+       	oBj2.style.background='#1a1a1a';
+       	for(var i=0;i<oLi.length;i++){
+       		oLi[3].style.color='rgba(255,255,255,0.9)';
+       		oLi[17].style.color='rgba(255,255,255,0.9)';
+       		if(i<25){
+       			oLi[i].style.color='rgba(255,255,255,0.6)';
+       		}
+       	}
+       };  
+      oBs2.onclick=function(){
+       	oBd.style.display='block';
+       	oHd.style.display='none';
+       }
+      oHs2.onclick=function(){
+       	oBd.style.display='none';
+       	oHd.style.display='block';
+       }
+
        oHs1.onclick=function(){
        	oHd.style.display='block';
        	oBd.style.display='none';

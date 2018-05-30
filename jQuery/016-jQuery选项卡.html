@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>016-jQuery选项卡.html</title>
+	<style>
+	     *{
+	     	margin: 0;
+	     	padding: 0;
+	     }
+		.btn1 li{
+			list-style: none;
+			height: 30px;
+			width: 50px;
+			border: 1px solid #369;
+			float: left;
+            cursor: pointer;
+		}
+		.btn1 .active{
+			background: red;
+		}
+		.btn2 li{
+			height: 500px;
+			width: 500px;
+			border: 1px solid #321;
+			position: relative;
+			top: 30px;
+			display: none;
+		}
+        .btn2 .cit{
+        	display: block;
+        }
+	</style>
+    <script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+           $('.btn1>li').click(function(){
+           	 console.log($(this));
+             var $this=$(this);
+             $this.addClass('active');
+             $this.siblings().removeClass('active');
+           	//alert('aa');
+           	$('.btn2>li').eq($index);
+           })
+          console.log($('.btn2>li').eq($index));
+
+		})
+
+		
+	</script>
+</head>
+<body>
+	<div>
+		<ul class="btn1">
+			<li class="active">K1</li>
+			<li>K2</li>
+			<li>K3</li>
+			<li>K4</li>
+		</ul>
+		<ul class="btn2">
+			<li class="cit">内容1</li>
+			<li>内容2</li>
+			<li>内容3</li>
+			<li>内容4</li>
+		</ul>
+	</div>	
+</body>
+</html>

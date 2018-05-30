@@ -15,13 +15,13 @@
 		.top{
 			height: 150px;
 			width: 100%;
-			background: #1a1a1a;
+			/*background: #1a1a1a;*/
 		}
 		.top .logo{
 			height: 60px;
 			width: 80px;
             float: left;
-			background: #1a1a1a;
+			/*background: #1a1a1a;*/
 			margin-top: 40px;
 		}
 	    .top .container{
@@ -30,6 +30,7 @@
             /*background: blue;*/
             margin-left: 10%;
 	    }
+
 	    .top .container .nav2{
 	    	height: 50px;
 	    	width: 65%;
@@ -52,10 +53,10 @@
 	      	 color: rgba(255,255,255,0.6);
 	      }
           .top .container .nav2 li:nth-child(3) a{
-            color: rgba(255,255,255,0.9);
+            /*color: rgba(255,255,255,0.9);*/
           }
           .top .container .nav2 li a:hover{
-            color: rgba(255,255,255,0.9);
+            /*color: rgba(255,255,255,0.9);*/
           }
 	      .top .container .nav3{
 	      	height: 60px;
@@ -65,7 +66,7 @@
 	      	margin-top: 40px;
 	      }
 	      .top .container .nav3 img{
-	      	background: #1a1a1a;
+	      	/*background: #1a1a1a;*/
 	      }
 	       .top .container .gouwu{
 	       	width: 320px;
@@ -85,7 +86,7 @@
 			height: 958px;
 			width: 100%;
 			position: relative;
-		    background: #1a1a1a;
+		   /* background: #1a1a1a;*/
 		}
 		.header .box1{
 			height: 958px;
@@ -136,7 +137,7 @@
 
 		.header .gaiyao{
 			height: 37px;
-			width: 80%;
+			width: 100%;
 			color: #666;
 			margin: 0 auto;
 			position: absolute;
@@ -145,7 +146,6 @@
 			margin-left: 9%;
 			position: relative;
 		    list-style: none;
-
 		}
 		.header .gaiyao .zuo li{
 			height: 20px;
@@ -172,7 +172,7 @@
 		.header .gaiyao .you{
 			float: right;
 			position: relative;
-			right: 0;
+			right: 350px;
 			list-style: none;
 		}
 		.header .gaiyao .you li{

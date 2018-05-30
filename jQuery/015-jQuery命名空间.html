@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>015-jQuery命名空间.html</title>
+	<style>	
+		.box1{
+			height: 500px;
+			width: 500px;
+			background: rgb(255, 0, 0);
+			margin: 50px auto;
+		}
+		.box2{
+			height: 300px;
+			width: 300px;
+			background: rgb(0,255, 0);
+			margin: 50px auto;
+		}
+		.box3{
+			height: 100px;
+			width: 100px;
+			background: rgb(0, 0,255);
+			margin: 30px auto;
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			//通过on绑定，然后命名。可以只调用命名的函数。
+           $('.box3').on('click.zs',function(){
+			alert('aa');
+		   });
+		   $('.box3').on('click.ls',function(){
+			alert('bb');
+		   });
+		   $('.box2').on('click.zs',function(){
+			alert('cc');
+		   });
+		   $('.box2').on('click.ls',function(){
+			alert('dd');
+		   });
+           $('.box3').trigger('click.zs'); 
+		})
+   </script>
+</head>
+<body>
+	<div class="box1">
+		<div class="box2">
+			<div class="box3"></div>
+		</div>
+	</div>
+</body>
+</html>
