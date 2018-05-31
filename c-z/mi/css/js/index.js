@@ -39,11 +39,10 @@ function flt(){
     var oBs1= oBs[0];
     var oHs2= oHs[1];    
     var oBs2= oBs[1];
-     console.log(oBj1);
+     //console.log(oBj1);
     oLi[3].style.color='rgba(255,255,255,0.9)';
     oLi[17].style.color='rgba(255,255,255,0.9)';
-    oBj1.style.background='#1a1a1a';
-       oBs1.onclick=function(){
+    oBs1.onclick=function(){
        	oBd.style.display='block';
        	oHd.style.display='none';
        	oBj1.style.background='white';
@@ -55,23 +54,24 @@ function flt(){
        		}
        	}
        };
-       oHs1.onclick=function(){
+
+    oHs1.onclick=function(){
        	oBd.style.display='none';
        	oHd.style.display='block';
-       	oBj2.style.background='#1a1a1a';
-       	for(var i=0;i<oLi.length;i++){
+       	oBj1.style.background='#1a1a1a';
+       	for(var j=0;j<oLi.length;j++){
        		oLi[3].style.color='rgba(255,255,255,0.9)';
        		oLi[17].style.color='rgba(255,255,255,0.9)';
-       		if(i<25){
-       			oLi[i].style.color='rgba(255,255,255,0.6)';
+       		if(j<25){
+       			oLi[j].style.color='rgba(255,255,255,0.6)';
        		}
        	}
-       };  
-      oBs2.onclick=function(){
+       }; 
+       oBs2.onclick=function(){
        	oBd.style.display='block';
        	oHd.style.display='none';
        }
-      oHs2.onclick=function(){
+       oHs2.onclick=function(){
        	oBd.style.display='none';
        	oHd.style.display='block';
        }
@@ -89,3 +89,11 @@ function flt(){
        	oBsd.style.display='none';
        }
 } 
+
+
+$(function(){
+    //console.log($('bj1'));
+    console.log($('.heise'));
+
+
+})

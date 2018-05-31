@@ -1,3 +1,4 @@
+/*
 function animation(obj,opation,isLinear,fnEnd){
     //1.一开始关闭定时器是为了防止重复触发函数时有多个定时器工作加快动画执行
     //2.定时器做为对象的参数是为了多个物体动画时不相互干扰	
@@ -118,6 +119,7 @@ Carousel.prototype.init = function(){
 	this.oBox.style.height = this.height + 'px';
 	this.oBox.style.position = 'relative';
 	this.oImgUl = document.createElement('ul');
+	/*
 	for(var i = 0;i<this.aImg.length;i++){
 		var oLi = document.createElement('li');
 		var oImg = document.createElement('img');
@@ -213,7 +215,8 @@ Carousel.prototype.tab = function(){
 	// this.oImgUl.children[this.now].style.opacity = 1;
 	this.oBottomBtn.children[this.now].className = 'active';
 	animation(this.oImgUl.children[this.now],{opacity:100});				
-}
+}*/
+/*
 Carousel.prototype.autoPlay = function(){
 	var timer = null;
 	timer = setInterval(this.rightBtn.onclick,this.playDuration);
@@ -224,3 +227,4 @@ Carousel.prototype.autoPlay = function(){
 		timer = setInterval(this.rightBtn.onclick,this.playDuration);			
 	}.bind(this);
 }
+*/

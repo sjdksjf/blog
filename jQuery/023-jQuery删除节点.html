@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>023-jQuery删除节点</title>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$('button').click(function(){
+			//删除节点，节点上的事件也删除。	
+			 //$('li').remove();
+			//删除节点中的内容，事件还在。 
+			//$('li').empty();
+			//删除节点，节点上的事件还在。
+			$('li').detach();	 
+			})
+		})
+	</script>
+</head>
+<body>
+	<button>删除</button>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+</body>
+</html>

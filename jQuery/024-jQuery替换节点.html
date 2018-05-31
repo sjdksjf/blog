@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <style>
+    	div{
+    		height: 100px;
+    		width: 200px;
+    		border: 1px solid#369;
+    	}
+    </style>
+    <script src="js/jquery-1.12.4.js"></script>
+	<script>
+		 $(function(){
+		 	$('button').click(function(){
+		 		var $h2=$('<h2>我是标题</h2>');
+		 		//$('div').replaceWith($h2);
+
+		 		$h2.replaceAll('div')
+		 	})
+		 })
+
+
+	</script>
+</head>
+<body>
+	<button>替换</button>
+	<div>shjshkfhks</div>
+</body>
+</html>

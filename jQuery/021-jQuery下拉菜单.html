@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>021-jQuery下拉菜单</title>
+	<style>
+	   *{
+	   	margin: 0;
+	   	padding: 0;
+	   	background: black;
+	   }
+		ul{
+			height: 150px;
+			width: 100px;
+			background:rgb(255,255,255);
+			margin:0 auto;
+		}
+		li{
+			color: rgb(0,0,0);
+			background:rgb(255,255,255);
+			padding-bottom: 30px;
+			float: left;
+		}
+	</style>
+    <script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			console.log($('ul').eq(0));
+			$('ul').eq(0).onmouseover(function(){
+				$('ul').animate({
+					height:350, 
+				},2000,function(){
+					alert('aa')
+				});
+			})
+		})
+	</script>
+</head>
+<body>
+		<div id="taobao">
+			<ul>
+				<li>我的淘宝</li>
+				<li>已买到的宝贝</li>
+				<li>我的足迹</li>
+			</ul>
+		</div>
+</body>
+</html>

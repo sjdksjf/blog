@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>025-jQuery赋值节点.html</title>
+	<style>
+		div{
+			height: 200px;
+			width: 100px;
+			border: 1px solid #369;
+		}
+	</style>
+   <script src="js/jquery-1.12.4.js"></script>
+   <script>
+     
+  
+
+   	   $(function(){
+          $('div').click(function(){
+          	alert('aa');
+          })
+
+   	   	 $('button').click(function(){
+   	   	 	//clone(false);默认false，不克隆事件；true克隆事件。
+   	   	 var $div=$('div').clone(true);
+   	   	 $('body').append($div);
+   	   	 })
+   	   })
+   </script>
+</head>
+<body>
+	<button>克隆</button>
+	<div></div>
+</body>
+</html>
