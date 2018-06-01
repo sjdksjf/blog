@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			height: 100px;
+			width: 80px;
+			border: 1px solid #369;
+		}
+
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+
+	<script>
+		/*根据《jQuery高级编程》的描述，jQuery插件开发方式主要有三种：
+
+			通过$.extend()来扩展jQuery
+			通过$.fn 向jQuery添加新的方法
+			通过$.widget()应用jQuery UI的部件工厂方式创建*/
+		/*$.prototype.setColor = function(){
+              this.css('color','red');
+              this.each(function(){
+              	$(this).append(''+$(this).attr('href'))
+              	$(this).append(function(){
+              		alert('加载中');
+              	})
+              })
+		}*/
+		$.fn.setColor = function(){
+              this.css('color','red');
+              this.each(function(){
+              	$(this).append(''+$(this).attr('href'))
+              	$(this).append(function(){
+              		alert('加载中');
+              	})
+              })
+		}
+		$(function(){
+            $('button').click(function(){
+            	$('a').setColor();
+            })
+
+		})
+	</script>
+</head>
+<body>
+	<button>变色</button>
+	<div><a href="http://www.webo.com/liong">一笑奈何</a></div>
+	<div><a href="http://www.webo.com/liong">一笑奈何</a></div>
+	<div><a href="http://www.webo.com/liong">一笑奈何</a></div>
+</body>
+</html>

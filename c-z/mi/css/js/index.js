@@ -54,7 +54,7 @@ function flt(){
        		}
        	}
        };
-
+     console.log(oBj1);
     oHs1.onclick=function(){
        	oBd.style.display='none';
        	oHd.style.display='block';
@@ -88,12 +88,57 @@ function flt(){
        	oHsd.style.display='block';
        	oBsd.style.display='none';
        }
-} 
+    } 
 
-
+    window.onscroll=function(){
+            var t=document.documentElement.scrollTop || document.body.scrollTop; 
+            //console.log(t);
+            var $gundong =  document.getElementById('gundong');
+            var gunA = $gundong.getElementsByTagName('a');
+            //console.log(gunA[5]);
+            if(t<155){
+              $gundong.style.display="none";
+            } 
+            if(t>155 && t<1100){
+               $gundong.style.display="block";
+               $gundong.style.background='#1a1a1a';
+               for(var i=0;i<gunA.length;i++){
+                  gunA[0].style.color='rgba(255,255,255,0.8)';
+                  gunA[1].style.color='rgba(255,255,255,0.3)';
+                  gunA[2].style.color='rgba(255,255,255,0.3)';
+                  gunA[3].style.color='rgba(255,255,255,0.3)';
+                  gunA[4].style.color='rgba(255,255,255,0.3)';
+                  gunA[6].style.color='rgba(255,255,255,0.3)';
+                  gunA[7].style.color='rgba(255,255,255,0.3)';
+               }
+            }
+            if(t>1100 && t<2400){
+               $gundong.style.background='white';
+               for(var i=0;i<gunA.length;i++){
+                  gunA[0].style.color='rgba(0,0,0,0.8)';
+                  gunA[1].style.color='rgba(0,0,0,0.3)';
+                  gunA[2].style.color='rgba(0,0,0,0.3)';
+                  gunA[3].style.color='rgba(0,0,0,0.3)';
+                  gunA[4].style.color='rgba(0,0,0,0.3)';
+                  gunA[6].style.color='rgba(0,0,0,0.3)';
+                  gunA[7].style.color='rgba(0,0,0,0.3)';
+               }
+            }
+            if(t>2400){
+               $gundong.style.background='#1a1a1a';
+               for(var i=0;i<gunA.length;i++){
+                  gunA[0].style.color='rgba(255,255,255,0.8)';
+                  gunA[1].style.color='rgba(255,255,255,0.3)';
+                  gunA[2].style.color='rgba(255,255,255,0.3)';
+                  gunA[3].style.color='rgba(255,255,255,0.3)';
+                  gunA[4].style.color='rgba(255,255,255,0.3)';
+                  gunA[6].style.color='rgba(255,255,255,0.3)';
+                  gunA[7].style.color='rgba(255,255,255,0.3)';
+               }
+            }
+       }
 $(function(){
-    //console.log($('bj1'));
-    console.log($('.heise'));
+    
 
 
 })

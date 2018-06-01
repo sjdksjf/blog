@@ -447,3 +447,87 @@
            color: #45474b;
         }
         /*end End*/
+        /*GunD begin*/
+        #gundong{
+            height: 80px;
+            width: 100%;
+            position: fixed;
+            top: 0px;
+            background: #1a1a1a;
+           /* background: white;*/
+            display: none;
+        }
+        #gundong ul{
+             list-style: none;
+         }
+         #gundong ul a{
+            list-style: none;
+            text-decoration: none;
+            color: rgba(255,255,255,0.3);
+            /*color: rgba(0,0,0,0.3);*/
+         }
+        .box1{
+            color: rgba(0,0,0,0.3);
+        }
+         #gundong .zuo{
+            display: inline-block;
+            height: 80px;
+            width: 600px;
+            margin-left: 125px;
+            line-height: 80px;
+            text-align: center;
+         }
+         #gundong .zuo li{
+            float: left;
+            font-size: 14px;
+            margin-left: 30px;
+         }
+          #gundong .zuo li h1{
+            font-size: 20px;
+            margin-left: 0px;
+            margin-right: 50px;
+            color: #9d9d9d;
+          }
+        #gundong .zuo li .Gl{
+            color: #bdbdbd;
+        }
+        #gundong .zuo li a:hover{
+            color: #bdbdbd;
+        }
+        #gundong .you{
+            display: inline-block;
+            height: 80px;
+            width: 500px;
+            margin-left: 150px; 
+        }
+         #gundong .you li{
+            height: 80px;
+            float: right;
+            line-height: 80px;
+            text-align: center;
+            font-size: 14px;
+            margin-right: 30px; 
+        }
+         #gundong .you .Kz{
+            width: 97px;
+            height: 39px;
+            background: rgb(37,75,160);
+            text-align: center;
+            border-radius: 10%;
+            position: relative;
+            top: 20px;
+        }
+         #gundong .you li .Xz{
+            font-size: 14px;
+            color: rgb(234,220,210);
+            position: absolute;
+            top: -21px;
+            right: 18px;
+        }
+        #gundong .you li a:hover{
+            color: #bdbdbd;
+        }
+
+        /*GunD End*/
+
+       

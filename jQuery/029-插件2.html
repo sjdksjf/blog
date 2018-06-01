@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>插件2</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			height: 300px;
+			width: 50px;
+			border: 1px solid #369;
+		}
+		ul{
+			list-style: none;
+		}
+		ul li{
+			height: 50px;
+			width: 50px;
+			border: 1px solid #000;
+		}
+		.active{
+			background: red;
+		}
+	</style>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+
+			$('li').mouseover(function(){
+				console.log($(this))
+				$(this).addClass('active').siblings().removeClass('active');
+			})
+		})
+	</script>
+</head>
+<body>
+	<div>
+		<ul class="btn">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+
+	</div>
+</body>
+</html>
