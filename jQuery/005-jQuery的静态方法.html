@@ -8,7 +8,8 @@
 		$(function(){
 			var oLi=document.getElementsByTagName('li');
 			var sor=[11,22,33,55,44,66];
-			var sit={0:'aaa',1:'bbb',2:'ccc',length:3} 
+			var sit={0:'aaa',1:'bbb',2:'ccc',length:3};
+			 console.log($.isArray(sor));
 			//console.log(sit);
 			function person(){
 				person.prototype.fn=function(){
@@ -21,9 +22,17 @@
 					console.log(index+"::"+value);
 				})
 			var res=sor.map(function(value,index){
-				console.log(value);
+				console.log(value+"::"+index);
 			})	
 		})
+		/*
+        $.trim(str) 去除字符串两边的空格并返回
+		$.isWindow(arg) 判断参数对象是不是window对象
+		$.isArray(arg) 判断参数对象是不是真数组
+		$.isFunction(arg) 判断参数对象是不是函数
+		$.holdReady(布尔值) 参考为true时暂停jQuery入口函数的执行,参数为false时恢复jQuery入口函数的执行
+
+		*/
 	</script>
 </head>
 <body>

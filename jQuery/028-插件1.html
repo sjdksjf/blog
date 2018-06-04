@@ -32,6 +32,7 @@
               this.css('color','red');
               this.each(function(){
               	$(this).append(''+$(this).attr('href'))
+              	
               	$(this).append(function(){
               		alert('加载中');
               	})
