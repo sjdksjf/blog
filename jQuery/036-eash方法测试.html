@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>036-eash方法测试</title>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<!--<script src="js/kquery-1.0.0.js"></script>!-->
+<script>
+		$(function(){
+			var aLi = document.getElementsByTagName('li');
+			var likeArr = {0:'aaa',1:'bbb',2:'ccc',length:3};
+			var arr = [11,22,33,44,55];
+            var str ={'name':'age','age':20,'sex':'body'};
+            var res=$.each(arr,function(index,value){
+              //console.log(value+'::'+index);
+              //if(index ==2){
+              //	return false;
+              //}
+              //if(index==2){
+              //	return true;
+              //}
+              // console.log(value,index);
+               console.log(this);
+          
+            })
+
+            /*console.log(aLi);
+            console.log(likeArr);
+            console.log(arr);
+            console.log(str);*/
+
+
+		})
+
+</script>
+</html>

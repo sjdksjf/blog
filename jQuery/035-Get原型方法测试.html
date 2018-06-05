@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>034-Get原型方法测试</title>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<!--<script src="js/kquery-1.0.0.js"></script>!-->
+<script>
+		$(function(){
+            console.log($('li').toArray());
+			console.log($('li').get(1));
+			console.log($('li').get(-1));
+
+		})
+
+</script>
+</html>

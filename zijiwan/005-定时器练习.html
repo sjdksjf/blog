@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>005-定时器练习</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			height: 200px;
+			width: 300px;
+			border: 1px solid #369;
+			list-style: none;
+			overflow: hidden;
+			margin: 100px auto; 
+		}
+		li{
+			height: 200px;
+			width: 300px;
+			display: inline-block;
+		}
+		li img{
+			height: 100%;
+			width: 100%;
+			display: inline-block;
+			display: none;
+		}
+	</style>
+	<script src="../jQuery./js/jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			var oUl=$('ul');
+			var oImg=document.getElementsByTagName('img');
+			console.log($('button'));
+			var  Now =0;
+			$('button').click(function(){
+			  alert('aa');
+              oImg[Now].style.display='block';
+              Now++
+			})
+		})
+	</script>
+</head>
+<body>
+	<button>下一张</button>
+	<ul>
+		<li><img src="./11.jpg"></li>
+		<li><img src="./22.jpg"></li>
+		<li><img src="./33.jpg"></li>
+		<li><img src="./44.jpg"></li>
+		<li><img src="./55.jpg"></li>
+	</ul>
+</body>
+</html>
