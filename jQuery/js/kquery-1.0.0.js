@@ -107,76 +107,8 @@ kQuery.extend =kQuery.fn.extend =function(obj){
          	this[key] = obj[key];
          }
 }
-kQuery.fn.extend({
-     html: function(content){
-          //console.log('aa');
-          if(content){
-             this.each(function(){
-              this.innerHTML=content;
-             })
-            return this; 
-          }else{
-            return this[0].innerHTML;
-          }
-     },
-     text: function(content){
-          if(content){
-            this.each(function(){
-              this.innerText=content;
-            })
-            return this;
-          }else{
-            var str='';
-            this.each(function(){
-              str +=this.innerText;
-            })
-            return str;
-          }
-     },
-     css: function(arg1,arg2){
-         if(kQuery.isString(arg1)){
-                 if(arguments.length==1){
-                     if(currentStyle){
-                       return[0].currentStyle[arg1];
-                     }else{
-                       getComputedStyle(this[0],false,[arg1]);
-                     }
-                 }else if(arguments.length == 2){
-                   this.each(function(){
-                    this.style[arg1]=arg2;
-                   });
-                 }
-         }else(kQuery.isObject(arg1)){
-             this.each(function(){
-               for( key in arg1){
-                this[key]=arg1[key];
-               }
-             })
-         } 
-         return this;
-     },
-     addClass: function(str){
-            this.each(function(){
-               var $this =kQuery(this); 
-               if(!$this.hasClass){
-                 this.className = this.className+ ''+str;
-               }
-            })  
-     },
-     removeClass: function(str){
-            this.each(function(){
-              var $this =kQuery(this);
-               if($this.hasClass){
-                 this.className = '';
-               }
-            })
-     }
-        
-
-})
 //kQuery的静态方法
 kQuery.extend({
-       //判断是不是函数
 		isFunction: function(str){
 			return typeof str ==='function';
 		},
@@ -245,11 +177,232 @@ kQuery.extend({
           }
           return retArr;
      }
+});
+//kQueyr原型上的方法
+kQuery.fn.extend({
+     html: function(content){
+          //console.log('aa');
+          if(content){
+             this.each(function(){
+              this.innerHTML=content;
+             })
+            return this; 
+          }else{
+            return this[0].innerHTML;
+          }
+     },
+     text: function(content){
+          if(content){
+            this.each(function(){
+              this.innerText=content;
+            })
+            return this;
+          }else{
+            var str='';
+            this.each(function(){
+              str +=this.innerText;
+            })
+            return str;
+          }
+     },
+     attr: function(arg1,arg2){
+          if(kQuery.isObject(arg1)){//是对象的情况
+      //设置所有的DOM属性值为对象中的所有值
+                  this.each(function(){
+                      var dom =this;
+                      kQuery.each(arg1,function(attr,val){
+                        dom.setAttribute(attr,val);
+                      })
+                  })  
+          }else{
+              if(arguments.length == 1){//传递一个参数的情况
+                   //获取第一个DOM节点的属性值
+                   return this[0].getAttribute(arg1);
+              }else if(arguments.length == 2){//传递两个参数的情况
+                 //设置所有DOM的属性值
+                  this.each(function(){
+                    this.setAttribute(arg1,arg2);
+                  });
+              }
+              return this;
 
+          }
+     },
+     removeAttr: function(attr){
+             if(attr){
+                this.each(function(){
+                      this.removeAttrbute(attr);
+                })
+             }
+            return this;  
+     },
+     val: function(val){
+        if(val){
+              this.each(function(){
+                this.value =val;
+              });
+              return this;
+        }else{
+              return this[0].value;
+        }
+        
+     },
+     css: function(arg1,arg2){
+         if(kQuery.isString(arg1)){
+                 if(arguments.length==1){
+                     if(currentStyle){
+                       return[0].currentStyle[arg1];
+                     }else{
+                       getComputedStyle(this[0],false,[arg1]);
+                     }
+                 }else if(arguments.length == 2){
+                   this.each(function(){
+                    this.style[arg1]=arg2;
+                   });
+                 }
+         }else(kQuery.isObject(arg1)){
+             this.each(function(){
+               for( key in arg1){
+                this[key]=arg1[key];
+               }
+             })
+         } 
+         return this;
+     },
+     hasClass: function(str){
+             var res =false;
+             if(str){
+                var reg= eval('/\\b'+str+'\\b/');
+                this.each(function(){
+                     if(reg.test(this.className)){
+                       res =true;
+                       return false;
+                     }
+                })
+             }
+             return res;
+
+     },
+     addClass: function(str){
+            //把传入的参数转化为数组
+            var names =kQuery.toWords(str); 
+            this.each(function(){
+              //有对应的class不添加，没有就添加。
+               var $this =kQuery(this);//Dom节点转kQuery对象。 
+               for(var i=0;i<names.length;i++){
+                 if(!this.hasClass(names)){
+                     this.className = this.className+ ''+names[i];
+                  } 
+               }
+            })
+            return this;  
+     },
+     removeClass: function(str){
+        if(str){
+          //把传入的对象转化为数组;
+          var names=kQuery.toWords();
+          this.each(function(){
+                var $this =kQuery(this);
+                for(var i=0;i<names.length;i++){
+                  if($this.hasClass(names[i])){
+                     var reg=eval('/\\b'+names[i]+'\\b/');
+                     this.className=this.className.replace(reg,'');  
+                  }
+              }
+           });
+        }else{
+                 this.each(function(){
+                    this.className='';
+                 })
+              }       
+          return this;
+     },
+     toggleClass: function(str){
+          if(str){
+            //传入对象转数组
+            var names=kQuery.toWords(str);
+            this.each(function(){
+                //把DOM元素转kquery对象，调用kquery对象上的方法。
+                var $this=kQuery(this);
+                for(var i=0;i<names.length; i++){
+                   if($this.hasClass(names[i])){
+                      $this.removeClass(names[i]);
+                   }else{
+                      $this.addClass(names[i]);
+                   }
+                }
+             });       
+          }else{
+                this.each(function(){
+                     this.className='';
+           })
+          }
+     return this;     
+   }
 
 });
+//kQueyr原型上DOM的方法
+kQuery.fn.extend({
+        empty: function(){
+           this.each(function(){
+             this.innerHTML='';
+           });
+           return this;
+        },
+        remove: function(){
 
+        }
 
+        append: function(str){
+          if(str){
+              
+          }else{
+            return this;
+          }
+        }
+});
+////kQueyr原型上事件的方法
+kQuery.fn.extend({
+on: function(eventName,fn){
+     if(!bucketEvent){
+       this.bucketEvent=[]; 
+     }
+     if(!bucketEvent.eventName){
+       this.bucketEvent.eventName=[];
+       this.bucketEvent.eventName.push(fn);
+     }else{
+        this.each(function(){
+        //addEventListener(eventName,fn);
+        kQuery.addEvent(this,eventName,fn);
+       })
+     }
+
+    /*this.each(function(){
+      //addEventListener(eventName,fn);
+      kQuery.addEvent(this,eventName,fn);
+    })*/
+  },
+off: function(eventName,fn){
+   if(arguments.length== 0){
+      this.bucketEvent= {};   
+   }
+   if(arguments.length== 1){
+      if(bucketEvent){
+       this.each(function(){
+          this.bucketEvent.eventName={}; 
+       })  
+     }
+   }
+   if(arguments.length== 2){
+     if(bucketEvent && bucketEvent.eventName){
+       var dom= this;
+       this.each(function(){
+          dom.bucketEvent.eventName.fn
+       }) 
+     }
+   }
+}    
+});
     
 
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>043-原型上事件属性1</title>
+	<style>
+		.box2{
+			height: 100px;
+			width: 100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<button>测试1</button>
+	<button>测试2</button>
+	<button>测试3</button>
+</body>
+<!--<script src="js/jquery-1.12.4.js"></script>!-->
+   <script src="js/kquery-1.0.0.js"></script>
+<script>
+	  $('button').on('click',function(){
+	  	alert('click1');
+	  });	
+      $('button').on('click',function(){
+	  	alert('click2');
+	  });
+	  $('button').on('mouseover',function(){
+	  	alert('mouseover');
+	  });
+	  $('button').on('mouseout',function(){
+	  	alert('mouseout');
+	  });
+</script>
+</html>

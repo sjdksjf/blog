@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>039-原型上属性的调用2</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box1{
+			height: 200px;
+			width: 200px;
+			background: red;
+		}
+		.box4{
+			height: 300px;
+			width: 300px;
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+	<button>测试</button>
+	<div class="box1 box2 box3" name="sex1">div1</div>
+	<div class="box1 box2 box4" name="sex2">div2</div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<!--<script src="js/kquery-1.0.0.js"></script>!-->
+<script>
+		$(function(){
+			//console.log($('div'));
+			  $('button')[0].onclick=function({
+                  $('div').removeClass('box1');
+			  })
+		})
+
+</script>
+</html>
