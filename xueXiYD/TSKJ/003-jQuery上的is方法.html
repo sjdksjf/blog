@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>003-jquery上的is方法.html</title>
+</head>
+<body>
+	<div>
+		 jQuery is() 方法
+is() 根据选择器、元素或 jQuery 对象来检测匹配元素集合，如果这些元素中至少有一个元素匹配给定的参数，则返回 true。		 
+
+jQuery HTML 方法 jQuery 遍历方法
+
+实例
+如果 <p> 的父元素是 <div> 元素，弹出提示信息:
+
+if ($("p").parent().is("div")) {
+    alert("p 的父元素是 div"); 
+}
+
+定义和使用
+is() 方法用于查看选择的元素是否匹配选择器。
+
+语法
+$(selector).is(selectorElement,function(index,element))
+
+参数	描述
+selectorElement	必须。选择器表达式，根据选择器/元素/jQuery 对象检查匹配元素集合，如果存在至少一个匹配元素，则返回 true，否则返回 false
+function(index,element)	
+可选。指定了选择元素组要执行的函数。
+
+index - 元素的索引位置
+element - 当前元素 ( "this" 选择器也可以使用 )
+	</div>
+</body>
+</html>

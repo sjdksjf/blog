@@ -339,7 +339,6 @@ kQuery.fn.extend({
           }
      return this;     
    }
-
 });
 //kQueyr原型上DOM的方法
 kQuery.fn.extend({

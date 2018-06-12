@@ -1,0 +1,5 @@
+//绑定事件
+		1.//this.$elem.hover(this.show.bind(this),this.hide.bind(this));
+
+		2.this.$elem.hover($.proxy(this.show,this),$.proxy(this.hide,this));
+两种方法都是事件的绑定，使前后this一致。		
