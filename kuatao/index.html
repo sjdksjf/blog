@@ -11,12 +11,53 @@
 <body>
 	<!--顶部导航开始-->
 	<div class="nav-site">
-		<div class="container"></div>
+		<div class="container">
+			<ul class="fl nav-left">
+			<li class="fl"><a href="javascript:;" class="nav-login">亲,请登录</a></li>
+			<li class="fl"><a href="javascript:;" class="link">免费注册</a></li>
+			<li class="fl"><a href="#" class="link">手机逛跨淘</a></li>
+		</ul>
+		<ul class="fr">
+			<li class="dropdown fl" data-active='menu'>
+				<a href="javascript:;" class="link dropdown-toggle">我的跨淘<i class="fas dropdown-arrow transition">&#xf107;</i></a>
+				<ul class="dropdown-layer dropdown-left">
+					<li><a href="#" class="menu-item">已买到的宝贝</a></li>
+					<li><a href="#" class="menu-item">我的足迹</a></li>
+				</ul>
+			</li>
+			<li class="dropdown fl" data-active='menu'  data-load='data/nav-site/mykt.json'>
+				<a href="javascript:;" class="link dropdown-toggle">我的跨淘<i class="fas dropdown-arrow transition">&#xf107;</i></a>
+				<ul class="dropdown-layer dropdown-left">
+					<li class="dropdown-loading"></li>
+				</ul>
+			</li>
+			<li class="nav-category fl"><a href="#" class="link">商品分类</a></li>
+			<li class="dropdown fl" data-active='menu'>
+				<a href="javascript:;" class="link dropdown-toggle">买家中心<i class="fas dropdown-arrow transition">&#xf107;</i></a>
+				<ul class="dropdown-layer dropdown-right">
+					<li><a href="#" class="menu-item">免费开店</a></li>
+					<li><a href="#" class="menu-item">已卖出的宝贝</a></li>
+				</ul>
+			</li>						
+		</ul>
+		</div>
 	</div>
 	<!--顶部导航结束-->
 	<!--理想生活开始-->
 	<div class="header">
-		<div class="container"></div>
+	    <div class="container">
+			<h1 class="fl">
+				<a href="#" class="header-logo"></a>
+			</h1>
+			<div class="search fl">
+				<form action="https://s.taobao.com/search" id='search-form'>
+					<input type="text" class="search-input fl" name="q" autocomplete="off">
+					<input type="submit" class="search-btn fl">
+				</form>
+				<ul class="search-layer">
+				</ul>
+			</div>
+	    </div>
 	</div>
 	<!--理想生活结束-->
 	<!--主题市场开始-->
@@ -73,4 +114,10 @@
 	<div></div>
 	<!--底部区域结束-->
 </body>
+<script src="js/jquery-1.12.4.js"></script>
+<script src="js/transition.js"></script>
+<script src="js/showhide.js"></script>
+<script src="js/dropdown.js"></script>
+<script src="js/search.js"></script>
+<script src="js/index.js"></script>
 </html>
