@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body{
+         width: 100%;
+         height: 100%;
+         background: rgba(255, 178, 131, 1.0) 
+    }  
+    button{
+        margin-left: 710px;
+        margin-top: 60px;
+    }    
+    p{
+        color: rgba(0,255,0,0.8);
+        font-size: 20px;
+        position: absolute;
+        top: 60px;
+        left: 50px;
+    }
+    #box1{
+        height: 500px;
+        width: 500px;
+        background: url('img/1.gif') no-repeat; 
+        background-size: 500px;
+        position: relative;
+        top: 20px;
+        left: 500px;
+    }
+    #box1 img{
+        height: 300px;
+        width: 500px;
+        display: none;
+    } 
+    span{
+        color: rgb(255, 255, 0);
+        font-size: 20px;
+        position: absolute;
+        top: 120px;
+        left: 80px;
+    }
+</style>
+<head>
+	<meta charset="UTF-8">
+	<title>端午节抽奖</title>
+    
+</head>
+<body>
+
+	<button>抽奖开始</button>
+    <div id="box1">
+        <div class="rng1">
+            <img src="img/1.jpg" alt="">
+        </div>
+    </div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>       
+    $(function(){
+            $('button').click(function(){
+                var jqXHR=$.ajax({
+                    url:'http://10.196.18.35:3000',
+                    type:'GET',
+                    dataType: "json",
+                    success: function(data){                       
+                       $('.rng1').append("<p>"+data.name+"</p>");
+                       var $div= $('.rng1');
+                       var $img=$('img')[0];
+                       $img.style.display='block';
+                       console.log($img);
+                       if(data.name == "一等奖"){
+                        $('.rng1').append("<span>"+'哇塞一等奖'+"</span>");
+                       }else if(data.name == "二等奖"){
+                         $('.rng1').append("<span>"+'不错哟二等奖'+"</span>");
+                       }else if(data.name == "三等奖"){
+                         $('p').append("<span>"+'可以啊三等奖'+"</span>");
+                       }else if(data.name == "四等奖"){
+                         $('.rng1').append("<span>"+'您距一等奖还差一步'+"</span>");
+                       }else if(data.name == "五等奖"){
+                         $('.rng1').append("<span>"+'您距一等奖还差一步'+"</span>"); 
+                       } 
+                    }
+                })
+            }) 
+
+           })
+
+</script>
+</html>
