@@ -1,9 +1,9 @@
 ;(function($){
-
-     
-	/*顶部下拉菜单开始*/
+	//$('.dropdown').dropdown();
+	
 	var $dropdown = $('.dropdown');
 	
+
 	$dropdown.on('dropdown-show',function(ev){
 		// console.log(this);
 		var $this = $(this);
@@ -39,43 +39,13 @@
 		js:true,
 		mode:'slideUpDown'
 	});
-
-	/*顶部下拉菜单结束*/
-	
-	/*搜索框开始*/
-
-	var $search = $('.search');
-	
-	$search.search({
-		autocomplete:true
-	});
-	
-	$search
-	.on('getData',function(ev,data){
-			var $this = $(this);
-			var html = createSearchLayer(data,10);	
-			$this.search('appendLayer',html).search('showLayer');
+	/*测试暴露接口
+	$('button').eq(0).click(function(){
+		$dropdown.dropdown('show');
 	})
-	.on('getNoData',function(){
-		$this.search('appendLayer','').search('hideLayer');
-	})
-	.on('click','.search-item',function(){
-		$search.search('setInputVal',$(this).html());
-		$search.search('submit');
-
-	});
-
-	function createSearchLayer(data,maxNum){
-		if(data.result.length == 0){
-			return '';
-		}		
-		var html = '';
-		for(var i = 0;i<data.result.length;i++){
-			if(i>=maxNum) break;
-			html += '<li class="search-item">'+data.result[i][0]+'</li>'
-		}
-		return html;
-	}
-	/*搜索框结束*/	
+	$('button').eq(1).click(function(){
+		$dropdown.dropdown('hide');
+	})	
+	*/
 
 })(jQuery);
