@@ -124,7 +124,7 @@
 				var $this = $(this);
 				var modeMode = $this.data('modeMode');
 				if(!modeMode){//单例模式
-					options  = $.extend(DEFAULTS,options);
+					options  = $.extend({},DEFAULTS,options);
 				    modeMode = move($this,options);
 					$this.data('modeMode',modeMode);
 				}

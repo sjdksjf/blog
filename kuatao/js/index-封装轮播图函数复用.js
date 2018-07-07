@@ -181,12 +181,43 @@
 	}
 
     carouselLazyLoad($focusCarousel); 
+/*
+	$focusCarousel.item = {};
+	$focusCarousel.totalItemNum =  $focusCarousel.find('img').length;
+	$focusCarousel.loadedItemNum = 0;
+	
+	$focusCarousel.on('carousel-show',$focusCarousel.loadFn = function(ev,index,elem){
+		console.log('carousel-show loading...');
+		if($focusCarousel.item[index] != 'loaded'){
+			$focusCarousel.trigger('carousel-loadItem',[index,elem])
+		}
+	});
 
+	$focusCarousel.on('carousel-loadItem',function(ev,index,elem){
+		console.log(index,'loading...');
+		var $img = $(elem).find('img');
+		var imgUrl = $img.data('src');
+		loadImage(imgUrl,function(url){
+			$img.attr('src',url);
+		},function(url){
+			$img.attr('src','images/focus-carousel/placeholder.png');
+		});
+		$focusCarousel.item[index] = 'loaded';
+		$focusCarousel.loadedItemNum++;
+		if($focusCarousel.loadedItemNum == $focusCarousel.totalItemNum){
+			$focusCarousel.trigger('carousel-loadedItems')
+		}
+	});
+	
+	$focusCarousel.on('carousel-loadedItems',function(){
+		$focusCarousel.off('carousel-show',$focusCarousel.loadFn)
+	});
+*/
 	/*调用轮播图插件*/
 	$focusCarousel.carousel({
-		activeIndex:0,
-		mode:'slide',
-		interval:2000
+		activeIndex:0,  
+		mode:'slide',  //左右滑动
+		interval:2000 //自动轮播
 	});
 
 	/*中心轮播图结束*/
@@ -196,6 +227,42 @@
 	carouselLazyLoad($todaysCarousel);
 
 
+/*
+	$todaysCarousel.item = {};
+	$todaysCarousel.totalItemNum =  $todaysCarousel.find('img').length;
+	$todaysCarousel.loadedItemNum = 0;
+	
+	$todaysCarousel.on('carousel-show',$todaysCarousel.loadFn = function(ev,index,elem){
+		console.log('carousel-show loading...');
+		if($todaysCarousel.item[index] != 'loaded'){
+			$todaysCarousel.trigger('carousel-loadItem',[index,elem])
+		}
+	});
+
+	$todaysCarousel.on('carousel-loadItem',function(ev,index,elem){
+		console.log(index,'loading...');
+		var $imgs = $(elem).find('img');
+	 $imgs.each(function(){
+	 	    var $img =$(this);
+			var imgUrl = $img.data('src');
+			loadImage(imgUrl,function(url){
+				$img.attr('src',url);
+			},function(url){
+				$img.attr('src','images/focus-carousel/placeholder.png');
+			});
+			$todaysCarousel.item[index] = 'loaded';
+			$todaysCarousel.loadedItemNum++;
+			if($todaysCarousel.loadedItemNum == $todaysCarousel.totalItemNum){
+				$todaysCarousel.trigger('carousel-loadedItems')
+			}
+		});
+		
+		$todaysCarousel.on('carousel-loadedItems',function(){
+			$todaysCarousel.off('carousel-show',$todaysCarousel.loadFn)
+	});
+
+	})
+	*/	
 
 	$todaysCarousel.carousel({
 		activeIndex:0,

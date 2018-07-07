@@ -137,70 +137,37 @@
 		console.log(index,ev.type);
 	})
 	*/
-	/*按需加载的步骤
-		1. 确定什么时候加载
-		2. 具体的加载
-		3. 加载完成的善后
-	*/
-	//轮播图按需加载函数
-	function carouselLazyLoad($elem){
-        $elem.item = {};
-		$elem.totalItemNum =  $elem.find('.carousel-img').length;
-		$elem.loadedItemNum = 0;
-	
-		$elem.on('carousel-show',$elem.loadFn = function(ev,index,elem){
-			console.log('carousel-show loading...');
-			if($elem.item[index] != 'loaded'){
-				$elem.trigger('carousel-loadItem',[index,elem])
-			}
+	//创建对象用于判断图片是否加载完毕。为了节省系统资源，只加载一次。
+	var item = {};
+	var totalItemNum = $focusCarousel.find('img').length;
+	var loadedItemNum = 0;
+	var loadFn =null;
+	$focusCarousel.on('carousel-show',loadFn = function(ev,index,elem){
+		console.log('carousel-show loading...');
+		if(item[index] !='loaded'){
+		console.log(index,'loading...');
+		//获取对象和对象中的（src）数据
+		var $img=$(elem).find('img');
+		var imgUrl=	$img.data('src');
+		loadImage(imgUrl,function(url){
+			$img.attr('src',url);
+		},function(url){
+			$img.attr('src','images/focus-carousel/placeholder.png')
 		});
-
-		$elem.on('carousel-loadItem',function(ev,index,elem){
-			console.log(index,'loading...');
-			var $imgs = $(elem).find('.carousel-img');
-		 $imgs.each(function(){
-		 	    var $img =$(this);
-				var imgUrl = $img.data('src');
-				loadImage(imgUrl,function(url){
-					$img.attr('src',url);
-				},function(url){
-					$img.attr('src','images/focus-carousel/placeholder.png');
-				});
-				$elem.item[index] = 'loaded';
-				$elem.loadedItemNum++;
-				if($elem.loadedItemNum == $elem.totalItemNum){
-					$elem.trigger('carousel-loadedItems')
-				}
-			});
-			
-			$elem.on('carousel-loadedItems',function(){
-				$elem.off('carousel-show',$elem.loadFn)
-		});
-
-		})
-	}
-
-    carouselLazyLoad($focusCarousel); 
+		item[index]='loaded';
+		loadedItemNum++;
+		if(loadedItemNum==totalItemNum){
+			$focusCarousel.off('carousel-show',loadFn)
+		}
+	  }
+    })
 
 	/*调用轮播图插件*/
 	$focusCarousel.carousel({
 		activeIndex:0,
-		mode:'slide',
-		interval:2000
+		mode:'fade',
+		interval:0
 	});
 
 	/*中心轮播图结束*/
-	/*今日热销开始*/
-	var $todaysCarousel = $('.todays .carousel-container');
-
-	carouselLazyLoad($todaysCarousel);
-
-
-
-	$todaysCarousel.carousel({
-		activeIndex:0,
-		mode:'slide',
-		//interval:0
-	});
-	/*今日热销结束*/
 })(jQuery);
