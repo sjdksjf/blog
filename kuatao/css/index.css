@@ -258,7 +258,9 @@
 /*今日热销结束*/
 /*楼层开始*/
 	.floor{
-		background: #f7f7f7;
+		background: green;
+		margin-bottom: 10px;
+		height: 538px;
 	}
 	.floor .floor-hd{
 		width: 100%;

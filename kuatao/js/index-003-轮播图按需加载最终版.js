@@ -185,8 +185,8 @@
 	/*调用轮播图插件*/
 	$focusCarousel.carousel({
 		activeIndex:0,
-		mode:'slide',  //轮播的方式 
-		interval:0   //自动轮播，0表示不轮播
+		mode:'slide',
+		interval:2000
 	});
 
 	/*中心轮播图结束*/
@@ -205,66 +205,10 @@
 	/*今日热销结束*/
 	/*楼层开始*/
 	var $floor = $('.floor');
-	  console.log($floor);
-     $floor.on('tab-show',function(ev,index,elem){
-     	console.log(index,elem);
-     })
-/*
-alert($(window).width()); //浏览器当前窗口可视区域宽度
-alert($(document).width());//浏览器当前窗口文档对象宽度
-alert($(document.body).width());//浏览器当前窗口文档body的宽度*/
 
-
-    var $win = $(window);
-    function floorSit($elem){
-       console.log($win.height());  
-       console.log($(document).height()); 
-       console.log($(document.body).height());  
-    }
-    floorSit()
-/*
      $floor.on('tab-show tab-show tab-hide tab-hiden',function(ev,index,elem){
      	console.log(index,elem,ev.type);
      });
-
-     function carouselImgLazyLoad($elem){
-        var item = {},
-		    totalItemNum =  $elem.find('.floor-img').length,
-		    loadedItemNum = 0;
-	
-		$elem.on('floor-show',loadFn = function(ev,index,elem){
-			console.log('floor-show loading...');
-			if(item[index] != 'loaded'){
-				$elem.trigger('floor-loadItem',[index,elem])
-			}
-		});
-
-		$elem.on('floor-loadItem',function(ev,index,elem){
-			console.log(index,'loading...');
-			var $imgs = $(elem).find('.floor-img');
-		 $imgs.each(function(){
-		 	    var $img =$(this);
-				var imgUrl = $img.data('src');
-				loadImage(imgUrl,function(url){
-					$img.attr('src',url);
-				},function(url){
-					$img.attr('src','images/floor/placeholder.png');
-				});
-				item[index] = 'loaded';
-			    loadedItemNum++;
-				if(loadedItemNum == totalItemNum){
-					$elem.trigger('floor-loadedItems')
-				}
-			});
-			
-			$elem.on('floor-loadedItems',function(){
-				$elem.off('floor-show',loadFn)
-		});
-
-		})
-	}
-
-    carouselImgLazyLoad($floor); 
 	//楼层选项卡
 	$floor.tab({
 		css3:false,
@@ -275,7 +219,5 @@ alert($(document.body).width());//浏览器当前窗口文档body的宽度*/
 		delay:200,
 		interval:0
 	})
-	*/
-
 	/*楼层结束*/
 })(jQuery);	
