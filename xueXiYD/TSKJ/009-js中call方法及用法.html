@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	
+call()函数用于调用当前函数functionObject，并可同时使用指定对象thisObj作为本次执行时functionObject函数内部的this指针引用。
+
+该函数属于Function对象，所有主流浏览器均支持该函数。
+
+语法
+functionObject.call( [ thisObj [, arg1 [, arg2 [, args...]]]] )
+参数
+参数	描述
+thisObj	可选/Object类型指定执行functionObject函数时，函数内部this指针引用的对象。
+arg1	可选/任意类型调用functionObject函数时传入的第1个参数。
+arg2	可选/任意类型调用functionObject函数时传入的第2个参数。
+args	可选/任意类型调用functionObject函数时传入的更多参数，可以有多个。
+如果为该函数所属的functionObject对象提供了传入参数，则必须提供thisObj参数。
+
+备注：该函数与Function对象的apply()函数作用相同，只不过call()函数是将Function对象的参数一个个分别传入，apply()函数是将Function对象的参数以一个数组或arguments对象的形式整体传入。
+
+返回值
+call()方法的返回值为任意类型，其返回值取决于当前functionObject对象的返回值。
+
+示例&说明
+name = "张三";
+age = 18;
+
+function test(){
+    document.writeln(this);
+    document.writeln(this.name);
+    document.writeln(this.age);     
+};
+
+// 全局函数内部的this默认为全局对象window
+test(); // [object Window] 张三 18
+
+
+var obj = {name: "李四", age: 20};
+// 更改内部的this指针引用对象为obj
+test.call(obj); // [object Object] 李四 20
+
+
+function foo(a, b){
+    document.writeln(this.name);    
+    document.writeln(a);    
+    document.writeln(b);    
+}
+// 改变this引用为obj，同时传递两个参数
+foo.call(obj, 12, true); // 李四 12 true
+
+
+function bar(a, b){
+    var o = {name: "王五"};
+    // 调用foo()函数，并改变其this为对象o，传入参数a,b作为其参数
+    foo.call(o, a, b);  
+}
+bar("CodePlayer", "www.365mini.com"); // 王五 CodePlayer www.365mini.com
+</script>
+</html>

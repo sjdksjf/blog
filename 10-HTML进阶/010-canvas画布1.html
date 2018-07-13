@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>010-canvas画布</title>
+	<style>
+		canvas{
+			border: 1px solid #369;
+			height: 200px;
+			width: 200px;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="100" height="100" id="box">
+		
+	</canvas>
+</body>
+<script>
+   //设置图形Js最优，其次css 最后HTML
+
+	//获取DOM节点
+ var oCanvas=document.getElementById('box');
+     oCanvas.width=300;
+     oCanvas.height=300;
+
+    //绘制图形
+ var ctx=oCanvas.getContext('2d');
+  ctx.moveTo(0,0);
+  ctx.lineTo(100,100);
+  ctx.strokeStyle ='red';
+  ctx.lineWidth=10; 
+  ctx.stroke();
+</script>
+</html>

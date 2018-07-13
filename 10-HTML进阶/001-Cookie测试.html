@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	
+	//存储
+	//document.cookie ='name = sit';
+	//console.log(document.cookie);
+	//获取当前时间并设置过期时间
+	var oDate =new Date();
+	oDate.setDate(oDate.getDate()+14);
+
+    document.cookie ="name=Tom;expires="+oDate;
+     //获取
+    console.log(document.cookie);
+
+</script>
+</html>

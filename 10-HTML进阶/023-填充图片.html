@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>013-canvas绘制矩形</title>
+	<style>
+		canvas{
+			border: 1px solid #369;
+		}
+	</style>
+</head>
+<body>
+	<canvas  id="box">
+		
+	</canvas>
+</body>
+<script>
+
+	//获取DOM节点
+ var oCanvas=document.getElementById('box');
+     oCanvas.width=500;
+     oCanvas.height=500;
+
+   
+ var ctx=oCanvas.getContext('2d');
+     ctx.beginPath();
+ var img= new Image();
+     img.src='./img./1.jpg';
+     img.onload =function(){
+     	//ctx.drawImage(img,0,0);
+        //ctx.drawImage(img,0,0,200,200);
+        ctx.drawImage(img,0,0,200,200,50,50,300,300);
+     }  
+</script>
+</html>

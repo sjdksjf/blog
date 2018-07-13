@@ -1,3 +1,9 @@
+/*
+* @Author: TomChen
+* @Date:   2018-06-08 20:17:35
+* @Last Modified by:   TomChen
+* @Last Modified time: 2018-07-09 11:53:41
+*/
 ;(function($){
 
 	function loadHtmlOnce($elem,callBack){
@@ -15,7 +21,18 @@
 			callBack($elem,data);
 		});		
 	}
-
+	//获取数据一次
+	function getDataOnce($elem,url,callBack){
+		var data = $elem.data(url);
+		if(!data){
+			$.getJSON(url,function(resData){
+				$elem.data(url,resData);
+				callBack(resData);
+			})
+		}else{
+			callBack(data);
+		}
+	}
 	function loadImage(url,success,error){
 		var image = new Image();
 
@@ -29,6 +46,41 @@
 
 		image.src = url;		
 	}
+	//懒加载
+	/*
+	懒加载实例
+	 options ={
+	 	totalItemNum:5,
+		$elem:$elem,
+		eventName:'tab-show',
+		eventPrefix:'tab'
+	 }
+	 */
+	 function lazyLoad(options){
+	 	var item={},
+	 	    totalItemNum =  options.totalItemNum,
+			loadedItemNum = 0,
+			loadFn = null,
+			$elem = options.$elem,
+			eventName = options.eventName,
+			eventPrefix = options.eventPrefix;
+
+		$elem.on(eventName,loadFn =  function(ev,index,elem){//确定加载时机
+			if(item[index] !='loaded'){//具体加载
+				$elem.trigger(eventPrefix+'-loadItem',[index,elem,function(){
+					item[index] = 'loaded';
+					loadedItemNum++;
+					if(loadedItemNum == totalItemNum){
+						$elem.trigger(eventPrefix+'-loadedItems')
+					}
+				}])
+			}
+		});
+		$elem.on(eventPrefix+'-loadedItems',function(){
+			$elem.off(eventName,loadFn)
+		});	
+
+	 }
 	/*顶部下拉菜单开始*/
 	var $menu = $('.nav-site .dropdown');
 	
@@ -48,7 +100,7 @@
 		},1000);
 	}
 	$menu.dropdown({
-		css3:false,
+		css3:true,
 		js:true,
 		mode:'slideUpDown'
 	});
@@ -130,27 +182,17 @@
 
 	/*分类导航结束*/
 
-	/*中心轮播图开始*/
-	var $focusCarousel = $('.focus .carousel-container');
-	/*
-	$focusCarousel.on('carousel-show carousel-shown carousel-hide carousel-hidden',function(ev,index,elem){
-		console.log(index,ev.type);
-	})
-	*/
-	/*按需加载的步骤
-		1. 确定什么时候加载
-		2. 具体的加载
-		3. 加载完成的善后
-	*/
 	//轮播图按需加载函数
-	function carouselLazyLoad($elem){
-        $elem.item = {};
-		$elem.totalItemNum =  $elem.find('.carousel-img').length;
-		$elem.loadedItemNum = 0;
-	
-		$elem.on('carousel-show',$elem.loadFn = function(ev,index,elem){
+	function carouselImgLazyLoad($elem){
+
+		var item = {},
+		    totalItemNum =  $elem.find('.carousel-img').length,
+			loadedItemNum = 0,
+			loadFn = null;
+		
+		$elem.on('carousel-show',loadFn = function(ev,index,elem){
 			console.log('carousel-show loading...');
-			if($elem.item[index] != 'loaded'){
+			if(item[index] != 'loaded'){
 				$elem.trigger('carousel-loadItem',[index,elem])
 			}
 		});
@@ -158,124 +200,185 @@
 		$elem.on('carousel-loadItem',function(ev,index,elem){
 			console.log(index,'loading...');
 			var $imgs = $(elem).find('.carousel-img');
-		 $imgs.each(function(){
-		 	    var $img =$(this);
+			$imgs.each(function(){
+				var $img = $(this);
 				var imgUrl = $img.data('src');
 				loadImage(imgUrl,function(url){
 					$img.attr('src',url);
 				},function(url){
 					$img.attr('src','images/focus-carousel/placeholder.png');
 				});
-				$elem.item[index] = 'loaded';
-				$elem.loadedItemNum++;
-				if($elem.loadedItemNum == $elem.totalItemNum){
+				item[index] = 'loaded';
+				loadedItemNum++;
+				if(loadedItemNum == totalItemNum){
 					$elem.trigger('carousel-loadedItems')
 				}
-			});
-			
-			$elem.on('carousel-loadedItems',function(){
-				$elem.off('carousel-show',$elem.loadFn)
+			})
 		});
 
-		})
+		$elem.on('carousel-loadedItems',function(){
+			$elem.off('carousel-show',loadFn)
+		});
 	}
 
-    carouselLazyLoad($focusCarousel); 
+	/*中心轮播图开始*/
+	var $focusCarousel = $('.focus .carousel-container');
+
+	carouselImgLazyLoad($focusCarousel);
+
+	$focusCarousel.on('carousel-loadedItems',function(){
+		$focusCarousel.off('carousel-show',$focusCarousel.loadFn)
+	});
 
 	/*调用轮播图插件*/
 	$focusCarousel.carousel({
 		activeIndex:0,
-		mode:'slide',  //轮播的方式 
-		interval:0   //自动轮播，0表示不轮播
+		mode:'slide',
+		interval:0
 	});
 
 	/*中心轮播图结束*/
-	/*今日热销开始*/
+	
+	/*今日商品开始*/
 	var $todaysCarousel = $('.todays .carousel-container');
 
-	carouselLazyLoad($todaysCarousel);
-
-
+	carouselImgLazyLoad($todaysCarousel);
 
 	$todaysCarousel.carousel({
 		activeIndex:0,
 		mode:'slide',
-		//interval:0
 	});
-	/*今日热销结束*/
+	/*今日商品结束*/
+
 	/*楼层开始*/
-	var $floor = $('.floor');
-	  console.log($floor);
-     $floor.on('tab-show',function(ev,index,elem){
-     	console.log(index,elem);
-     })
-/*
-alert($(window).width()); //浏览器当前窗口可视区域宽度
-alert($(document).width());//浏览器当前窗口文档对象宽度
-alert($(document.body).width());//浏览器当前窗口文档body的宽度*/
+	var $floors = $('.floor');
 
+	//楼层图片按需加载函数
+	var $win=$(window);
+	    $doc=$(document); 
+	function isVisible($elem){
+		return ($win.height() + $win.scrollTop() > $elem.offset().top) && ($win.scrollTop() < $elem.offset().top+$elem.height())
+	   }
 
-    var $win = $(window);
-    function floorSit($elem){
-       console.log($win.height());  
-       console.log($(document).height()); 
-       console.log($(document.body).height());  
-    }
-    floorSit()
-/*
-     $floor.on('tab-show tab-show tab-hide tab-hiden',function(ev,index,elem){
-     	console.log(index,elem,ev.type);
-     });
-
-     function carouselImgLazyLoad($elem){
-        var item = {},
-		    totalItemNum =  $elem.find('.floor-img').length,
-		    loadedItemNum = 0;
-	
-		$elem.on('floor-show',loadFn = function(ev,index,elem){
-			console.log('floor-show loading...');
-			if(item[index] != 'loaded'){
-				$elem.trigger('floor-loadItem',[index,elem])
+	function timeToShow(){
+		$floors.each(function(index){
+			if(isVisible($(this))){
+				$doc.trigger('floor-show',[index,this])
 			}
-		});
+		})		
+	}
+    //楼层HTML图按需加载函数
+    function buildFloorHtml(oneFloorData){
+		var html = '';
+		html += '<div class="container">';
+		html += buildFloorHeadHtml(oneFloorData);
+		html += buildFloorBodyHtml(oneFloorData);
+		html += '</div>';
+		return html;
+	}
+	function buildFloorHeadHtml(oneFloorData){
+		var html = '';
 
-		$elem.on('floor-loadItem',function(ev,index,elem){
-			console.log(index,'loading...');
-			var $imgs = $(elem).find('.floor-img');
-		 $imgs.each(function(){
-		 	    var $img =$(this);
-				var imgUrl = $img.data('src');
-				loadImage(imgUrl,function(url){
-					$img.attr('src',url);
-				},function(url){
-					$img.attr('src','images/floor/placeholder.png');
-				});
-				item[index] = 'loaded';
-			    loadedItemNum++;
-				if(loadedItemNum == totalItemNum){
-					$elem.trigger('floor-loadedItems')
-				}
-			});
-			
-			$elem.on('floor-loadedItems',function(){
-				$elem.off('floor-show',loadFn)
-		});
+		html += '<div class="floor-hd">;';
+		html += '	<h2 class="floor-title fl">';
+		html += '		<span class="floor-title-num">'+oneFloorData.num+'F</span>';
+		html += '		<span class="floor-title-text">'+oneFloorData.text+'</span>';
+		html += '	</h2>';
+		html += '	<ul class="tab-item-wrap fr">';
+		for(var i = 0;i<oneFloorData.tabs.length;i++){
+			html +=	'<li class="fl"> <a class="tab-item" href="javascript:;">'+oneFloorData.tabs[i]+'</a></li>';
+			if(i != oneFloorData.tabs.length-1){
+				html +=	 '<li class="fl tab-divider"></li>';
+			}
+		}
+		html += '	</ul>';
+		html += '</div>';
 
-		})
+		return html;
 	}
 
-    carouselImgLazyLoad($floor); 
-	//楼层选项卡
-	$floor.tab({
-		css3:false,
-		js:false,
-		mode:'fade',
-		eventName:'mouseenter',
-		activeIndex:0,
-		delay:200,
-		interval:0
-	})
-	*/
+	function buildFloorBodyHtml(oneFloorData){
+		var html = '';
+		html += '<div class="floor-bd">';
+		for(var i = 0;i<oneFloorData.items.length;i++){
+			html += '	<ul class="tab-panel clearfix">';
+				for(var j = 0;j<oneFloorData.items[i].length;j++){
+					html += '<li class="floor-item fl">';
+					html += '	<p class="floor-item-pic">';
+					html += '		<a href="#">';
+					html += '			<img src="images/floor/loading.gif" class="floor-img" data-src="images/floor/'+oneFloorData.num+'/'+(i+1)+'/'+(j+1)+'.png" alt="">';
+					html += '		</a>';
+					html += '	</p>';
+					html += '	<p class="floor-item-name">';
+					html += '		<a class="link" href="#">'+oneFloorData.items[i][j].name+ '</a>';
+					html += '	</p>';
+					html += '	<p class="floor-item-price">￥'+oneFloorData.items[i][j].price+'</p>';
+					html += '</li>';
+				}																					
+			html += '	</ul>';			
+			}			
+		html += '</div>';
+		return html;		
+	}
+	//楼层图片的具体加载
+	$floors.on('tab-loadItem',function(ev,index,elem,success){
+		var $imgs =$(elem).find('.floor-img');
+		$imgs.each(function(){
+			var $img=$(this);
+			var imgUrl =$img.data('src');
+			loadImage(imgUrl,function(url){
+                   setTimeout(function(){
+                   	  $img.attr('src',url);
+                   },1000)
+               },function(url){
+               	 $img.attr('src','images/floor/placeholder.png');      
+			});
+		})
+		success();
+	});
+	//楼层html的具体加载
+	$doc.on('floor-loadItem',function(ev,index,elem,success){
+		var $elem=$(elem);
+		//请求数据(利用json)
+		getDataOnce($doc,'data/floor/floorData.json',function(floorData){
+			var html =buildFloorHtml(floorData[index]);
+			//模拟网络延时
+			setTimeout(function(){
+                $elem.html(html);
+                //加载图片
+                lazyLoad({
+                	totalItemNum:$elem.find('.floor-img').length,
+                	$elem:$elem,
+                	eventName:'tab-show',
+                	eventPrefix:'tab'
+                });
+                $elem.tab({
+                	css3:false,
+					js:false,
+					mode:'fade',
+					eventName:'mouseenter',
+					activeIndex:0,
+					delay:200,
+					interval:0
+                })
+			},1000)
+		});
+       success();   
+	});
+	//楼层html的按需加载
+	lazyLoad({
+		totalItemNum:$floors.length,
+		$elem:$doc,
+		eventName:'floor-show',
+		eventPrefix:'floor'
+	});
+
+	$win.on('scroll resize',$floors.toShowFn = function(){
+		clearTimeout($floors.floorTimer);
+		$floors.floorTimer = setTimeout(function(){
+           timeToShow();
+		},200)
+     });
 
 	/*楼层结束*/
-})(jQuery);	
+})(jQuery);

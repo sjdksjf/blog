@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>020-线性渐变</title>
+	<style>
+		canvas{
+			border: 1px solid #369;
+		}
+	</style>
+</head>
+<body>
+	<canvas  id="box">
+		
+	</canvas>
+</body>
+<script>
+
+	//获取DOM节点
+ var oCanvas=document.getElementById('box');
+     oCanvas.width=500;
+     oCanvas.height=500;
+
+    //绘制图形
+ var ctx=oCanvas.getContext('2d');
+   
+     var linearGradient =ctx.createLinearGradient(200,200,300,300);
+  
+       linearGradient.addColorStop(0.1,'rgb(255,0,0)');
+       linearGradient.addColorStop(1,'rgb(0,255,0)');
+       ctx.fillStyle= linearGradient;
+       ctx.fillRect(200,200,100,100);
+    // ctx.fill(); //填充颜色
+    // ctx.stroke();
+  
+</script>
+</html>

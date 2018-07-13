@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>017-canvas旋转</title>
+	<style>
+		canvas{
+			border: 1px solid #369;
+		}
+	</style>
+</head>
+<body>
+	<canvas  id="box">
+		
+	</canvas>
+</body>
+<script>
+
+	//获取DOM节点
+ var oCanvas=document.getElementById('box');
+     oCanvas.width=500;
+     oCanvas.height=500;
+
+    //绘制图形
+ var ctx=oCanvas.getContext('2d');
+     //ctx.rotate(Math.PI/4);//旋转坐标系原点 
+     ctx.arc(200,200,100,0,2*Math.PI,true);
+     ctx.rotate(Math.PI/4);//旋转坐标系原点，放在图形后面 
+     //前两个值圆心，第三个半径，四起点五终点后面单位（π），最后是否逆时针旋转
+     ctx.fillStyle='blue';
+     ctx.fill(); //填充颜色
+     ctx.stroke();
+  
+</script>
+</html>

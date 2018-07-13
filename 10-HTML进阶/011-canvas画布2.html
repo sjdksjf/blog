@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>010-canvas画布</title>
+	<style>
+		canvas{
+			border: 1px solid #369;
+		}
+	</style>
+</head>
+<body>
+	<canvas  id="box">
+		
+	</canvas>
+</body>
+<script>
+
+	//获取DOM节点
+ var oCanvas=document.getElementById('box');
+     oCanvas.width=500;
+     oCanvas.height=500;
+
+    //绘制图形
+ var ctx=oCanvas.getContext('2d');
+  ctx.moveTo(0,0);
+  ctx.lineTo(100,100);
+  ctx.lineTo(100,200);
+  ctx.strokeStyle ='red';
+  ctx.lineWidth=1;
+  ctx.fillStyle='blue';
+
+  ctx.fill(); //填充颜色
+  ctx.closePath(); //起点连接终点
+  ctx.stroke();
+</script>
+</html>

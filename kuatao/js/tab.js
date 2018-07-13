@@ -1,3 +1,9 @@
+/*
+* @Author: TomChen
+* @Date:   2018-07-05 10:36:38
+* @Last Modified by:   TomChen
+* @Last Modified time: 2018-07-09 09:25:41
+*/
 ;(function($){
 
 	function Tab($elem,options){
@@ -22,6 +28,9 @@
 			this.$tabPanels.on('show shown hide hidden',function(ev){
 				self.$elem.trigger('tab-'+ev.type,[self.$tabPanels.index(this),this]);
 			});
+			//触发事件
+			self.$elem.trigger('tab-show',[this.now,this.$tabPanels[this.now]]);
+
 			//绑定事件
 			var eventName = this.options.eventName == 'click' ? 'click' : 'mouseenter';
 

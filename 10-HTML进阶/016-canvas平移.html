@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>016-canvas平移</title>
+	<style>
+		canvas{
+			border: 1px solid #369;
+		}
+	</style>
+</head>
+<body>
+	<canvas  id="box">
+		
+	</canvas>
+</body>
+<script>
+
+	//获取DOM节点
+ var oCanvas=document.getElementById('box');
+     oCanvas.width=500;
+     oCanvas.height=500;
+
+    //绘制图形
+ var ctx=oCanvas.getContext('2d');
+     //ctx.translate(50,50); //平移的是坐标系原点
+     ctx.rotate(Math.PI/4); //旋转
+     //ctx.strokeRect(50,50,100,50);
+     //fill与strok填充时保持一致。
+     ctx.fillStyle='red';
+     ctx.fillRect(250,150,100,50);
+    // ctx.fill(); //填充颜色
+    // ctx.stroke();
+  
+</script>
+</html>

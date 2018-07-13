@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽</title>
+    <style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+    	.cit{
+    		height: 200px;
+    		width: 200px;
+    		background: red;
+    	}
+    	.hit{
+    		height: 100px;
+    		width: 100px;
+    		background: green;
+    	}
+    </style> 
+</head>
+<body>
+	<div class="cit" id="cit"></div>
+	<div class="hit" id="hit" draggable='true'></div>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	/*$(function(){
+		$('#hit')
+		on('dragstart',function(ev){
+			ev.originalEvent.dataTransfer.getData()
+		})
+	})*/
+	$(function(){
+		  $('#cit')
+	      .on('drop',function(){//当放置被拖动元素时触发
+	      	console.log('drop ..');
+	      	 $('#cit').append($('#hit'));
+	      })
+	      .on('dragover',function(ev){
+	      	console.log('dragover..');
+	        ev.preventDefault();
+	      })
+	       .on('dragenter',function(ev){
+	      	console.log('dragenter ..');
+	        ev.preventDefault();
+	      })
+	       .on('dragleave',function(ev){
+	      	console.log('dragleave ..');
+	        ev.preventDefault();
+	      })
+	})
+</script>
+</html>

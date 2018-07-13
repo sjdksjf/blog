@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽</title>
+    <style>
+	    *{
+	    	margin: 0;
+	    	padding: 0;
+	    }
+    	#box{
+    		height: 300px;
+    		width: 500px;
+    		margin: 10px auto; 
+    	}
+    	#box li{
+			list-style: none;
+			width: 100px;
+			height: 150px;
+			float: left;
+		}
+		#box li img{
+			width: 100px;
+			height: 150px;
+		}
+    </style> 
+</head>
+<body>
+	<ul id="box">
+		<li draggable="true"><img src="img./01.png" alt=""></li>
+		<li draggable="true"><img src="img./02.png" alt=""></li>
+		<li draggable="true"><img src="img./03.png" alt=""></li>
+		<li draggable="true"><img src="img./04.png" alt=""></li>
+		<li draggable="true"><img src="img./05.png" alt=""></li>
+		<li draggable="true"><img src="img./06.png" alt=""></li>
+		<li draggable="true"><img src="img./07.png" alt=""></li>
+		<li draggable="true"><img src="img./08.png" alt=""></li>
+		<li draggable="true"><img src="img./09.png" alt=""></li>
+		<li draggable="true"><img src="img./10.png" alt=""></li>
+	</ul>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){//创建个对象接收元素
+         var num =null;
+         //事件代理
+        $('#box')
+        .on('dragstart','li',function(ev){
+        	num =this;
+        }) 
+        .on('drop','li',function(ev){
+           //判断是否要互换位置，原位置拖动位置不变
+        	if(num !=this){
+        		var ter =num.innerHTML;
+        		num.innerHTML=this.innerHTML;
+        		this.innerHTML=ter;
+        	}
+        })
+        .on('dragover','li',function(ev){
+        	ev.preventDefault();
+        })
+
+	})
+	      
+</script>
+</html>
