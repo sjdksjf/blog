@@ -1,0 +1,71 @@
+/*
+多行注释Css中出现
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #fff;
+  width: 800px;
+  margin: 0 auto;
+}
+div {
+  margin-bottom: 10px;
+  color: red;
+}
+h2 {
+  color: #ffff00;
+}
+li {
+  list-style: none;
+}
+a {
+  display: inline-block;
+}
+.box2 {
+  width: 200px;
+  height: 200px;
+  background-color: #ffff00;
+}
+.box1 {
+  width: 200px;
+  height: 200px;
+  background-color: #ffff00;
+  font-size: 20px;
+}
+.cit li {
+  height: 50px;
+  background-color: #369;
+  border: 1px solid #258;
+  list-style: none;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  border-bottom-left-radius: 5%;
+}
+.cit li span {
+  float: left;
+  color: blue;
+  font-size: 20px;
+}
+.cit li a {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: right;
+}
+.box4 {
+  font-size: 3px;
+}
+.box5 {
+  font-size: calc(50px-10px);
+}
+.box6 {
+  width: 200px !important;
+  height: 200px !important;
+  background-color: #ffff00 !important;
+  font-size: 20px !important;
+}
+.box7 {
+  font-size: 10px;
+}

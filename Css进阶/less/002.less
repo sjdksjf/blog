@@ -1,0 +1,98 @@
+/*
+多行注释Css中出现
+*/
+*{
+	margin: 0;
+	padding: 0;
+}
+//单行注释Css中不出现
+//
+@color:#ff0;
+@w:200px;
+@h:200px;
+//
+body{
+	background: #fff;
+	width: 800px;
+	margin: 0 auto;
+}
+div{
+	margin-bottom: 10px;
+	color: red;
+}
+h2{
+	color: @color;
+}
+li{
+	list-style: none;
+}
+a{
+	display: inline-block;
+}
+.box2{
+	width: @w;
+	height: @h;
+	background-color: @color; 
+}
+//混合样式
+.box1{
+	.box2;
+	font-size: 20px;
+}
+//带参数的混合样式
+.border-radius(){
+
+}
+
+//嵌套
+.cit{
+	li{
+	   height: 50px;
+	   background-color: #369;
+	   border: 1px solid #258;
+       list-style: none;   
+       margin-bottom: 5px;
+       margin-left: 10px;
+       border-bottom-left-radius: 5%;
+		span{
+			float: left;
+			color: blue;
+			font-size: 20px;
+		}
+		a{
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+            float: right;
+		}
+	}
+}
+
+.fs(@s){
+	//@s - 10px; 运算符号左右必须有空格。
+	//font-size: @s + 10px;
+    //font-size: @s - 10px;
+    //font-size: @s * 10px;
+      font-size: @s / 10px;
+}
+.box4{
+	.fs(30);
+}
+
+//避免编译,calc()函数可以自己运算，加上符号可以避免自己运算。
+.box5{
+	//font-size: calc(50px-10px);
+	font-size: ~'calc(50px-10px)';
+}
+
+.box6{
+	.box1 !important;
+}
+
+.setStyle(@attr,@value){
+   @{attr}:unit(@value,px);
+}
+
+.box7{
+   .setStyle(font-size,10);
+}

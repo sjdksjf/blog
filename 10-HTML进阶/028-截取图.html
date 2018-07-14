@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淘宝网</title>
+	<style>
+		canvas{
+			border: 1px solid #369;
+		}
+	</style>
+</head>
+<body>
+	<canvas  id="box">
+		
+	</canvas>
+</body>
+<script>
+
+	//获取DOM节点
+ var oCanvas=document.getElementById('box');
+     oCanvas.width=500;
+     oCanvas.height=500;
+
+   
+ var ctx=oCanvas.getContext('2d');
+     ctx.beginPath();
+     ctx.font ='14px sans-serif'; //字体样式
+     ctx.textAlign = 'left';  //默认
+	 ctx.textBaseline = 'middle'; 
+ var str ='战神';
+     //ctx.fillText(str,0,200);    
+     ctx.strokeText(str,70,220); //描边
+ var img= new Image();
+     img.src='./img./2.jpg';
+     img.onload =function(){
+     	//ctx.drawImage(img,0,0);
+        //ctx.drawImage(img,0,0,200,200);
+        ctx.drawImage(img,0,0,100,150,20,20,120,180);
+     }  
+     ctx.beginPath();
+  ctx.font ='14px sans-serif'; //字体样式
+     ctx.textAlign = 'left';  //默认
+	 ctx.textBaseline = 'middle'; 
+ var str ='一笑一奈何';
+     //ctx.fillText(str,0,200);    
+     ctx.strokeText(str,190,220); //描边
+
+ var img1= new Image();
+     img1.src='./img./a1.png';
+     img1.onload =function(){
+     	//ctx.drawImage(img,0,0);
+        //ctx.drawImage(img,0,0,200,200);
+        ctx.drawImage(img1,0,0,130,190,170,20,120,180);
+     }
+       ctx.beginPath();
+     ctx.font ='14px sans-serif'; //字体样式
+     ctx.textAlign = 'left';  //默认
+	 ctx.textBaseline = 'middle'; 
+ var str ='鸟人';
+     //ctx.fillText(str,0,200);    
+     ctx.strokeText(str,360,220); //描边
+ var img1= new Image();
+     img1.src='./img./a1.png';
+     img1.onload =function(){
+     	//ctx.drawImage(img,0,0);
+        //ctx.drawImage(img,0,0,200,200);
+        ctx.drawImage(img1,130,0,130,190,320,20,120,180);
+     }  
+     var img1= new Image();
+     img1.src='./img./a1.png';
+     img1.onload =function(){
+     	//ctx.drawImage(img,0,0);
+        //ctx.drawImage(img,0,0,200,200);
+        ctx.drawImage(img1,0,0,130,190,170,20,120,180);
+     }
+
+     ctx.beginPath();
+     ctx.font ='14px sans-serif'; //字体样式
+     ctx.textAlign = 'left';  //默认
+	 ctx.textBaseline = 'middle'; 
+ var str ='鸟人';
+     //ctx.fillText(str,0,200);    
+     ctx.strokeText(str,360,440); //描边
+ var img1= new Image();
+     img1.src='./img./a1.png';
+     img1.onload =function(){
+     	//ctx.drawImage(img,0,0);
+        //ctx.drawImage(img,0,0,200,200);
+        ctx.drawImage(img1,350,0,130,190,320,240,120,180);
+     }  
+
+         ctx.beginPath();
+     ctx.font ='14px sans-serif'; //字体样式
+     ctx.textAlign = 'left';  //默认
+	 ctx.textBaseline = 'middle'; 
+ var str ='鸟人';
+     //ctx.fillText(str,0,200);    
+     ctx.strokeText(str,220,440); //描边
+ var img1= new Image();
+     img1.src='./img./a1.png';
+     img1.onload =function(){
+     	//ctx.drawImage(img,0,0);
+        //ctx.drawImage(img,0,0,200,200);
+        ctx.drawImage(img1,240,200,130,190,180,240,120,180);
+     } 
+
+         ctx.beginPath();
+     ctx.font ='14px sans-serif'; //字体样式
+     ctx.textAlign = 'left';  //默认
+	 ctx.textBaseline = 'middle'; 
+ var str ='鸟人';
+     //ctx.fillText(str,0,200);    
+     ctx.strokeText(str,60,440); //描边
+ var img1= new Image();
+     img1.src='./img./a1.png';
+     img1.onload =function(){
+     	//ctx.drawImage(img,0,0);
+        //ctx.drawImage(img,0,0,200,200);
+        ctx.drawImage(img1,240,0,130,190,20,240,120,180);
+     } 
+</script>
+</html>

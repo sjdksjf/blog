@@ -1,0 +1,14 @@
+/*
+多行注释Css中出现
+*/
+body {
+  background: #ffff00;
+}
+h2 {
+  color: #ffff00;
+}
+.box1 {
+  width: 200px;
+  height: 200px;
+  background-color: #ffff00;
+}

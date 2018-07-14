@@ -24,12 +24,15 @@
    
  var ctx=oCanvas.getContext('2d');
      ctx.beginPath();
+  
  var img= new Image();
      img.src='./img./2.jpg';
-     img.onload =function(){
-     	//ctx.drawImage(img,0,0);
-        //ctx.drawImage(img,0,0,200,200);
-        ctx.drawImage(img,0,0,120,150,50,50,150,200);
+   img.onload =function(){
+   	     
+         var pattern=ctx.createPattern(img,'repeat-y');
+         ctx.fillStyle=pattern;
+         ctx.fillRect(0,0,oCanvas.width,oCanvas.height);
+         
      }  
 </script>
 </html>
