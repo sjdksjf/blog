@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>007-set.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//Set中的值是唯一的
+	let s = new Set();
+	console.log(typeof s); //查看数据类型
+	s.add(11); 
+	s.add(22); 
+	s.add(33); 
+	s.add(11); 
+	/*
+	console.log(s);
+	console.log(s.size);
+	
+	s.delete(22);
+	console.log(s);
+	console.log(s.size); //查看属性
+	console.log(s.has(11));//查看是否有该元素
+	*/
+	s.clear();//清空数组
+	console.log(s);
+</script>
+</html>

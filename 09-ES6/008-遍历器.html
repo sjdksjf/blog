@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>008-遍历器.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+/*遍历操作
+	Set结构的实例有四个遍历方法，可以用于遍历成员。
+
+	keys()：返回一个键名的遍历器
+	values()：返回一个键值的遍历器
+	entries()：返回一个键值对的遍历器
+	forEach()：使用回调函数遍历每个成员
+  */
+  /*
+	let s = new Set();
+	s.add(11); 
+	s.add(22); 
+	s.add(33); 
+	s.add(11);
+	//console.log(s); 
+    for(keys of s){
+    	console.log(keys);
+    }
+    */
+   var items = new Set([1, 2, 3, 4, 5]);
+   let set = new Set(['red', 'green', 'blue','pink']);
+    //key方法、value方法、entries方法返回的都是遍历器对象。由于Set结构没有键名，只有键值（或者说键名和键值是同一个值），所以key方法和value方法的行为完全一致。
+		/*for (let item of set.keys()) {
+		  console.log(item);
+		}
+         for (let item of set.values()) {
+		  console.log(item);
+		}
+		*/
+      for (let item of set.entries()) {
+		  console.log(item);
+		}
+      
+</script>
+</html>

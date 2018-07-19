@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>扩展运算</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*
+	var arr1=[11,22,33];
+	console.log(...arr1);
+    
+    function show(n1,n2){
+      return n1+n2
+    }
+    console.log(show(11,22));
+    */
+/*
+    function show(...arr){
+    	var sum=0;
+    	for(var i=0;i<arr.length;i++){
+          sum += arr[i];
+       
+    	}
+    	  return sum;
+    }
+    console.log(show([11,22,33]));
+
+   */
+   /*
+   var arr=[11,22,33];
+
+    console.log(Math.max.apply(null,arr));
+  //下面的方法2生成一个新数组，与前一个数组没有关系。
+  //方法1
+   var arr1=[11,22,33];
+   var arr2=arr1;
+   arr2.push(111);
+   console.log(arr1,arr2);
+  //方法2
+   var arr1=[11,22,33];
+   var arr2=[...arr1];
+   arr2.push(111);
+   console.log(arr1,arr2);
+   */
+   /*
+   //下面的方法2生成一个新数组，与前一个数组没有关系。
+  //方法1
+   var arr1={name:"Tom",age:18};
+   var arr2=arr1;
+   arr2.name="sit";
+   console.log(arr1,arr2);
+  
+   //方法2
+   var arr1={name:"Tom",age:18};
+   var arr2={...arr1};
+   arr2.name="sit";
+   console.log(arr1,arr2);  
+   */ 
+   //方法1
+   /*
+   var arr1={name:"Tom",age:18,pretn:{
+   	  name:"kit",age:20
+   }};
+   var arr2=arr1;
+   arr2.name="sit";
+   console.log(arr1,arr2);
+  
+   //方法2
+   
+   var arr1={name:"Tom",age:18,pretn:{
+   	  name:"kit",age:20
+   }};
+   var arr2={...arr1};
+   arr2.name="sit";
+   console.log(arr1,arr2); 
+   */
+
+   var arr1={name:"Tom",age:18,pretn:{
+   	  name:"kit",age:20
+   }};
+   var arr2={...arr1};
+   var arr3={...arr1.pretn};
+   arr2.pretn.name="sit";
+   console.log(arr1,arr2);  
+   console.log(arr1,arr3);  
+</script>
+</html>
