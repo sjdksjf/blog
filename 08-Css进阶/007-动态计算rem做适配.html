@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>屏幕适配rem</title>
+	<style>
+     
+		img{
+			width: 30rem;
+			float: left;
+		}
+		p{
+			float: left;
+			font-size: 2rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="console">
+		<img src="../07-HTML进阶./img./a1.png" alt="">
+		<p>八零龙八零龙八零龙八零龙八零龙</p>
+	</div>
+</body>
+<script>
+	(function(win,doc){
+		//1.获取根元素像素
+          var iHtml = doc.getElementsByTagName('html')[0];
+
+          function resLiern(){
+          	//2.获取设备的像素
+          var iPait =doc.body.clientWidth ||doc.documentElement.clientWidth;
+        //3.做适配
+          var iSit  = iPait/10;
+          var iHtml.style.fontSize =iSit+'px';
+          }
+		 win.addEventListener('resize',resLiern,false);
+		 win.addEventListener('DOMContentLoaded',resLiern,false);
+	})(window,document)
+</script>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>let</title>
+	<script>
+		//1.var 可以重新定义，let在一个块中只能定义一次。
+		/*
+		var name = "Tom";
+		var name = "Sit";
+		console.log(name);
+		let name1 = "Tom";
+		let name1 = "Sit";
+		console.log(name);
+		//2.{}是一个块，var在块里定义属于全局；let属于这个块
+		{
+			var  name = "Tom";
+		}
+		console.log(name);
+		//上面的代码等于
+		var name;
+		{
+			name = "Tom";
+		}
+		console.log(name);
+		
+
+		{
+			let  name1 = "Tom";
+		}
+		console.log(name1);
+	
+		//上面的代码不等于
+		
+		let name2;
+		{
+			name2 = "Tom";
+		}
+		console.log(name);
+		*/
+        //3.作用域不同
+        var oBtn =document.getElementsByTagName('button');
+        for(var i=0;i<oBtn.length;i++){
+        	oBtn.onclick=function(){
+        		console.log(oBtn.length);
+        	}
+        	();
+        }
+       
+	</script>
+</head>
+<body>
+	<button>1</button>
+	<button>2</button>
+	<button>3</button>
+	<button>4</button>
+</body>
+<script>
+	 /*
+	 //3.作用域不同
+        var oBtn =document.getElementsByTagName('button');
+        for(var i=0;i<oBtn.length;i++){
+        	oBtn[i].onclick=function(){
+        		console.log(i);
+        	}
+        }
+       */
+       var oBtn =document.getElementsByTagName('button');
+        for(var i=0;i<oBtn.length;i++){
+        	var oBtn[index]=i; 
+        	oBtn[i].onclick=function(){
+        		console.log(index);
+        	}
+        }
+        /*
+       var oBtn =document.getElementsByTagName('button');
+        for(var i=0;i<oBtn.length;i++){
+        	(function(i){
+        		oBtn[i].onclick=function(){
+        		console.log(i);
+        	   }
+        	})(i)
+        	
+        }
+
+       /*
+        var oBtn =document.getElementsByTagName('button');
+        for(let i=0;i<oBtn.length;i++){
+        	oBtn[i].onclick=function(){
+        		console.log(i);
+        	}
+        }
+        */
+</script>
+</html>
