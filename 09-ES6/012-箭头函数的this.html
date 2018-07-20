@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>012-箭头函数的this.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*
+	function sit(age){
+		this.age = age;
+		setTimeout(function(){
+			console.log(this.age)
+		},500)
+	}
+	sit(100);
+	let p= new sit(100);
+     */
+
+	function sit(age){
+		this.age = age;
+		setTimeout(()=>{console.log(this.age)
+		},500)
+	}
+	sit(100);
+	let p= new sit(100);
+</script>
+</html>

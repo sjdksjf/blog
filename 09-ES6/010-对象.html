@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>010-对象.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+
+	//class定义的没有声明的提升，必须先定义，再使用。
+	class person{
+           constructor(name,age){
+               this.name =name;
+               this.age  =age;
+           }
+           showName(){
+           	console.log('I am is'+ this.name);
+           }
+
+           showAge(){
+           	console.log('I age' + this.age);
+           }
+
+           static sayHi(){
+                console.log('Hi....')
+           }
+
+	}
+     class Student extends person{
+          constructor(name,age,mink){
+            super(name,age);
+            this.mink =mink;
+          }
+
+          showMink(){
+            console.log('I Mink'+this.mink);	
+          }
+
+           showName(){
+           	console.log('I am is' + this.name + "My is Name");
+           }
+     }
+    /*
+	let P = new person("Tom",18);
+	P.showName();
+	P.showAge();
+	P.showMink();//父类不能调用子类的方法
+    */
+
+
+	//子类继承父类的方法包括静态方法
+	let s = new Student("Tom",18,"music");
+    //console.log(s);
+	s.showName();
+	s.showAge();
+	Student.sayHi();
+	s.showMink();
+	
+</script>
+</html>

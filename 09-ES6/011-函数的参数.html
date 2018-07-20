@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数的参数</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*function show(msg){
+		console.log(msg);
+	} 
+	show("Tom");
+	show();
+	*/
+	/*
+    function show(msg){
+    	msg = msg || "Hello";
+		console.log(msg);
+	} 
+	show("Tom");
+	show();
+	show('');
+      
+    function show(msg="hello"){
+		console.log(msg);
+	} 
+	//show("Tom");
+	show('');
+	*/
+	/*
+	function show(name,msg="hello"){
+		console.log(name,msg);
+	} 
+	show("Tom",18);
+	show(); 
+	show(''); //传一个参数，或者不传默认参数都会出现
+    */
+	function show(name,...arg){
+		console.log(name,arg[0],arg[1]);
+	} 
+	show("Tom",...[18,'music']);
+	show("Tom",18,'music');
+</script>
+</html>
