@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>014-箭头函数和普通函数的区别.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*
+	function sit(){
+		console.log(arguments);
+	}
+	sit()
+    
+	let sit=()=>{
+	 console.log(arguments);	
+	}
+    sit()
+    */
+    /*
+    //求阶乘
+     function fct(n){
+        if(n<=1){
+        	return 1 ;
+        }else{
+        	return n* fct(n-1);
+        }
+
+	}
+	//console.log(fct(5));
+
+    var ongFct =fct;
+    var fct =null;
+    console.log(ongFct(5)); 
+    */
+   //上面函数写的太绝对了，假如那一天不小心把里面的函数赋成其他，其他和他相关的函数也不能用了。为了解决这个问题，引入下面的arguments.callee方法
+    
+
+ function fct(n){
+        if(n<=1){
+        	return 1 ;
+        }else{
+        	return n*arguments.callee(n-1);
+        }
+
+	}
+	//console.log(fct(5));
+
+    var ongFct =fct;
+    var fct =null;
+    console.log(ongFct(5));
+
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>015-Promise.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*
+	let setPromise =(url) =>{
+		let image = new Image();
+        image.onload=function(){
+        	console.log('suffer ..')
+        }
+
+        image.onerror=function(){
+        	console.log('fer ..')
+        }
+
+		image.src = url;
+	}
+	 setPromise('img./11.png');
+   */
+    let setPromise =(url) =>{
+       let promise = new Promise(function(resolve,reject){
+	       	let image = new Image();
+	        image.onload=function(){
+	        	console.log('url')
+	        }
+
+	        image.onerror=function(){
+	        	console.log('error')
+	        }
+
+			image.src = 'img./1.png';
+
+       })
+       return  promise; 
+    }
+   //setPromise('img./1.png');
+   setPromise().then(function(url){
+     console.log('suffer..')
+   },function(error){
+     console.log('出错了..')
+   })
+  /*
+  setPromise().then((url)=>{
+     console.log('suffocate..')
+   },function(error){
+     console.log('出错了..')
+   })
+   */
+</script>
+</html>

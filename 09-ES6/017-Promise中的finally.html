@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>017-Promise中的finally</title>
+</head>
+<body>
+	
+</body>
+<script>
+	
+    let setPromise =(url) =>{
+       let promise = new Promise(function(resolve,reject){
+	       	let image = new Image();
+	        image.onload=function(){
+	        	console.log('suffer ..')
+	        }
+
+	        image.onerror=function(){
+	        	console.log('fer ..')
+	        }
+
+			image.src = url;
+
+       })
+       return  promise; 
+
+    }
+     //setPromise('img./1.png');
+    
+    setPromise('img./1.png')
+     .then((url)=>{
+     	console.log("sueefol..")
+     })
+     .catch((err)=>{
+     	console.log("err..")
+     })
+     .finally(()=>{
+      console.log("aaa...")
+     })
+</script>
+</html>
