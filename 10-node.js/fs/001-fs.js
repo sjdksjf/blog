@@ -2,8 +2,8 @@
 const fs = require('fs');
 
 //打开文件
-fs.openSync('001.txt','r');
+let fd = fs.openSync('./001.txt','a');
 //写入文件
-fs.writeSync('aaa','w');
+fs.writeSync(fd,'aaa');
 //保存并推出
-fs.closeSync(fd)
+fs.closeSync(fd);

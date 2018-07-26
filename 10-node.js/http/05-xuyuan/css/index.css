@@ -1,0 +1,40 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+img{ 
+	width: 100%;
+	position: relative;
+}
+.wool{
+	position: absolute;
+	top: 0px;
+	height: 600px;
+	width: 70%;
+	/*background: red;*/
+	float: left;
+}
+.wool .yuanwang{
+	height: 150px;
+	width: 100px;
+	background: pink;
+}
+.book{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	height: 600px;
+	width: 30%;
+	/*background: blue;*/
+   
+}
+.book .shang{
+	height: 300px;
+	width: 200px;
+	background: blue;
+	border: 1px solid #369;
+	float: right;
+	margin-top: 10px;
+	margin-right: 50px;
+}
