@@ -19,17 +19,7 @@ const server = http.createServer((req,res)=>{
 			   })
     		}
            
-    	}else if(!err){
-    			fs.readFile('./index.js',(err,data)=>{
-	    		res.setHeader('Content-Type','text/js;charset=UTF-8'); 
-				res.end(data);
-			   })
-    		}else{
-                fs.readFile('./index.html',(err,data)=>{
-	    		res.setHeader('Content-Type','text/html;charset=UTF-8'); 
-				res.end('页面走丢了');
-			   })
-    		}
+    	}
 
      
      });
