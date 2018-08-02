@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>001-let和var</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//var name = "cit";
+	let name = "cit";
+	console.log(name);
+	//let 不会声明的提升，不可以重新定义 。作用：定义变量。
+	/*
+	function showAge(){
+		let age = 18;
+		console.log('out::',age);
+		function showAgeAgain(){
+			let age = 19;
+			console.log('in::',age);
+		}
+		showAgeAgain();
+		console.log('out2',age);
+	}
+	showAge();
+	//let定义的变量只在自己定义的函数块有效。
+	*/
+	function showAge(){
+		var age = 18;
+		console.log('out::',age);
+		function showAgeAgain(){
+			age = 19;
+			console.log('in::',age);
+		}
+		showAgeAgain();
+		console.log('out2',age);
+	}
+	showAge();
+</script>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "10-node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjdksjf/ZwSij.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sjdksjf/ZwSij/issues"
+  },
+  "homepage": "https://github.com/sjdksjf/ZwSij#readme",
+  "dependencies": {
+    "moment": "^2.22.2",
+    "mongoose": "^5.2.6"
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组解析对象</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*对象的结构解析:按照对应属性名,把等号右边对象中的属性的值赋给等号左边对象中的同名属性
+		注意点
+		等号左边对象中的属性的值是真正被赋值的变量名,如果属性的值省略,属性的值和属性的名称相同*/
+	/*
+	let {username:username1,age:age1}	= {username:'Tom',age:18};
+    console.log(username1,age1);
+    let {username,age}	= {username:'Tom',age:18};
+	// let {username:username,age:age}	= {username:'Tom',age:18};
+	console.log(username,age);
+	*/
+	//默认值是undefined 赋值undefined 取默认值 。其他不可以
+	/*
+	let {person={name:'Tom'},dog}	= {person:null,dog:{
+		name:'wangwang',
+		age:5
+	}};
+		   */
+	let {person={name:'Tom'},dog}	= {person:0,dog:{
+				name:'wangwang',
+				age:5
+			}};
+	console.log(person,dog);
+
+</script>
+</html>

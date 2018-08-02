@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>const</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*const PI = 3.1415698;
+	 PI = PI + 1;*/
+     var  PI = 3.1415698;
+	 PI = PI + 1;
+    //常量不可以再次赋值
+	/*
+	1.对于简单数据来说值就保存在变量指向的那个内存地址,因此不可以再赋值
+	2.对于复杂数据来说常量指向数据保存的地址,const保证的是这个地址不变,但地址指向的数据是可以修改的
+    3.const定义的常量在const命令所在的代码块内有效
+    4.const定义的常量不会声明提升*/
+    const CONFIG = {
+		evn:'dev',
+		username:'root',
+		password:'root'
+	};
+	CONFIG.evn = 'prod';
+	console.log(CONFIG);
+	console.log(PI);
+</script>
+</html>

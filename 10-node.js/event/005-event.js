@@ -1,7 +1,5 @@
 const EventEmitte = require('events');
 
-
-
 console.log(EventEmitte);
 
 class MyEmitter extends EventEmitte{

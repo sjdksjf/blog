@@ -9,7 +9,7 @@
     $wish = $('.yuanwang');
      
  
-    $wish.pep({  constrainTo: '.wool' });
+    $wish.pep({  constrainTo: '.wool' });//调用插件里面的方法实现拖拽
  
     //获取墙的宽高和卡片的宽高
     var woolWidth = parseInt($wool.css('width'));
@@ -35,6 +35,7 @@
     });
      
     //监听删除事件
+
     $wool.on('click','.close',function(){
         // console.log(this);
         var $this = $(this);
@@ -45,7 +46,7 @@
             dataType:'json'
         })
         .done(function(data){
- 
+          
         })
  
     });
