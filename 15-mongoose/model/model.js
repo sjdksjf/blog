@@ -33,7 +33,7 @@ var kittySchema = new mongoose.Schema({
 kittySchema.methods.findMyBlogs = function(callBack){
   //this是一个实例，谁调用this就是谁
   console.log(this)
-   this.model('users').
+
 
 }
 */
