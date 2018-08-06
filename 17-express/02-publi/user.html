@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="get">GET</button>
+	<button id="post">post</button>
+	<button id="delete">delete</button>
+	<button id="put">put</button>
+</body>
+<script src="js/jquery-1.12.4.min.js"></script>
+<script>
+	$(function(){
+		$('#get').on('click',function(){
+			$.ajax({
+				url:'/user',
+				type:'get'
+			})
+			.done(function(data){
+				console.log(data);
+			})
+			.fail(function(err){
+               console.log(err);
+			})
+
+			//console.log("post..")
+		})
+	   $('#post').on('click',(err,data)=>{
+            $.ajax({
+            	url:"/user",
+            	type:'POST'
+            })
+            .done(function(data){
+            	console.log(data);
+            })
+            .fail(function(err){
+            	console.log(err);
+            })
+	   })
+	   $('#put').on('click',(err,data)=>{
+            $.ajax({
+            	url:"/user",
+            	type:'PUT' 
+            })
+            .done(function(data){
+            	console.log(data);
+            })
+            .fail(function(err){
+            	console.log(err);
+            })
+	   })
+	   $('#delete').on('click',(err,data)=>{
+            $.ajax({
+            	url:"/user/123",
+            	type:'DELETE'
+            })
+            .done(function(data){
+               console.log(data);
+            })
+            .fail(function(err){
+               console.log(err);
+            })
+	   }) 	
+	})
+</script>
+</html>

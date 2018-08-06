@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}导航{% endblock %}</title>
+     {% block head %}{% endblock %} 
+     <style>
+     	nav{
+     		height: 50px;
+     		width: 100%;
+     		background: #369;
+     	}
+     	.content{
+     		width: 500px;
+     		height: 500px;
+     		background: blue;
+     		float: left;
+     	}
+     	.filed{
+     		width: 200px;
+     		height: 200px;
+     		background: pink;
+     		float: right;
+     	}
+     </style>
+</head>
+<body>
+  
+     <nav>导航 购物 游戏</nav>
+     <div class="content">
+     	   {% block content %}{% endblock %} 
+     </div>
+     <div class="filed">
+     	
+     </div>	
+</body>
+</html>
