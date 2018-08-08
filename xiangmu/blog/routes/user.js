@@ -24,7 +24,9 @@ router.post("/register",(req,res)=>{
 			//插入数据到数据库
 			new UserModel({
 				username:body.username,
-				password:hmac(body.password)
+				password:hmac(body.password),
+                //注册管理员账号 
+				//isAdmin:true
 			})
 			.save((err,newUser)=>{
 				if(!err){//插入成功
@@ -51,12 +53,24 @@ router.post("/login",(req,res)=>{
 	.findOne({username:body.username,password:hmac(body.password)})
 	.then((user)=>{
 		if(user){//登录成功
+
+			/*
 			 result.data = {
 			 	_id:user._id,
 			 	username:user.username,
 			 	isAdmin:user.isAdmin
 			 }
-			 req.cookies.set('userInfo',JSON.stringify(result.data))
+			 */
+            //设置cookie->返回时前端页面就会有设置的cookie
+			//req.cookies.set('userInfo',JSON.stringify(result.data))
+			
+			req.session.userInfo = {
+			 	_id:user._id,
+			 	username:user.username,
+			 	isAdmin:user.isAdmin
+			 }
+
+
 			 res.json(result);
 		}else{
 			result.code = 10;
@@ -72,8 +86,11 @@ router.get('/logout',(req,res)=>{
 	let result  = {
 		code:0,// 0 代表成功 
 		message:''
-	}	
-	req.cookies.set('userInfo',null);
+	}
+	//清除用户登陆信息	
+	//req.cookies.set('userInfo',null);
+    
+    req.session.destroy();
 
 	res.json(result);
 

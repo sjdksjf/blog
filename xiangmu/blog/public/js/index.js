@@ -22,7 +22,7 @@
 		var username = $register.find("[name='username']").val();
 		var password = $register.find("[name='password']").val();
 		var repassword = $register.find("[name='repassword']").val();
-
+        console.log(username);
 		var errMsg = '';
 		//验证
 		//用户名:以字母开头包含数字字母和下划线,3-10个字符
@@ -108,6 +108,7 @@
 					$userInfo.find('span').html(result.data.username)
 					$userInfo.show(); 
 					*/
+					//登陆后重新加载页面,获取用户信息返回前台
 					window.location.reload();
 				}else{
 					$err.html(result.message)
