@@ -1,6 +1,12 @@
 
 const Router = require('express').Router;
+
 const UserModel = require('../models/user.js');
+const pagination = require('../util/pagination.js');
+
+const multer = require('multer');
+var  upload = multer({ dest: 'public/uploads/' });
+
 
 const router = Router();
 
@@ -25,6 +31,41 @@ router.get("/",(req,res)=>{
 //显示用户列表
 
 router.get('/users',(req,res)=>{
+  
+  let options = {
+		page: req.query.page,//需要显示的页码
+		model:UserModel, //操作的数据模型
+		query:{},//查询条件
+		projection:'_id username isAdmin', //投影，
+		CategoryModel:{_id:-1} //排序
+	};
+ pagination(options)
+	.then((data)=>{
+		res.render('admin/user_list',{
+			userInfo:req.userInfo,
+			users:data.docs,
+			page:data.page,
+			list:data.list,
+			pages:data.pages,
+			url:'/admin/users'
+		});	
+    })
+
+})
+
+router.post('/uploadImages', upload.single('upload'),(req, res)=>{
+     let path = "/uploads/"+req.file.filename;   
+     res.json({
+     	    uploaded:true,
+     	 url:path  
+     })
+
+
+})
+
+   /*
+     
+	
 	//获取所有用户的信息,分配给模板
 	
 	//需要显示的页码
@@ -37,7 +78,8 @@ router.get('/users',(req,res)=>{
 	//每页显示条数
 	let limit = 2;
 
-	/*
+
+	
 	分页:
 	假设: 每页显示 2 条  
 	limit(2)
@@ -47,7 +89,7 @@ router.get('/users',(req,res)=>{
 	第 3 也 跳过 4 条
 	综上发现规律:
 	(page - 1) * limit
-	*/
+	
 
 	UserModel.estimatedDocumentCount({})
 	.then((count)=>{
@@ -77,9 +119,9 @@ router.get('/users',(req,res)=>{
 
 	})
 
+*/
 
 
-})
 
 
 

@@ -1,4 +1,11 @@
-//1.安装express和swig包
+/*
+Express 是一个基于 Node.js 平台的极简、灵活的 web 应用开发框架，它提供一系列强大的特性，帮助你创建各种 Web 和移动设备应用。
+API
+丰富的 HTTP 快捷方法和任意排列组合的 Connect 中间件，让你创建健壮、友好的 API 变得既快速又简单。
+性能
+Express 不对 Node.js 已有的特性进行二次抽象，我们只是在它之上扩展了 Web 应用所需的基本功能。
+*/
+//1.安装express和swig包Web 应用
 const express = require('express');
 const swig = require('swig');
 const mongoose = require('mongoose');
@@ -99,7 +106,7 @@ app.use("/",require('./routes/index.js'));
 app.use("/user",require('./routes/user.js'));
 app.use("/admin",require('./routes/admin.js'));
 app.use("/category",require('./routes/category.js'));
-
+app.use("/article",require('./routes/article.js'));
 
 app.listen(3000,()=>{
 	console.log('app is running on 127.0.0.1:3000');

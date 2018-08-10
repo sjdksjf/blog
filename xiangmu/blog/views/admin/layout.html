@@ -35,7 +35,7 @@
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="user-menu">
-                  <li><a href="javascirpt:;" id='logout'>退出</a></li>
+                  <li><a href="javascript:;" id='logout'>退出</a></li>
                 </ul>
               </div>
             </li>
@@ -48,7 +48,8 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><a href="/admin/users">用户列表</a></li>
-            <li><a href="/category">新增列表</a></li>
+            <li><a href="/category">分类管理</a></li>
+            <li><a href="/article">文章管理</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -60,7 +61,8 @@
       </div>
     </div>
   </body>
-<script src="/lib/jquery/jquery-1.12.4.min.js"></script>
+<script src="/lib/jQuery/jquery-1.12.4.min.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="/js/admin.js"></script>
+{% block end %}{% endblock %}
 </html>
