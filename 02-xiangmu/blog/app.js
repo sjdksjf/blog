@@ -101,7 +101,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //处理路由
-//
+//1.找到对应路由文件
 app.use("/",require('./routes/index.js'));
 app.use("/user",require('./routes/user.js'));
 app.use("/admin",require('./routes/admin.js'));
