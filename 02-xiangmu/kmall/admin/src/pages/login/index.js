@@ -1,23 +1,28 @@
 import React,{ Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox,message } from 'antd';
+import { Form, Icon, Input, Button,message } from 'antd';
 import { connect } from 'react-redux';
-import * as actionCreator from './store/actionCreator.js';
+import axios from 'axios';
+
+import { actionCreator } from './store';
+
 const FormItem = Form.Item;
 
-const axios = require('axios');
 
 import './index.css';
 
-class NormalLoginForm extends React.Component {
+class NormalLoginForm extends Component{
   constructor(props){
      super(props);
      this.handleSubmit = this.handleSubmit.bind(this);
+     this.state ={
+       isFetching:false
+     }
   } 
   handleSubmit(e){
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        //console.log('Received values of form: ', values);
+      
         this.props.getLoginAction(values)
       }
     });

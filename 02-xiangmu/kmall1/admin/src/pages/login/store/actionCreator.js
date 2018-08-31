@@ -19,7 +19,7 @@ const loginConmmAction = ()=>{
 
 export const getInitDataAction = (values)=>{
 	return (dispatch)=>{
-		  dispatch(loadInitDataAction());
+	    dispatch(loadInitDataAction());
 	   request({
 	   	  url: LOGIN,
 	   	  method: 'post',

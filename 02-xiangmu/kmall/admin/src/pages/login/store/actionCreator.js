@@ -1,13 +1,25 @@
 import * as types from './actionTypes.js';
-import axios from 'axios';
-import { LOGIN } from 'api';
-import { message } from 'antd';//引入ant de里面的页面
-import { request } from 'util';
 
+import { LOGIN } from 'api';
+import { request,setUserName } from 'util';
+import { message } from 'antd';
+
+
+const loadInitDataAction = ()=>{
+	return {
+		type:types.LOGIN_ISFECTH,
+	}
+}
+
+const loginConmmAction = ()=>{
+	return {
+		type:types.CONMM_ISFECTH,
+	}
+}
 
 export const getInitDataAction = (values)=>{
 	return (dispatch)=>{
-		  dispatch(loadInitDataAction());
+	    dispatch(loadInitDataAction());
 	   request({
 	   	  url: LOGIN,
 	   	  method: 'post',
@@ -16,6 +28,7 @@ export const getInitDataAction = (values)=>{
 	   .then(result=>{
 	   	dispatch(loginConmmAction());
 	   		if (result.code == 0) {
+	   			setUserName(result.data.username);
 	   			window.location.href = '/';
 
 	   		}else if (result.code == 10) {
@@ -30,14 +43,3 @@ export const getInitDataAction = (values)=>{
 	}
 }
 
-export const loadInitDataAction = ()=>{
-	return {
-		type:types.LOGIN_ISFECTH,
-	}
-}
-
-export const loginConmmAction = ()=>{
-	return {
-		type:types.CONMM_ISFECTH,
-	}
-}

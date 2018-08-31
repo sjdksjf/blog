@@ -19,8 +19,11 @@ module.exports = {
 	},
   resolve: {
     alias: {
+      pages: path.resolve(__dirname, 'src/pages/'),
       api: path.resolve(__dirname, 'src/api/'),
-      util: path.resolve(__dirname, 'src/util/')
+      util: path.resolve(__dirname, 'src/util/'),
+      common: path.resolve(__dirname, 'src/common/'),
+      error:  path.resolve(__dirname, 'common/error-page'),
     }
   }, 
 	//配置loader
@@ -53,7 +56,7 @@ module.exports = {
         use: {
             loader: 'babel-loader',
             options: {
-                presets: ['env', 'react'],
+                presets: ['env','es2015','react','stage-3'],
                 //antd 按需加载
                 plugins: [
                   ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }] 
