@@ -1,5 +1,7 @@
 const CategoryModel = require('../models/category.js');
 const ArticleModel = require('../models/article.js');
+const ProductModel = require('../models/product.js');
+
 
 /*
 获取前台共通数据
@@ -16,7 +18,8 @@ let getCommonData = ()=>{
 			.then(topArticles=>{
 				resolve({
 					categories:categories,
-					topArticles:topArticles
+					topArticles:topArticles,
+					products:products
 				})
 			})
 		})

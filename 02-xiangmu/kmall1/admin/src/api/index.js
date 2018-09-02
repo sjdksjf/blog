@@ -12,6 +12,10 @@ export const GET_CATEGORIES = longPath + 'category';
 export const UPDATE_CATEGORY_NAME = longPath + 'category/updateName';
 export const UPDATE_CATEGORY_ORDER = longPath + 'category/updateOrder';
 
-export const UPLOAD_PRODUCT_IMAGE  = longPath + 'product/image';
 export const UPLOAD_COMMODITY_DETAILS  = longPath + 'product/details';
-export const ADD_PRODUCT  = longPath + 'category';
+
+export const UPLOAD_PRODUCT_IMAGE  = longPath + 'product/image';
+export const ADD_PRODUCT  = longPath + 'product';
+export const PRODUCT  = longPath + 'product';
+export const EDIT_PRODUCT  = longPath + 'product/edit';
+export const UPDATE_PRODUCT_STATUS  = longPath + 'product/updateStatus';

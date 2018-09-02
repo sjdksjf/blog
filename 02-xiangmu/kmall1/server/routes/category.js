@@ -69,7 +69,7 @@ router.get("/",(req,res)=>{
 		CategoryModel
 		.getPaginationCategories(page,{pid:pid})
 		.then((result)=>{
-			console.log(result.current)
+	
 			res.json({
 				code:0,
 				data:{

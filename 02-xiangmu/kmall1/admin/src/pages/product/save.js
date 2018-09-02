@@ -22,10 +22,14 @@ class NormalCategoryForm extends Component {
 	constructor(props){
        super(props);
        this.handleSubmit = this.handleSubmit.bind(this);
-     
+       this.state = {
+       	   productId : this.props.match.params.productId
+       }
    }
     componentDidMount(){
-    	this.props.getLevelOneCategories();
+    	if(this.state.productId){
+    		this.props.getEditProduct(this.state.productId);
+    	}
     }
 
 
@@ -39,6 +43,19 @@ class NormalCategoryForm extends Component {
   }
    
 	render(){
+              const {
+                EditName,
+		        EditIntro,
+		        EditPrice,
+		        EditNum,
+		        parentCategoryId,
+		        categoryId,
+		        images,
+			    detail,
+              } = this.props;
+
+
+
                const { getFieldDecorator } = this.props.form;
 
 			   const formItemLayout = {
@@ -79,6 +96,7 @@ class NormalCategoryForm extends Component {
 				            {
 				              required: true, message: '请输入商品名称',
 				            }],
+				            initialValue :this.props.EditName
 				          })(
 				            <Input />
 				          )}
@@ -92,6 +110,7 @@ class NormalCategoryForm extends Component {
 				            {
 				              required: true, message: '请输入商品描述',
 				            }],
+				            initialValue :this.props.EditIntro
 				          })(
 				            <Input />
 				          )}
@@ -104,7 +123,9 @@ class NormalCategoryForm extends Component {
 				          validateStatus = {this.props.categoryIdValidateStatus}
 				          help = {this.props.categoryIdHelp} 		    
 				        >
-				         <CategorySelecti 
+				         <CategorySelecti
+				           parentCategoryId = {parentCategoryId}
+				           categoryId = {categoryId}
                            getCategoryId = {(parentCategoryId,categoryId)=>{
                               this.props.handCategory(parentCategoryId,categoryId)
                            }}
@@ -120,6 +141,7 @@ class NormalCategoryForm extends Component {
 				            {
 				              required: true, message: '请输入商品名称',
 				            }],
+				            initialValue :this.props.EditPrice
 				          })(
 				            <InputNumber style={{ width: 300 }}/>
 				          )}
@@ -133,6 +155,7 @@ class NormalCategoryForm extends Component {
 				            {
 				              required: true, message: '请输入商品名称',
 				            }],
+				            initialValue :this.props.EditNum
 				          })(
 				            <InputNumber style={{ width: 300 }}/>
 				          )}
@@ -180,7 +203,13 @@ const CategoryAdd = Form.create()(NormalCategoryForm);
 const mapStateToProps = (state)=>{
    return{
       categoryIdValidateStatus:state.get('product').get('categoryIdValidateStatus'),
-      categoryIdHelp:state.get('product').get('categoryIdHelp')
+      categoryIdHelp:state.get('product').get('categoryIdHelp'),
+      EditName:state.get('product').get('EditName'),
+      EditIntro:state.get('product').get('EditIntro'),
+      EditPrice:state.get('product').get('EditPrice'),
+      EditNum:state.get('product').get('EditNum'),
+      parentCategoryId:state.get('product').get('parentCategoryId'),
+      categoryId:state.get('product').get('categoryId')
    }
    
 }
@@ -203,11 +232,9 @@ const mapDispatchToProps = (dispatch) =>{
           const action = actionCreator.getSetDetailAction(value);
           dispatch(action); 
        },
-
-
-       getLevelOneCategories:()=>{
-       	 const action = actionCreator.getLevelOneCategoriesAction();
-       	 dispatch(action);
+       getEditProduct:(productId)=>{
+          const action = actionCreator.getEditProductAction(productId);
+          dispatch(action); 
        }
   }
 

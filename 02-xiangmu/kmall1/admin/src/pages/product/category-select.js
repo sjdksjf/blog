@@ -16,7 +16,9 @@ class CategorySelect extends Component {
          	levelOneCategories:[],
          	levelOneCategoryId:'',
          	levelTwoCategories:[],
-         	levelTwoCategoryId:''
+         	levelTwoCategoryId:'',
+          needLoadLevelTwo:false,
+          isChanged:false
          }
 
       	this.handleLevelOneChange =this.handleLevelOneChange.bind(this);
@@ -25,6 +27,50 @@ class CategorySelect extends Component {
      componentDidMount(){
      	  this.loadLevelOneCategory()
      }
+     
+  
+     static getDerivedStateFromProps(props, state){
+           console.log('props',props)
+           console.log('state',state)
+           /*
+           const levelOneCategoryIdChanged = props.parentCategoryId !==levelOneCategoryId;
+           const levelTwoCategoryIdChanged = props.categoryId !==levelTwoCategoryId;
+           // 分类Id不存在 不更新数据
+           if(!levelOneCategoryIdChanged && !levelTwoCategoryIdChanged){
+              return null 
+           }
+
+           if(state.isChanged){
+              return null
+           }
+          
+           if(props.parentCategoryId == 0){
+              return {
+                 levelOneCategoryId :props.parentCategoryId,
+                 levelTwoCategoryId :'',
+                 isChanged :true
+              }
+           }else{
+             return {
+                 levelOneCategoryId :props.parentCategoryId,
+                 levelTwoCategoryId :props.categoryId,
+                 needLoadLevelTwo :true,
+                 isChanged :true
+             }
+           }
+        */
+          return null 
+     }
+
+     componentDidUpdate(){
+         if(this.state.needLoadLevelTwo){
+             this.loadLevelTwoCategory();
+             this.setState({
+                 needLoadLevelTwo : false
+             }) 
+         }
+     }
+    
      loadLevelOneCategory(){
           request({
               method:'get',
@@ -97,6 +143,8 @@ class CategorySelect extends Component {
               <Select 
                    style={{ width: 300,marginRight:10 }} 
                    onChange={this.handleLevelOneChange}
+                   defaultValue={levelOneCategoryId}
+                   value={levelOneCategoryId} 
                    >
 			              {levelOneOptions}
 			        </Select>

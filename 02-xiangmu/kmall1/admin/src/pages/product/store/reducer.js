@@ -10,6 +10,16 @@ const defaultState = fromJS({
         categoryIdValidateStatus:'',
         categoryIdHelp:'',
 
+        EditName:'',
+        EditIntro:'',
+        EditPrice:'',
+        EditNum:'',
+        parentCategoryId:'',
+        categoryId:'',
+        images:'',
+	    detail:'',
+
+       
 		isAddFetching:false,
 		levelOneCategories:[],
 		isPageFetching:false,
@@ -19,7 +29,8 @@ const defaultState = fromJS({
 		list:[],
 		updateModalVisible:false,
 		updateId:'',
-		updateName:''	
+		updateName:''
+		
 })
 
 export default (state=defaultState,action)=>{
@@ -32,6 +43,21 @@ export default (state=defaultState,action)=>{
              categoryIdHelp:''
          })
     }
+
+    if(action.type == types.CATEGORY_EDIT){
+         return state.merge({
+             EditName:action.payload.name,
+	         EditIntro:action.payload.describe,
+	         EditPrice:action.payload.price,
+	         EditNum:action.payload.stock,
+	         images:action.payload.images,
+	         detail:action.payload.detail,
+	         parentCategoryId:action.payload.category._id,
+	         categoryId:action.payload.category.pid,
+         })
+    }
+
+
     if(action.type == types.CATEGORY_IMAGES){
 		return state.set('fileList',action.payload.fileList)
 	}
@@ -50,7 +76,7 @@ export default (state=defaultState,action)=>{
 	
 
 
-
+ 
 	if(action.type == types.CATEGORY_ISFECTH){
 		return state.set('isAddFetching',true)
 	}
@@ -84,7 +110,7 @@ export default (state=defaultState,action)=>{
 		})		
 	}
 
-
+  
 
 
 	return state;

@@ -1,6 +1,6 @@
 import * as types from './actionTypes.js';
 
-import { CATEGORY,GET_CATEGORIES,ADD_PRODUCT } from 'api';
+import { CATEGORY,PRODUCT,ADD_PRODUCT,EDIT_PRODUCT,UPDATE_PRODUCT_STATUS } from 'api';
 import { request,setUserName } from 'util';
 import { message } from 'antd';
 
@@ -97,7 +97,7 @@ export const getAddAction = (err,values)=>{
 	   	  }
 	   })
 	   .then(result=>{
-	   	   console.log(result);
+	   	   //console.log(result);
 	   	   dispatch(getAddDoneAction())	
 	   })
 	   .catch(err=>{
@@ -105,17 +105,80 @@ export const getAddAction = (err,values)=>{
 	   		dispatch(getAddDoneAction());
 	   });
 	}
+} 
+//商品上下架
+export const getChangeStatusAction = (id,newStart)=>{
+	return (dispatch,getState)=>{
+       const state = getState().get('product');
+     
+	   request({
+	   	  url: UPDATE_PRODUCT_STATUS,
+	   	  method: 'put',
+	   	  data: {
+	   	  	 id:id,
+	   	  	 status:status,
+	   	  	 page:state.get('current')	
+	   	  }
+	   })
+	   .then(result=>{
+	   	   if(result.code == 0){
+	   	   	  dispatch(getSetPageAction(result.data))	
+	   	   }else{
+	   	   	 message.error(result.message)
+	   	   }
+	   	  	
+	   })
+	   .catch(err=>{
+	   		message.error('网络错误，请稍后再试');
+	   		dispatch(getAddDoneAction());
+	   });
+	}
+} 
+
+
+
+
+
+ const getEditAction = (payload)=>{
+	return {
+		type:types.CATEGORY_EDIT,
+		payload
+	}
 }
+
+//更新商品信息
+export const getEditProductAction = (productId)=>{
+	return (dispatch)=>{
+	   request({
+	   	  url: EDIT_PRODUCT,
+	   	  method: 'get',
+	   	  data: {	   	 
+	   	  	  id:productId, 	
+	   	  }
+	   })
+	   .then(result=>{
+           dispatch(getEditAction(result.data))
+	   	   message.success("获取数据成功")	   	 	
+	   })
+	   .catch(err=>{
+	   		message.error('网络错误，请稍后再试');
+	   });
+	}
+}  
+
+
+
+
 
 
 export const getLevelOneCategoriesAction = ()=>{
 
   return (dispatch)=>{
 	   request({
-	   	  url: GET_CATEGORIES,
+	   	  url: PRODUCT,
 	   	  method: 'get',
 	   	  data: {
-	   	  	pid:0
+	   	  	page:0
 	   	  }
 	   })
 	   .then((result)=>{
@@ -132,17 +195,15 @@ export const getLevelOneCategoriesAction = ()=>{
 	}
 }
 
-export const getPageAction = (pid,page)=>{
-	console.log(pid,page);
+export const getPageAction = (page)=>{
 
   return (dispatch)=>{
 	dispatch(getPageRequstAction());
 	   request({
-	   	  url: CATEGORY,
+	   	  url: PRODUCT,
 	   	  method: 'get',
 	   	  data: {
 	   	  	page:page,
-	   	  	pid:pid
 	   	  }
 	   })
 	   .then(result=>{

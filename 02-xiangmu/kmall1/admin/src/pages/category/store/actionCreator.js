@@ -103,7 +103,6 @@ export const getLevelOneCategoriesAction = ()=>{
 }
 
 export const getPageAction = (pid,page)=>{
-	console.log(pid,page);
 
   return (dispatch)=>{
 	dispatch(getPageRequstAction());
