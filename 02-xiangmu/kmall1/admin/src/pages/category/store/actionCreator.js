@@ -64,7 +64,7 @@ export const getAddAction = (values)=>{
                 if(result.data){//如果添加的是一级分类,从新更新一级分类
                     dispatch(setLevelOneCategories(result.data))
                 }
-                message.error('添加分类成功');
+                message.success('添加分类成功');
 	   		}else{               
 	   			message.error(result.message);
 	   		}

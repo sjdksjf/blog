@@ -14,15 +14,24 @@ const router = Router();
 /*
 router.get("/init",(req,res)=>{
 	const users =[];
+	//注册普通用户	
 	for (var i = 0; i < 100; i++) {
 		users.push({
 			username:'test'+i,
 			isAdmin:false,
-			password:'test1',
+			password:hmac('test'+i),
 			email:'123456@qq.com',
 			phone: 123456
 		});
-	}
+	}	
+	//注册管理员	
+	users.push({
+			username:'admin',
+			isAdmin:true,
+			password:hmac('admin'),
+			email:'123456@qq.com',
+			phone: 123456
+		});	
 	console.log(users);
 	UserModel.create(users,(err,NewUsers)=>{
 		if (!err) {

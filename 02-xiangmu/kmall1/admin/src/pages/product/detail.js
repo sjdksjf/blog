@@ -21,7 +21,6 @@ const FormItem = Form.Item;
 class NormalCategoryForm extends Component {
 	constructor(props){
        super(props);
-       this.handleSubmit = this.handleSubmit.bind(this);
        this.state = {
        	   productId : this.props.match.params.productId
        }
@@ -33,14 +32,7 @@ class NormalCategoryForm extends Component {
     }
 
 
-  handleSubmit(e){
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-       values.id = this.state.productId;
-       this.props.handleSave(err,values);
-    
-    });
-  }
+
    
 	render(){
               const {
@@ -105,7 +97,9 @@ class NormalCategoryForm extends Component {
 				            }],
 				            initialValue :this.props.EditName
 				          })(
-				            <Input />
+				            <Input 
+				            disabled ={true}
+				            />
 				          )}
 				        </FormItem>
 				         <FormItem
@@ -119,7 +113,9 @@ class NormalCategoryForm extends Component {
 				            }],
 				            initialValue :this.props.EditIntro
 				          })(
-				            <Input />
+				            <Input 
+                             disabled ={true}
+				            />
 				          )}
 				        </FormItem>
 
@@ -155,7 +151,7 @@ class NormalCategoryForm extends Component {
 				            min = {0}
 				            formatter={value => `${value}元`}
       						parser={value => value.replace('%', '')}
-
+                            disabled={true}
 				            />
 				          )}
 				        </FormItem>	
@@ -175,8 +171,7 @@ class NormalCategoryForm extends Component {
                             min = {0}
 				            formatter={value => `${value}件`}
       						parser={value => value.replace('%', '')}
-
-
+                            disabled={true}
 				            />
 				          )}
 				        </FormItem>	
@@ -205,22 +200,14 @@ class NormalCategoryForm extends Component {
 				          />
 				        </FormItem>
 
-				        <FormItem {...tailFormItemLayout}>
-				        	<Button 
-				          		type="primary"
-				          		onClick={this.handleSubmit}
-				          		loading={this.props.isAddFetching}
-				          	>
-				          	提交
-				        	</Button>
-				        </FormItem>				        					
+				       		        					
 					</Form>
 				</div>
 			)
 	}
 }
 
-const CategorySave = Form.create()(NormalCategoryForm);
+const CategoryDetail = Form.create()(NormalCategoryForm);
 const mapStateToProps = (state)=>{
    return{
       categoryIdValidateStatus:state.get('product').get('categoryIdValidateStatus'),
@@ -237,22 +224,7 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-       handleSave:(err,values)=>{
-          const action = actionCreator.getSaveAction(err,values);
-          dispatch(action); 
-       }, 
-       handCategory:(parentCategoryId,categoryId)=>{
-       	  const action = actionCreator.getSetCategoryAction(parentCategoryId,categoryId);
-          dispatch(action); 
-       },
-       handleImages:(fileList)=>{
-          const action = actionCreator.getSetImagesAction(fileList);
-          dispatch(action); 
-       },
-       handleDetail:(value)=>{
-          const action = actionCreator.getSetDetailAction(value);
-          dispatch(action); 
-       },
+      
        getEditProduct:(productId)=>{
           const action = actionCreator.getEditProductAction(productId);
           dispatch(action); 
@@ -261,5 +233,5 @@ const mapDispatchToProps = (dispatch) =>{
 
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CategorySave);
+export default connect(mapStateToProps,mapDispatchToProps)(CategoryDetail);
 

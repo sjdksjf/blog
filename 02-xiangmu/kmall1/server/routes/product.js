@@ -57,7 +57,7 @@ router.post("/details",upload.single('upload'),(req,res)=>{
 //添加分类
 router.post("/",(req,res)=>{
 	       let body = req.body;
-
+           console.log("aa",body)
 			new ProductModel({
 				category:body.category,
 				describe:body.describe,
@@ -83,6 +83,46 @@ router.post("/",(req,res)=>{
 								}
 							})	
 						})					 				
+					}else{
+						res.json({
+							code:10
+						})
+					}
+					
+			})
+	.catch((e)=>{
+		res.json({
+		 	code:1,
+		 	message:"添加分类失败,服务器端错误"
+		})
+	})
+})
+
+//编辑
+router.put("/",(req,res)=>{
+	        let body = req.body;
+			let update ={
+				category:body.category,
+				describe:body.describe,
+				name:body.name,
+				price:body.price,
+				stock:body.stock,
+
+			}
+			ProductModel
+			.update({_id:body.id},update)
+			.then((product)=>{
+				if(product){
+					 res.json({
+								code:0,
+								message:'编辑成功',
+								data:{
+									current:result.page,
+									total:result.total,
+									pageSize:result.pageSize,
+									list:result.list					
+								}
+							})			 				
 					}else{
 						res.json({
 							code:10
@@ -204,6 +244,36 @@ router.get("/details",(req,res)=>{
 	 		})		
 		})		
 	}
+
+});
+
+//获取搜索商品信息
+router.get("/searchForGoods",(req,res)=>{
+	let keyword = req.query.keyword;
+	let page = req.query.page || 1;
+		ProductModel
+		.getPaginationProductes(page,{
+			name:{$regex:new RegExp(keyword,'i')}
+		})
+		.then((result)=>{
+			res.json({
+				code:0,
+				data:{
+					current:result.page,
+					total:result.total,
+					pageSize:result.pageSize,
+					list:result.list,
+					keyword:keyword
+				}
+			})
+
+		  })
+		.catch(e=>{
+	 		res.json({
+	 			code:1,
+	 			message:"获取商品失败,服务器端错误"
+	 		})		
+		})		
 
 });
 	

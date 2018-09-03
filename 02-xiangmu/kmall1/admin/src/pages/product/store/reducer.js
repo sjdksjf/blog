@@ -1,8 +1,6 @@
 import * as types from './actionTypes.js';
 const { fromJS } = require('immutable');
 const defaultState = fromJS({
-		parentCategoryId:'',
-		categoryId:'',
         fileList:null,
         value:'',
         validateStatus:'',
@@ -18,11 +16,8 @@ const defaultState = fromJS({
         categoryId:'',
         images:'',
 	    detail:'',
-
+        keyword:'',
        
-		isAddFetching:false,
-		levelOneCategories:[],
-		isPageFetching:false,
 		current:0,
 		total:0,
 		pageSize:0,
@@ -52,8 +47,8 @@ export default (state=defaultState,action)=>{
 	         EditNum:action.payload.stock,
 	         images:action.payload.images,
 	         detail:action.payload.detail,
-	         parentCategoryId:action.payload.category._id,
-	         categoryId:action.payload.category.pid,
+	         parentCategoryId:action.payload.category.pid,
+	         categoryId:action.payload.category._id,
          })
     }
 
@@ -92,7 +87,8 @@ export default (state=defaultState,action)=>{
 			current:action.payload.current,
   			pageSize:action.payload.pageSize,
   			total:action.payload.total,
-  			list:fromJS(action.payload.list)
+  			keyword:action.payload.keyword || '',
+  			list:fromJS(action.payload.list),
 		})
 	}
     if(action.type == types.PAGE_REQUEST){

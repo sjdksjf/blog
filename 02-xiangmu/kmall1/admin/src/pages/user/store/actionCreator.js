@@ -15,9 +15,8 @@ export const userGetInitDataAction = (values)=>{
 	   	  	page:values
 	   	  }
 	   })
-	   .then(result=>{
-
-	   		if (result.code == 0) {
+	   .then(result=>{    
+	   		if (result.code == 0){
 	   			dispatch(userAction(result.data));
                 dispatch(userConmmAction());
 	   		}else if (result.code == 10) {

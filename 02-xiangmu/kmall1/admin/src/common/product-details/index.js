@@ -9,7 +9,9 @@ import 'simditor/styles/simditor.css'
 class UploadSimditor extends Component {
        constructor(props){
            super(props);
-
+           this.state = {
+           	   isLoaded : false
+           }
            this.toolbal =[
 				  'title',
 				  'bold',
@@ -50,15 +52,27 @@ class UploadSimditor extends Component {
           	  }
 			});
 	   /*
-       editor.onValuechanged =(e, src)=>{
-       	 console.log('simditor valuechanged')
-       }
-       */
+      this.editor.on('valuechanged',()=>{
+      	  this.setState({
+         	  	  isLoaded:true
+         	  },()=>{
+	             this.props.getRichEditorValue(this.editor.getValue())
+         	  })
+       }) 
+       */ 
 	}
+	/*
+	componentDidMount(){
+         if(this.props.detail && !this.state.isLoaded){
+         	  this.editor.setValue(this.props.detail)
+         	  this.setState({
+         	  	  isLoaded:true
+         	  })
+         }
+	}
+  */
     render(){
       
-
-
         return (
               <div>
                  <textarea ref={(textarea)=>{this.textarea = textarea}}></textarea>

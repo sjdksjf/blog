@@ -32,10 +32,15 @@ class CategorySelect extends Component {
      static getDerivedStateFromProps(props, state){
            console.log('props',props)
            console.log('state',state)
-           /*
-           const levelOneCategoryIdChanged = props.parentCategoryId !==levelOneCategoryId;
-           const levelTwoCategoryIdChanged = props.categoryId !==levelTwoCategoryId;
-           // 分类Id不存在 不更新数据
+           
+           const levelOneCategoryIdChanged = props.parentCategoryId !==state.levelOneCategoryId;
+           const levelTwoCategoryIdChanged = props.categoryId !==state.levelTwoCategoryId;
+     
+           //     
+           if(state.levelOneCategoryId && !props.parentCategoryId && !props.categoryId){
+              return null
+           }
+          // 分类Id不存在 不更新数据
            if(!levelOneCategoryIdChanged && !levelTwoCategoryIdChanged){
               return null 
            }
@@ -58,7 +63,7 @@ class CategorySelect extends Component {
                  isChanged :true
              }
            }
-        */
+        
           return null 
      }
 
@@ -157,7 +162,8 @@ class CategorySelect extends Component {
                   onChange={this.handleLevelTwoChange}
                   >
                     {levelTwoOptions}
-                  </Select> : null
+                  </Select> 
+                : null
               }
 			   
           </div>

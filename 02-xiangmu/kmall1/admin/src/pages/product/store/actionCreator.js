@@ -1,6 +1,13 @@
 import * as types from './actionTypes.js';
 
-import { CATEGORY,PRODUCT,ADD_PRODUCT,EDIT_PRODUCT,UPDATE_PRODUCT_STATUS } from 'api';
+import { 
+	CATEGORY,
+	PRODUCT,
+	SAVE_PRODUCT,
+	EDIT_PRODUCT,
+	UPDATE_PRODUCT_STATUS,
+	SEARCH_FOR_GOODS,
+	} from 'api';
 import { request,setUserName } from 'util';
 import { message } from 'antd';
 
@@ -78,7 +85,7 @@ const setCategoryError = ()=>({
 })
 
 
-export const getAddAction = (err,values)=>{
+export const getSaveAction = (err,values)=>{
 	return (dispatch,getState)=>{
        const state = getState().get('product');
        const categoryId = state.get('categoryId');
@@ -86,9 +93,15 @@ export const getAddAction = (err,values)=>{
        	 dispatch(setCategoryError())
        	 return
        }
+       //新增处理
+       let method = 'post';
+       //编辑处理
+       if(values.id){
+       	  method = 'put';
+       }
 	   request({
-	   	  url: ADD_PRODUCT,
-	   	  method: 'post',
+	   	  url: SAVE_PRODUCT,
+	   	  method: method,
 	   	  data: {
 	   	  	  ...values,
 	   	  	  category:categoryId, 
@@ -146,7 +159,7 @@ export const getChangeStatusAction = (id,newStart)=>{
 	}
 }
 
-//更新商品信息
+//获取商品信息
 export const getEditProductAction = (productId)=>{
 	return (dispatch)=>{
 	   request({
@@ -157,6 +170,7 @@ export const getEditProductAction = (productId)=>{
 	   	  }
 	   })
 	   .then(result=>{
+	   	console.log(result.data)
            dispatch(getEditAction(result.data))
 	   	   message.success("获取数据成功")	   	 	
 	   })
@@ -165,10 +179,31 @@ export const getEditProductAction = (productId)=>{
 	   });
 	}
 }  
-
-
-
-
+//获取搜索商品信息
+export const getSearchAction = (keyword,page)=>{
+	return (dispatch)=>{
+	   request({
+	   	  url: SEARCH_FOR_GOODS,
+	   	  method: 'get',
+	   	  data: {	   	 
+	   	  	  keyword,
+	   	  	  page	
+	   	  }
+	   })
+	   .then(result=>{
+	   	  if(result.code == 0){
+	   	  	 console.log("aa",result);
+	   	  	 dispatch(getSetPageAction(result.data))
+	   	  }else{
+	   	  	 message.error(result.message)
+	   	  }
+	   	   	   	 	
+	   })
+	   .catch(err=>{
+	   		message.error('网络错误，请稍后再试');
+	   });
+	}
+}  
 
 
 export const getLevelOneCategoriesAction = ()=>{

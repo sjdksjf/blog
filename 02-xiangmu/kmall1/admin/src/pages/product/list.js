@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { actionCreator } from './store';
 import Layout from 'common/layout';
 
+const Search = Input.Search;
 
 class ProductList extends Component {
 	constructor(props){
@@ -17,6 +18,8 @@ class ProductList extends Component {
 	}
 	
 	render(){
+		const { keyword } = this.props;
+
 		const columns = [
             {
 			  title: 'ID',
@@ -27,6 +30,15 @@ class ProductList extends Component {
 			  title: '商品名称',
 			  dataIndex: 'name',
 			  key: 'name',
+			  render:(name)=>{
+                  if(keyword){
+                  	  let reg = new RegExp("("+keyword+")",'ig');
+                  	  let html = name.replace(reg,"<b style = 'color:green'>$1</b>");
+                  	  return <span dangerouslySetInnerHTML={{__html:html}}></span>
+                  }else{
+                  	return name;
+                  }
+			  }
 			},
 			{
 			  title: '状态',
@@ -54,13 +66,13 @@ class ProductList extends Component {
 			  }
 			},
 			{
-			  title: 'Action',
+			  title: '操作',
 			  key: 'action',
 			  render: (text, record) => (
 			     <span>
 					  <Link to={"/product/save/"+record.id} >编辑</Link> 
 					  <Divider type="vertical" />
-					  <Link to={"/product/"+record.id} >查看商品</Link> 
+					  <Link to={"/product/detail/"+record.id} >查看商品</Link> 
 				 </span>
 			  ),
 			}];
@@ -77,6 +89,7 @@ class ProductList extends Component {
 			
 			}
 		}).toJS();	
+
   
 		return (
                <div>
@@ -86,7 +99,16 @@ class ProductList extends Component {
 				   </Breadcrumb>
 				  
 				    <div style={{ marginTop:20 }} className ="clearfix" > 
-				        
+				        <Search
+				          style = {{ float:'left' }}
+				          style={{ width: 300 }}
+					      placeholder="请输入商品关键词"
+					      onSearch={keyword => {
+
+					      	this.props.handleSearch(keyword)
+					      }}
+					      enterButton
+					    />
 	                   <Link to ='/product/save' style = {{ float:'right' }} >
 	                     <button type="primary">新增商品</button>
 	                   </Link>
@@ -99,13 +121,18 @@ class ProductList extends Component {
 		                    current: this.props.current,
 		                    defaultCurrent:this.props.current,
 		                    pageSize:this.props.pageSize,
-		                    total:this.props.total
+		                    total:this.props.total,
 		                  }
 		               } 
 		           
-		               onChange = {(Pagination)=>{
-		                 this.props.handlePage(Pagination.current)
-		               }}
+		               onChange = {(Pagination)=>{		               	 
+			               	if(keyword){
+                                 this.props.handleSearch(keyword,Pagination.current) 
+			               	}else{
+			               		 this.props.handlePage(Pagination.current)
+			               	}
+
+		               	}}
 		               loading = {
 		                 {
 		                 spinning: this.props.isPageFetching,
@@ -137,7 +164,7 @@ class ProductList extends Component {
 
 const mapStateToProps = (state)=>{
    return{
-   	
+   	  keyword:state.get('product').get('keyword'),
       isPageFetching:state.get('product').get('isPageFetching'),
       current:state.get('product').get('current'),
       pageSize:state.get('product').get('pageSize'),
@@ -151,7 +178,10 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-  	
+  	    handleSearch:(keyword,page=1)=>{
+            dispatch(actionCreator.getSearchAction(keyword,page));
+  	    },
+
         handlePage:(page)=>{
 			dispatch(actionCreator.getPageAction(page));
 		},

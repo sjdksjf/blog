@@ -21,28 +21,36 @@ import './App.css';
 
 class App extends Component{
   render(){
-   
+    
     const ProtectedRouter = ({component:Component,...rest})=>(
+      
       <Route 
+        
         {...rest}
         render = {props=>(
+                 
           getUserName()
           ? <Component {...props} />
           : <Redirect to="/login" />
-        )}
+          
+        )}       
       />
+      
     )
-
+   
     const LoginRouter =({component:Component,...rest})=>{
+      
       if(getUserName()){
         return <Redirect to="/" />
       }else{
         return <Route {...rest} component={Component} />
       }
+      
     }
+
   
     return(
-      <Router>
+      <Router forceRefresh = {true}>
         <div className="App">
         <Switch>
           <ProtectedRouter exact path="/" component={ Home } />
