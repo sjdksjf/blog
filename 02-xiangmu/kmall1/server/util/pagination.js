@@ -10,7 +10,6 @@ options = {
 */
 
 let pagination = (options)=>{
-
 	return new Promise((resolve,reject)=>{
 		//需要显示的页码
 		
@@ -39,7 +38,7 @@ let pagination = (options)=>{
 		(page - 1) * limit
 		*/
 
-		options.model.estimatedDocumentCount(options.query)
+		options.model.countDocuments(options.query)
 		.then((count)=>{
 			let pages = Math.ceil(count / limit);
 			if(page > pages){
@@ -63,12 +62,13 @@ let pagination = (options)=>{
 					query = query.populate(options.populate[i])
 				}
 			}
-
-			query
+			console.log(skip,page)
+			query	
 			.sort(options.sort)
 			.skip(skip)
 			.limit(limit)
 			.then((docs)=>{
+				console.log(docs)
 				resolve({
 					list:docs,
 					pageSize:limit,

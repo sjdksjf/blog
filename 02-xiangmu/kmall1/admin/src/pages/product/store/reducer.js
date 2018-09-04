@@ -68,8 +68,6 @@ export default (state=defaultState,action)=>{
     }
 
 
-	
-
 
  
 	if(action.type == types.CATEGORY_ISFECTH){
@@ -91,6 +89,10 @@ export default (state=defaultState,action)=>{
   			list:fromJS(action.payload.list),
 		})
 	}
+
+
+
+
     if(action.type == types.PAGE_REQUEST){
 		return state.set('isPageFetching',true)
 	}

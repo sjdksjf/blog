@@ -127,7 +127,7 @@ class ProductList extends Component {
 		           
 		               onChange = {(Pagination)=>{		               	 
 			               	if(keyword){
-                                 this.props.handleSearch(keyword,Pagination.current) 
+                                 this.props.handleSearch(keyword,Pagination.current)
 			               	}else{
 			               		 this.props.handlePage(Pagination.current)
 			               	}
