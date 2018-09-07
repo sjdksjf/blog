@@ -1,0 +1,44 @@
+.searce{
+	height: 80px;
+	background: #fff;
+}
+.searce-title{
+	width: 10%;
+}
+
+.searce-title a{
+	height: 80px;
+	line-height: 80px;
+	font-size: 30px;
+	font-weight: bold;
+	float: left;
+	color: red;
+	text-align: center;
+}
+.searce-box{
+	height: 80px;
+	line-height: 80px;
+	float: left;
+	margin-left: 200px;
+	position: relative;
+}
+.searce-input{
+	display: inline-block;
+	overflow: hidden;
+	padding-right: 210px;
+	height: 50px;
+	font-size: 16px;
+	padding-left: 8px;
+}
+.searce-btn{
+	width: 60px;
+    height: 54px;
+    border: 0 solid #ff4200;
+    background-color: #ff4200;
+    color: #fff;
+    font-size: 16px;
+    position: absolute;
+    top: 13px;
+    right:0px;
+    cursor: pointer;
+}

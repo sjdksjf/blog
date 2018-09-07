@@ -20,6 +20,11 @@ module.exports = {
     'common':'./src/pages/common/index.js',
     'index':'./src/pages/index/index.js',
     'user-login':'./src/pages/user-login/index.js',
+    'user-register':'./src/pages/user-register/index.js',
+    'user-center':'./src/pages/user-center/index.js',
+    'user-change-password':'./src/pages/user-change-password/index.js',
+    'result':'./src/pages/result/index.js',
+
   },  
   //引入额外的模块
   // externals: {
@@ -36,7 +41,7 @@ module.exports = {
   resolve: {
     alias: {
       'pages': path.resolve(__dirname, "./src/pages"),
-      'serice': path.resolve(__dirname, "./src/serice/user"),
+      'service': path.resolve(__dirname, "./src/service/user"),
       'layout': path.resolve(__dirname, "./src/common/layout"),
       'common': path.resolve(__dirname, "./src/common"),
       'node_modules': path.resolve(__dirname, "./node_modules"),
@@ -59,6 +64,7 @@ module.exports = {
           "css-loader"
         ] 
       },
+
       {
         //加载图片的配置文件
         test: /\.(png|jpg|gif|ttf|woff2|woff|eot|svg)\??.*$/,
@@ -111,12 +117,16 @@ module.exports = {
    //  }),
     new HtmlWebpackPlugin(ShowHtmlWebpack('index')),
     new HtmlWebpackPlugin(ShowHtmlWebpack('user-login')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('user-register')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('user-center')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('user-change-password')),
+    new HtmlWebpackPlugin(ShowHtmlWebpack('result')),
     new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
     })
   ],
-
+ 
   devServer:{
 //webpack-dev-server提供了一个简单的基于node express的web服务器,能够实时重新加载页面
   	contentBase:'./dist',

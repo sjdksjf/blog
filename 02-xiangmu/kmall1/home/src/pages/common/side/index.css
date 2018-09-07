@@ -1,0 +1,28 @@
+.code{
+  height: 500px;
+  margin-top: 15px;
+}
+.code .sode{
+  height: 500px;
+  width: 130px;
+  background: #fff;
+  float: left;
+}
+.code .conten{
+  height: 500px;
+  width: 900px;
+  background: #fff;
+  float: right;
+}
+
+.code .sode-ul{
+  height: 100px;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+.code .sode-ul li{
+  margin-top: 5px;
+}
+.code .active{
+  color: red;
+}

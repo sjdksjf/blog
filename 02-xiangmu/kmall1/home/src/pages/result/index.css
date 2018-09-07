@@ -1,0 +1,34 @@
+
+body{
+	background: #fff;
+}
+.result{
+  width: 100%;
+  height: 100%;
+  display: block;	
+}
+.container{
+  height: 300px;
+ 
+  background: #666;
+  margin: 100px auto;
+}
+.result-success{
+   color: #fff;
+   height: 50px;
+   line-height: 50px;
+   font-size: 30px;
+   padding-top: 50px;
+   text-align: center;
+}
+.result-left{
+   height: 50px;
+   line-height: 50px;
+   font-size: 20px;
+   text-align: center;
+}
+.result-left a{
+    color: #fff;
+    margin-left: 10px;
+
+}

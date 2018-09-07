@@ -2,7 +2,7 @@ require('./index.css');
 
 var _util = require('util');
 
-var nav = {
+var searce = {
     init: function(){
     	this.bindEvent();
     	this.loadUserInfo();
@@ -26,7 +26,6 @@ var nav = {
 
     }
     */
-    
 }
 
-module.exports = nav.init();
+module.exports = searce.init();

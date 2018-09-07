@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<%= require('html-loader!./common/logo.html') %>
+	<div class="user">
+		<div class="container">
+			<div class="user-itam">
+				<div class="user-login">用户注册</div>
+				<table class="error">
+                    <i class="fa fa-exclamation-circle"></i>
+					<input class="btn-itam" type="text" name="name" placeholder="请输入用户名">
+				</table>
+				<table>
+                    <i class="fa fa-exclamation-circle"></i>
+					<input class="btn-itam" type="possword" name="possword" placeholder="请输入密码">
+				</table>
+				<table>
+                    <i class="fa fa-exclamation-circle"></i>
+					<input class="btn-itam" type="repossword" name="repossword" placeholder="请再次输入密码">
+				</table>
+				<table>
+                    <i class="fa fa-exclamation-circle"></i>
+					<input class="btn-itam" type="phone" name="phone" placeholder="请输入手机号">
+				</table>
+				<table>
+                    <i class="fa fa-exclamation-circle"></i>
+					<input class="btn-itam" type="emile" name="emile" placeholder="请输入邮箱">
+				</table>
+				
+				<a class="btn-login" href="/">提交</a>
+				<a class="btn-fix" href="./user-login.html">已有账号去登陆</a>
+			</div>
+		</div>
+	</div>
+
+	<%= require('html-loader!./common/footer.html') %>
+</body>
+</html>

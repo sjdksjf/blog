@@ -1,10 +1,51 @@
+/*center 样式*/
+/*code 的样式*/
+.code{
+  height: 500px;
+  margin-top: 15px;
+}
+.code .sode{
+  height: 500px;
+  width: 130px;
+  background: #fff;
+  float: left;
+}
+.code .conten{
+  height: 500px;
+  width: 900px;
+  background: #fff;
+  float: right;
+}
+
+.code .sode-ul{
+  height: 100px;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+.code .sode-ul li{
+  margin-top: 5px;
+}
+.code .active{
+  color: red;
+}
+
+/*information 的样式*/
+.information{
+   height: 200px;
+}
+.conten-information{
+    margin: 20px 0 0 50px;
+    font-size: 16px;
+}
+
+/*修改密码样式*/
 .form{
 	background-color: #bdbdbd;
 	overflow: hidden;
 }
 .form-box{
 	width: 400px;
-	margin: 50px auto;
+	margin: 30px auto;
   padding: 50px;
 	background-color: #fff;
 	padding-bottom:30px;

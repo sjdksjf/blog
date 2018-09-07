@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<%= require('html-loader!./common/nav.html') %>
+	<%= require('html-loader!./common/searce.html') %>
+	<div class="code">
+		<div class="container">
+			<div class="sode">
+				<%= require('html-loader!./common/side.html') %>
+			</div>
+			<div class="conten">
+			   <div class="information">	
+					 <div class="conten-information">
+					 	<span class="user-item">用户名：</span>
+					 	<span class="conten-item">aaa</span>
+					 </div>
+					 <div class="conten-information">
+					 	<span class="user-phone">手机号：</span>
+					 	<span class="conten-phone">13231</span>
+					 </div>
+					 <div class="conten-information">
+					 	<span class="user-emil">邮箱：</span>
+					 	<span class="conten-emil">bbb</span>
+					 </div>
+				</div> 
+			</div>
+		</div>
+	</div>
+
+	<%= require('html-loader!./common/footer.html') %>
+</body>
+</html>
