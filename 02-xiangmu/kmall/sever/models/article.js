@@ -1,37 +1,32 @@
-/*
-* @Author: TomChen
-* @Date:   2018-08-04 17:14:00
-* @Last Modified by:   TomChen
-* @Last Modified time: 2018-08-11 17:20:52
-*/
+
 const mongoose = require('mongoose');
 const pagination = require('../util/pagination.js');
 
 const ArticleSchema = new mongoose.Schema({
   category:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:'Category'
+  	type:mongoose.Schema.Types.ObjectId,
+  	ref:'Category'
   },
   user:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:'User'
+  	type:mongoose.Schema.Types.ObjectId,
+  	ref:'User'
   },  
   title:{
-    type:String,
+  	type:String,
   },
   intro:{
-    type:String,
+  	type:String,
   },
   content:{
-    type:String,
+  	type:String,
   }, 
   click:{
-    type:Number,
-    default:0
+  	type:Number,
+  	default:0
   },
   createdAt:{
-    type:Date,
-    default:Date.now
+  	type:Date,
+  	default:Date.now
   } 
 });
 

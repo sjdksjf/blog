@@ -1,60 +1,67 @@
+/*
+* @Author: TomChen
+* @Date:   2018-08-16 17:14:09
+* @Last Modified by:   TomChen
+* @Last Modified time: 2018-09-03 09:15:49
+*/
 import React,{ Component } from 'react';
 import {
-  //HashRouter  as Router,
   BrowserRouter as Router,
-  Switch,
-  Redirect,
   Route,
-  Link
-} from 'react-router-dom';
-import Login from 'pages/login/';
-import Home from 'pages/home/';
-import User from 'pages/User';
-import Category from 'pages/category';
-import Product from 'pages/product';
-import Errorpage from 'common/error-page'; 
+  Link,
+  Switch,
+  Redirect
+} from 'react-router-dom'
 
-import { getUserName } from 'util';
+import Login from 'pages/login'
+import Home from 'pages/home'
+import User from 'pages/user'
+import Category from 'pages/category'
+import Product from 'pages/product'
+import ErrorPage from 'common/error-page'
+
+import { getUserName } from 'util'
+
 //引入css
 import './App.css';
 
 
 class App extends Component{
-  render(){
-   
-    const ProtectedRouter = ({component:Component,...rest})=>(
-      <Route 
-        {...rest}
-        render = {props=>(
-          getUserName()
-          ? <Component {...props} />
-          : <Redirect to="/login" />
-        )}
-      />
-    )
+	render(){
+		const ProtectedRoute = ({component:Component,...rest})=>(
+			<Route 
+				{...rest}
+				render = {props=>(
+					getUserName()
+					? <Component {...props} />
+					: <Redirect to="/login" />
+				)}
+			/>
+		)
 
-    const LoginRouter =({component:Component,...rest})=>{
-      if(getUserName()){
-        return <Redirect to="/" />
-      }else{
-        return <Route {...rest} component={Component} />
-      }
-    }
-  
-    return(
-      <Router>
-        <div className="App">
-        <Switch>
-          <ProtectedRouter exact path="/" component={ Home } />
-          <ProtectedRouter path="/user" component={ User } /> 
-          <ProtectedRouter path="/category" component={ Category } /> 
-          <ProtectedRouter path="/product" component={ Product } />      
-          <LoginRouter path="/login" component={ Login } />
-          <Route component = { Errorpage } />
-        </Switch>
-        </div>    
-      </Router> 
-    )
-  }
+		const LoginRoute =({component:Component,...rest})=>{
+			if(getUserName()){
+				return <Redirect to="/" />
+			}else{
+				return <Route {...rest} component={Component} />
+			}
+		}
+			
+		return(
+			<Router forceRefresh={true}>
+				<div className="App">
+					<Switch>
+						<ProtectedRoute exact path="/" component={ Home } />				
+						<ProtectedRoute path="/user" component={ User } />				
+						<ProtectedRoute path="/category" component={ Category } />				
+						<ProtectedRoute path="/product" component={ Product } />				
+						<LoginRoute path="/login" component={ Login } />
+						<Route component={ ErrorPage }  />
+					</Switch>	
+				</div>		
+			</Router>	
+		)
+	}
 }
-export default  App;
+
+export default App;

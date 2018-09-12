@@ -1,27 +1,40 @@
-import * as types from './actionTypes.js';
-const { fromJS } = require('immutable');
+/*
+* @Author: TomChen
+* @Date:   2018-08-20 09:18:25
+* @Last Modified by:   TomChen
+* @Last Modified time: 2018-08-28 15:48:40
+*/
+import { fromJS } from 'immutable'
+
+import * as types from './actionTypes.js'
+
+//用fromJS包装一个immutable对象
 const defaultState = fromJS({
-	  isFetching:false,
-      current:1,
-      pageSize:100,
-      total:10,
-      list:[]
+	isFetching:false,
+	current:0,
+	total:0,
+	pageSize:0,
+	list:[]	//immutable对象List	
 })
 
 export default (state=defaultState,action)=>{
-	if (action.type == types.CONM_ISLOAD) {
-		return state.set('isFetching',false);
-	}
-	if (action.type == types.USER_ISFECTH) {
-		return state.set('isFetching',true);
-	}
-	if (action.type == types.USER_DONE) {
+	
+	if(action.type === types.SET_PAGE){
 		return state.merge({
 			current:action.payload.current,
-  			pageSize:action.payload.pageSize,
-  			total:action.payload.total,
-  			list:fromJS(action.payload.list)
+			total:action.payload.total,
+			pageSize:action.payload.pageSize,
+			list:fromJS(action.payload.list)
 		})
 	}
+
+	if(action.type === types.PAGE_REQUEST){
+		return state.set('isFetching',true)
+	}
+
+	if(action.type === types.PAGE_DONE){
+		return state.set('isFetching',false)
+	}
+
 	return state;
 }

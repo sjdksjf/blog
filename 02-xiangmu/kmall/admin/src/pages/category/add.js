@@ -1,69 +1,68 @@
+/*
+* @Author: TomChen
+* @Date:   2018-08-27 15:19:33
+* @Last Modified by:   TomChen
+* @Last Modified time: 2018-08-30 14:42:49
+*/
 import React,{ Component } from 'react';
-import { Form, Input, Select, Button, Breadcrumb } from 'antd';
-import { connect } from 'react-redux';
+import { Breadcrumb,Form, Input,Select,Button } from 'antd';
+import { connect } from 'react-redux'
+import { actionCreator } from './store'
+
+import Layout from 'common/layout'
 
 
-import { actionCreator } from './store';
-
-import Layout from 'common/layout';
-
-
-const Option = Select.Option;
 const FormItem = Form.Item;
+const Option = Select.Option;
 
-class NormalCategoryForm extends Component {
+class NormalCategoryAdd extends Component{
 	constructor(props){
-       super(props);
-       this.handleSubmit = this.handleSubmit.bind(this);
-     
-   }
-    componentDidMount(){
-    	this.props.getLevelOneCategories();
-    }
-
-
-  handleSubmit(e){
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-        this.props.handleAdd(values);
-      }
-    });
-  }
-   
+		super(props);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+	componentDidMount(){
+		this.props.getLevelOneCategories();
+	}
+	handleSubmit(e){
+		e.preventDefault();
+		this.props.form.validateFields((err, values) => {
+		  if (!err) {
+		  	this.props.handleAdd(values);
+		  }
+		});
+	}	
 	render(){
-               const { getFieldDecorator } = this.props.form;
-
-			   const formItemLayout = {
-					      labelCol: {
-					        xs: { span: 24 },
-					        sm: { span: 8 },
-					      },
-					      wrapperCol: {
-					        xs: { span: 24 },
-					        sm: { span: 16 },
-					      },
-					    };
-			    const tailFormItemLayout = {
-					      wrapperCol: {
-					        xs: {
-					          span: 24,
-					          offset: 0,
-					        },
-					        sm: {
-					          span: 16,
-					          offset: 8,
-					        },
-					      },
-					    };
+		const { getFieldDecorator } = this.props.form;
+	    const formItemLayout = {
+	      labelCol: {
+	        xs: { span: 24 },
+	        sm: { span: 2 },
+	      },
+	      wrapperCol: {
+	        xs: { span: 24 },
+	        sm: { span: 22 },
+	      },
+	    };
+	    const tailFormItemLayout = {
+	      wrapperCol: {
+	        xs: {
+	          span: 24,
+	          offset: 0,
+	        },
+	        sm: {
+	          span: 16,
+	          offset: 2,
+	        },
+	      },
+	    };	
 		return(
-              <div>
+			<Layout>
+				<div>
 					<Breadcrumb>
 						<Breadcrumb.Item>分类管理</Breadcrumb.Item>
 						<Breadcrumb.Item>添加分类</Breadcrumb.Item>
 					</Breadcrumb>
-					<Form>
+					<Form style={{marginTop:30}}>
 				        <FormItem
 				          {...formItemLayout}
 				          label="分类名称"
@@ -74,7 +73,10 @@ class NormalCategoryForm extends Component {
 				              required: true, message: '请输入分类名称',
 				            }],
 				          })(
-				            <Input />
+				            <Input 
+				            	style={{ width: 300 }} 
+				            	placeholder="分类名称"
+				            />
 				          )}
 				        </FormItem>
 				        <FormItem
@@ -108,32 +110,32 @@ class NormalCategoryForm extends Component {
 				        </FormItem>				        					
 					</Form>
 				</div>
-			)
+			</Layout>
+		)
+	}
+
+}
+
+const CategoryAdd = Form.create()(NormalCategoryAdd);
+
+const mapStateToProps = (state)=>{
+	return {
+		isAddFetching:state.get('category').get('isAddFetching'),
+		levelOneCategories:state.get('category').get('levelOneCategories')
 	}
 }
 
-const CategoryAdd = Form.create()(NormalCategoryForm);
-const mapStateToProps = (state)=>{
-   return{
-      isAddFetching:state.get('category').get('isAddFetching'),
-      levelOneCategories:state.get('category').get('levelOneCategories')
-   }
-   
+const mapDispatchToProps = (dispatch)=>{
+	return{
+		handleAdd:(values)=>{
+			dispatch(actionCreator.getAddAction(values));
+		},
+		getLevelOneCategories:()=>{
+			dispatch(actionCreator.getLevelOneCategoriesAction());
+		}
+	}
 }
 
-const mapDispatchToProps = (dispatch) =>{
-  return{
-       handleAdd:(values)=>{
-          const action = actionCreator.getAddAction(values);
-          dispatch(action); 
-       },  
-       getLevelOneCategories:()=>{
-       	 const action = actionCreator.getLevelOneCategoriesAction();
-       	 dispatch(action);
-       }
-  }
 
-}
 
 export default connect(mapStateToProps,mapDispatchToProps)(CategoryAdd);
-

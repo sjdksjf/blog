@@ -1,3 +1,4 @@
+
 const Router = require('express').Router;
 
 const UserModel = require('../models/user.js');
@@ -11,8 +12,8 @@ const path = require('path');
 
 const router = Router();
 
-
-/*router.get("/init",(req,res)=>{
+/*
+router.get("/init",(req,res)=>{
 	//插入数据到数据库
 	new UserModel({
 		username:'admin',
@@ -26,7 +27,8 @@ const router = Router();
 			res.send('err')				
 		}
 	})
-});*/
+});
+*/
 //用户登录
 router.post("/login",(req,res)=>{
 	let body = req.body;
@@ -38,7 +40,6 @@ router.post("/login",(req,res)=>{
 	UserModel
 	.findOne({username:body.username,password:hmac(body.password),isAdmin:true})
 	.then((user)=>{
-		console.log(user);
 		if(user){//登录成功
 			 req.session.userInfo = {
 			 	_id:user._id,
@@ -50,22 +51,63 @@ router.post("/login",(req,res)=>{
 			 }
 			 res.json(result);
 		}else{
-			result.code = 10;
+			result.code = 1;
 			result.message = '用户名和密码错误'
 			res.json(result);
 		}
 	})
 })
 
-
 //权限控制
 router.use((req,res,next)=>{
 	if(req.userInfo.isAdmin){
 		next()
 	}else{
-		res.send('<h1>请用管理员账号登录</h1>');
+		res.send({
+			code:10
+		});
 	}
 })
+
+//系统统计
+router.get('/count',(req,res)=>{
+	res.json({
+		code:0,
+		data:{
+			usernum:300,
+			ordernum:301,
+			productnum:302
+		}
+	})
+})
+//获取用户
+router.get('/users',(req,res)=>{
+	let options = {
+		page: req.query.page,//需要显示的页码
+		model:UserModel, //操作的数据模型
+		query:{}, //查询条件
+		projection:'-password -__v -updatedAt', //投影，
+		sort:{_id:-1} //排序
+	}
+	pagination(options)
+	.then((result)=>{
+		res.json({
+			code:0,
+			data:{
+				current:result.current,
+				total:result.total,
+				pageSize:result.pageSize,
+				list:result.list
+			}
+		})
+	})
+})
+// so far so good......
+
+
+
+
+
 
 //显示管理员首页
 router.get("/",(req,res)=>{
@@ -75,30 +117,7 @@ router.get("/",(req,res)=>{
 })
 
 //显示用户列表
-router.get('/users',(req,res)=>{
 
-	//获取所有用户的信息,分配给模板
-
-	let options = {
-		page: req.query.page,//需要显示的页码
-		model:UserModel, //操作的数据模型
-		query:{}, //查询条件
-		projection:'_id username isAdmin', //投影，
-		sort:{_id:-1} //排序
-	}
-
-	pagination(options)
-	.then((data)=>{
-		res.render('admin/user_list',{
-			userInfo:req.userInfo,
-			users:data.docs,
-			page:data.page,
-			list:data.list,
-			pages:data.pages,
-			url:'/admin/users'
-		});	
-	})
-})
 
 //添加文章是处理图片上传
 router.post('/uploadImages',upload.single('upload'),(req,res)=>{

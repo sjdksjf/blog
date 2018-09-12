@@ -1,38 +1,36 @@
-import * as types from './actionTypes.js';
-import axios from 'axios';
-import { HOME } from 'api';
-import { message } from 'antd';//引入ant de里面的页面
-import { request } from 'util';
+/*
+* @Author: TomChen
+* @Date:   2018-08-24 14:39:19
+* @Last Modified by:   TomChen
+* @Last Modified time: 2018-08-25 15:18:03
+*/
+import { message } from 'antd';
 
+import { request,setUserName } from 'util'
+import { ADMIN_COUNT } from 'api'
 
-export const getInitDataAction = (values)=>{
-	return (dispatch)=>{	  
-	   request({
-	   	  url: HOME,
-	   })
-	   .then(result=>{
-	   		if (result.code == 0) {
-	   			setUserName(result.data.username)
-	   			window.location.href = '/';
+import * as types from './actionTypes.js'
 
-	   		}else if (result.code == 10) {
-	   			message.error(result.message);
-	   		}
-	   })
-	   .catch(err=>{
-	   		message.error('网络错误，请稍后再试');
-	   });
+const setCountAction = (payload)=>{
+	return {
+		type:types.SET_COUNT,
+		payload
 	}
 }
-
-export const loadInitDataAction = ()=>{
-	return {
-		type:types.LOGIN_ISFECTH,
-	}
-}
-
-export const loginConmmAction = ()=>{
-	return {
-		type:types.CONMM_ISFECTH,
+export const getCountAction = ()=>{
+	return (dispatch)=>{
+        request({
+			url: ADMIN_COUNT,
+		})
+		.then((result)=>{
+			if(result.code == 0){
+				dispatch(setCountAction(result.data))
+			}else if(result.code == 1){
+				message.error('获取统计数据失败')
+			}
+		})
+		.catch((err)=>{
+			message.error('获取统计数据网络错误,请稍后在试!')			
+		})
 	}
 }

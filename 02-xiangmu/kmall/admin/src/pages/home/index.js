@@ -1,51 +1,57 @@
-import { connect } from 'react-redux';
+/*
+* @Author: TomChen
+* @Date:   2018-08-24 17:02:20
+* @Last Modified by:   TomChen
+* @Last Modified time: 2018-08-25 15:11:50
+*/
 import React,{ Component } from 'react';
 import { Card } from 'antd';
+import { connect } from 'react-redux'
 
-import Layout from 'common/layout';
+import Layout from 'common/layout'
+import { actionCreator } from './store'
 
+import './index.css'
 
-class Home extends Component {
-   constructor(props){
-       super(props)
-   }
-  render() {
-    return (
-         <div>
-            <Layout>
-               <Card title="用户总数" bordered={false} style={{ width: 300 }}>
-      			      <p>{this.props.usersNumber}</p>
-      			   </Card>
-      			   <Card title="商品总数" bordered={false} style={{ width: 300 }}>
-      			      <p>{this.props.goodsNumber}</p>
-      			   </Card>
-      			   <Card title="人数" bordered={false} style={{ width: 300 }}>
-      			      <p>{this.props.produNumber}</p>
-      			   </Card>  
-            </Layout>
-        </div> 
-    );
-  }
+class Home extends Component{
+
+	componentDidMount(){
+		this.props.handleCount();
+	}
+
+	render(){
+		return(
+			<div className='Home'>
+				<Layout>
+					 <Card title="用户数" hoverable={true}>
+					    <p>{this.props.usernum}</p>
+					 </Card>
+					 <Card title="订单数" hoverable={true}>
+					    <p>{this.props.ordernum}</p>
+					 </Card>
+					 <Card title="商品数" hoverable={true}>
+					    <p>{this.props.productnum}</p>
+					 </Card>					 					 
+				</Layout>
+			</div>
+		)
+	}
 }
 
 const mapStateToProps = (state)=>{
-   return{
-      usersNumber:state.get('home').get('usersNumber'),
-      goodsNumber:state.get('home').get('goodsNumber'),
-      produNumber:state.get('home').get('produNumber')
-   }
+	return {
+		usernum:state.get('home').get('usernum'),
+		ordernum:state.get('home').get('ordernum'),
+		productnum:state.get('home').get('productnum')
+	}
 }
-/*
-const mapDispatchToProps = (dispatch) =>{
-  return{
-       getLoginAction:(values)=>{
-          const action = actionCreator.getInitDataAction(values);
-          dispatch(action); 
-       }  
-      
-  }
 
+const mapDispatchToProps = (dispatch)=>{
+	return{
+		handleCount:()=>{
+			const action = actionCreator.getCountAction();
+			dispatch(action);
+		}
+	}
 }
-*/
-export default connect(mapStateToProps,null)(Home);
-
+export default connect(mapStateToProps,mapDispatchToProps)(Home);

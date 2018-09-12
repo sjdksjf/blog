@@ -1,3 +1,4 @@
+
 const Router = require('express').Router;
 const CategoryModel = require('../models/category.js');
 const ArticleModel = require('../models/article.js');
@@ -16,7 +17,7 @@ router.use((req,res,next)=>{
 
 //显示文章管理页面
 router.get("/",(req,res)=>{
-    
+	/*
 	let options = {
 		page: req.query.page,//需要显示的页码
 		model:ArticleModel, //操作的数据模型
@@ -26,7 +27,9 @@ router.get("/",(req,res)=>{
 		populate:[{path:'category',select:'name'},{path:'user',select:'username'}]
 	}
 
-  pagination(options)
+	pagination(options)
+	*/
+	ArticleModel.getPaginationArticles(req)
 	.then((data)=>{
 		res.render('admin/article_list',{
 			userInfo:req.userInfo,
@@ -37,26 +40,8 @@ router.get("/",(req,res)=>{
 			url:'/article'
 		});	
 	})
-
-})	
-
-/*	
-	//封装函数未做
-    ArticleModel.getArticlesClickList(req)
-	.then((data)=>{
-		res.render('admin/article_list',{
-			userInfo:req.userInfo,
-			articles:data.docs,
-			page:data.page,
-			list:data.list,
-			pages:data.pages,
-			url:'/article'
-		});	
-	})
-
-})
 	
-*/
+})
 
 //显示新增页面
 router.get("/add",(req,res)=>{

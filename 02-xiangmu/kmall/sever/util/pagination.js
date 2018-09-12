@@ -1,3 +1,6 @@
+
+
+
 /*
 options = {
 	page: //需要显示的页码
@@ -32,14 +35,16 @@ let pagination = (options)=>{
 		假设: 每页显示 2 条  
 		limit(2)
 		skip()//跳过多少条
+
 		第 1 页 跳过 0 条
 		第 2 页 跳过 2 条
 		第 3 也 跳过 4 条
+
 		综上发现规律:
 		(page - 1) * limit
 		*/
 
-		options.model.estimatedDocumentCount(options.query)
+		options.model.countDocuments(options.query)
 		.then((count)=>{
 			let pages = Math.ceil(count / limit);
 			if(page > pages){
@@ -47,11 +52,6 @@ let pagination = (options)=>{
 			}
 			if(pages == 0){
 				page = 1;
-			}
-			let list = [];
-
-			for(let i = 1;i<=pages;i++){
-				list.push(i);
 			}
 
 			let skip = (page - 1)*limit;
@@ -70,10 +70,10 @@ let pagination = (options)=>{
 			.limit(limit)
 			.then((docs)=>{
 				resolve({
-					docs:docs,
-					page:page*1,
-					list:list,
-					pages:pages
+					list:docs,
+					current:page*1,
+					pageSize:limit,
+					total:count
 				})		
 			})
 		})
